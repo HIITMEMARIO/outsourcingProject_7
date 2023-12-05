@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Layout from 'components/Layout/Layout';
+
 import MainPage from 'pages/MainPage';
-import MyPage from 'pages/MyPage';
 import LoginPage from 'pages/LoginPage';
+import Layout from 'Layout/Layout';
 
 export default function Router() {
   return (
@@ -11,8 +11,7 @@ export default function Router() {
       <Layout>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/loginpage" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </Layout>
     </BrowserRouter>

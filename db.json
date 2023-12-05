@@ -1,94 +1,25 @@
 {
-  "fanLetters": [
+  "user": [
     {
-      "id": "0fd1adb4-ad4c-c0ea-3b01-9928788a512c",
-      "writeto": "새우살",
-      "nickName": "444433",
-      "comment": "ㄹㄹ",
-      "avatar": "https://t1.daumcdn.net/cfile/tistory/99FD943A5C821D7429",
       "userId": "fdfdfd",
-      "createdAt": 1701622123145
-    },
+      "pw": "0000"
+    }
+  ],
+  "review": [
     {
-      "id": "2bf1ce37-67e4-ba20-970d-17d721c57ed7",
-      "writeto": "새우살",
-      "nickName": "44443311",
-      "comment": "555",
-      "avatar": "https://t1.daumcdn.net/cfile/tistory/99FD943A5C821D7429",
+      "id": "abab",
+      "comment": "병원이 친절하고 의사가 맛있어요.",
       "userId": "fdfdfd",
-      "createdAt": 1701622480581
-    },
+      "createdAt": 1701622123145,
+      "hospital": "철야병원"
+    }
+  ],
+  "booking": [
     {
-      "id": "04c6b1d7-8b60-fce2-4bee-8a2b2419aaca",
-      "writeto": "새우살",
-      "nickName": "44443311",
-      "comment": "ssss",
-      "avatar": "https://t1.daumcdn.net/cfile/tistory/99FD943A5C821D7429",
+      "id": "abab",
       "userId": "fdfdfd",
-      "createdAt": 1701622488434
-    },
-    {
-      "id": "7ae4399e-6b06-4781-6253-e5040ef0f263",
-      "writeto": "새우살",
-      "nickName": "44!",
-      "comment": "ㄱ",
-      "avatar": "https://t1.daumcdn.net/cfile/tistory/99FD943A5C821D7429",
-      "userId": "fdfdfd",
-      "createdAt": 1701625959224
-    },
-    {
-      "id": "0ec732c1-ba81-1cf2-fe2a-52c54dac2279",
-      "writeto": "새우살",
-      "nickName": "44!",
-      "comment": "ㄴ",
-      "avatar": "https://t1.daumcdn.net/cfile/tistory/99FD943A5C821D7429",
-      "userId": "fdfdfd",
-      "createdAt": 1701625961167
-    },
-    {
-      "id": "9aaf4ac1-09bd-fef2-872f-889d340f85bd",
-      "writeto": "새우살",
-      "nickName": "44!",
-      "comment": "ㄷ",
-      "avatar": "https://t1.daumcdn.net/cfile/tistory/99FD943A5C821D7429",
-      "userId": "fdfdfd",
-      "createdAt": 1701625962892
-    },
-    {
-      "id": "f8e06c86-296e-dc01-998d-ea99a78082f3",
-      "writeto": "새우살",
-      "nickName": "44ㄹㄹ33",
-      "comment": "55",
-      "avatar": "https://t1.daumcdn.net/cfile/tistory/99FD943A5C821D7429",
-      "userId": "fdfdfd",
-      "createdAt": 1701630027689
-    },
-    {
-      "id": "4e7cb860-237c-0a06-a2fb-21e1fa6a064c",
-      "writeto": "새우살",
-      "nickName": "dfdfdf",
-      "comment": "안녕",
-      "avatar": "https://t1.daumcdn.net/cfile/tistory/99FD943A5C821D7429",
-      "userId": "ㅇㄹㅇㄹㅇㄹ",
-      "createdAt": 1701654314061
-    },
-    {
-      "id": "53a65204-b51f-af0e-b54a-0d45e5e9a552",
-      "writeto": "새우살",
-      "nickName": "151515",
-      "comment": "하잉",
-      "avatar": "https://t1.daumcdn.net/cfile/tistory/99FD943A5C821D7429",
-      "userId": "151515",
-      "createdAt": 1701655003277
-    },
-    {
-      "id": "fb140778-8578-5b57-c34b-990eb1e43b50",
-      "writeto": "새우살",
-      "nickName": "121212`",
-      "comment": "안녕하세요",
-      "avatar": "https://t1.daumcdn.net/cfile/tistory/99FD943A5C821D7429",
-      "userId": "121212`",
-      "createdAt": 1701655248038
+      "date": "날짜양식이 들어갈거야",
+      "hospital": "철야병원"
     }
   ]
 }
