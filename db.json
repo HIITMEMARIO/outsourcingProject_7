@@ -1,8 +1,29 @@
 {
   "user": [
     {
-      "userId": "fdfdfd",
-      "pw": "0000"
+      "id": "fdfdfd",
+      "password": "0000",
+      "nickname": "aabb"
+    },
+    {
+      "id": "aaaae",
+      "password": "fsdf",
+      "nickname": "dsfsd"
+    },
+    {
+      "id": "ㄱㄱㄱㄱ",
+      "password": "ㄹㄹㄹㄹㄹ",
+      "nickname": "ㄷㄷㄷ"
+    },
+    {
+      "id": "4444",
+      "password": "4444",
+      "nickname": "4444"
+    },
+    {
+      "id": "aaaa",
+      "password": "aaaa",
+      "nickname": "aaaa"
     }
   ],
   "review": [

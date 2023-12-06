@@ -1,6 +1,6 @@
 import GlobalStyles from 'GlobalStyle';
 import React, { useEffect } from 'react';
-import Router from 'Router';
+import Router from 'shared/Router';
 
 export function App() {
   return (
