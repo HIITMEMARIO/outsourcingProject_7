@@ -1,7 +1,6 @@
 import GlobalStyles from 'GlobalStyle';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Router from 'Router';
-
 export function App() {
   return (
     <div>
