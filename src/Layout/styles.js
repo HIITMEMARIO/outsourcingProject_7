@@ -11,6 +11,5 @@ export const StContainer = styled.div`
 `;
 export const StMain = styled.main`
   width: 100%;
-  min-height: 90vh;
   padding: 3rem;
 `;

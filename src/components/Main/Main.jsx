@@ -1,12 +1,5 @@
-import React, { useEffect } from 'react';
-import Review from './Review';
-// import { useDispatch } from 'react-redux';
-// import { __getReview } from '../../redux/modules/reviewSlice';
+import React from 'react';
 
 export default function Main() {
-  return (
-    <div>
-      <Review />
-    </div>
-  );
+  return <div>안녕</div>;
 }
