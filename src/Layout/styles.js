@@ -10,7 +10,6 @@ export const StContainer = styled.div`
   margin: auto;
 `;
 export const StMain = styled.main`
-  width: 100%;  
-  min-height: 90vh;
+  width: 100%;
   padding: 3rem;
 `;

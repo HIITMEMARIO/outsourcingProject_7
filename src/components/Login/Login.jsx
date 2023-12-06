@@ -67,7 +67,7 @@ function Login() {
             minLength={4}
             maxLength={15}
           />
-          {!isLoginMode && ( //로그인모드가 아닐때만!
+          {!isLoginMode && (
             <Input
               name="nickname"
               value={nickname}
