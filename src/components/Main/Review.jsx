@@ -88,7 +88,7 @@ export default function Review() {
             </div>
             <StReviewComment
               type="text"
-              placeholder="로그인 후 이용해주세요"
+              placeholder="로그인 후 이용해주세요 (100자 이내)"
               value={comment}
               onChange={onReviewChange}
               maxLength={100}
@@ -107,6 +107,7 @@ const StContainer = styled.div`
   justify-content: center;
   text-align: center;
   /* align-items: center; */
+  padding-bottom: 0px;
 `;
 
 const StHospitalInfo = styled.div`
@@ -137,6 +138,9 @@ const StComment = styled.div`
   padding-top: 10px;
   margin-left: 50px;
   margin-right: 50px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   /* margin-bottom: 50px; */
 `;
 
@@ -148,6 +152,7 @@ const StReviewComment = styled.input`
   border-radius: 30px;
   margin-left: 50px;
   margin-right: 50px;
+  padding: 20px;
   /* margin-bottom: 30px; */
   margin-top: 20px;
   /* padding-top: 50px; */
