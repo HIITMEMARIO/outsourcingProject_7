@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import uuid from 'react-uuid';
 import { __addReview, __getReview } from '../../redux/modules/reviewSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import {
+  StBtn,
+  StComment,
+  StCommentsBox,
+  StContainer,
+  StCreatedAt,
+  StFormBox,
+  StHospitalInfo,
+  StReviewBox,
+  StReviewComment,
+  StUserIDAndCreatedAt,
+  StUserId,
+} from './style';
 
 export default function Review() {
-  // const [reviewInput, setReviewInput] = useState('');
   const [comment, setComment] = useState('');
   const [userId, setUserId] = useState('');
   const dispatch = useDispatch();
@@ -101,88 +112,3 @@ export default function Review() {
     </>
   );
 }
-
-const StContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  /* align-items: center; */
-`;
-
-const StHospitalInfo = styled.div`
-  display: flex;
-  border: 1px solid darkgray;
-  width: 700px;
-  height: 300px;
-  margin: 50px;
-  border-radius: 30px;
-  padding: 20px;
-  background-color: white;
-`;
-
-const StCommentsBox = styled.div`
-  width: 800px;
-  height: 1100px;
-  border: none;
-  border-radius: 30px;
-  background-color: #c3ebff;
-`;
-
-const StComment = styled.div`
-  width: 700px;
-  height: 40px;
-  border: none;
-  background-color: white;
-  border-radius: 30px;
-  padding-top: 10px;
-  margin-left: 50px;
-  margin-right: 50px;
-  /* margin-bottom: 50px; */
-`;
-
-const StReviewComment = styled.input`
-  width: 700px;
-  height: 100px;
-  border: none;
-  background-color: white;
-  border-radius: 30px;
-  margin-left: 50px;
-  margin-right: 50px;
-  /* margin-bottom: 30px; */
-  margin-top: 20px;
-  /* padding-top: 50px; */
-`;
-
-const StBtn = styled.button`
-  border: 1px solid lightgray;
-  margin-inline-start: 600px;
-  background-color: lightgrey;
-  width: 80px;
-  height: 30px;
-  border-radius: 30px;
-`;
-
-const StUserIDAndCreatedAt = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-left: 50px;
-  margin-right: 50px;
-  margin-bottom: 20px;
-`;
-
-const StReviewBox = styled.div`
-  background-color: #c3ebff;
-  height: 120px;
-  /* border-radius: 30px; */
-  /* margin-bottom: 30px; */
-`;
-
-const StFormBox = styled.div`
-  background-color: #c3ebff;
-  padding-bottom: 50px;
-  border-radius: 30px;
-`;
-
-const StUserId = styled.div``;
-
-const StCreatedAt = styled.div``;
