@@ -1,7 +1,7 @@
-import Review from './Review';
 import React from 'react';
-import Map from './Map';
+import Review from './Review';
 
+import Map from './Map';
 export default function Main() {
   return (
     <div>
