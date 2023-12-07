@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import axios from "axios"
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 const initialState = {
     isLogin: !!localStorage.getItem("accessToken"),
@@ -9,21 +8,19 @@ const initialState = {
     error: null,
 }
 
-
-//thunk?
-//thunk에서 로그인 로직 실행=>데이터를 전역으로 관리?
-//로그인시 유저정보를 가져온다.
-//fullpill
-//isLogin값 갱신
-//
 export const __loginUser = createAsyncThunk("getLoginUser", async (payload, thunkApi) => {
     try {
 
         const auth = getAuth();
         const { email, password } = payload
+        console.log(auth.currentUser)
         await signInWithEmailAndPassword(auth, email, password)
-        const { accessToken, displayName } = auth.currentUser
-        return { accessToken, displayName }
+        if (!!auth.currentUser) {
+            const { accessToken, displayName } = auth.currentUser
+            return { accessToken, displayName }
+        }
+        throw new Error('에러')
+
     } catch (error) {
         const errorCode = error.code;
         console.log('에러코드', errorCode);
@@ -31,16 +28,21 @@ export const __loginUser = createAsyncThunk("getLoginUser", async (payload, thun
         console.log('에러메세지', errorMessage);
     }
 })
-export const __signupUser = createAsyncThunk("getSginupUser", async (payload, thunkApi) => {
+export const __signupUser = createAsyncThunk("getSignupUser", async (payload, thunkApi) => {
     try {
         const auth = getAuth();
+        console.log(payload)
         const { email, password, nickname } = payload
         await createUserWithEmailAndPassword(auth, email, password)
         await updateProfile(auth.currentUser, {
             displayName: nickname,
         });
-        const { accessToken, displayName } = auth.currentUser
-        return { accessToken, displayName }
+        if (!!auth.currentUser) {
+            const { accessToken, displayName } = auth.currentUser
+            return { accessToken, displayName }
+        }
+        throw new Error('에러')
+
 
     } catch (error) {
         const errorCode = error.code;
@@ -83,6 +85,8 @@ const authSlice = createSlice({
         })
         builder.addCase(__signupUser.fulfilled, (state, action) => {
             const { accessToken, displayName } = action.payload
+            // const { displayName } = action.payload
+
             state.isLoading = false;
             state.isLogin = true;
             state.loginUser = displayName

@@ -16,13 +16,17 @@ export default function Router() {
           <Route path="/" element={<MainPage />} />
           {/**login과 my페이지는 isLogin 상태에 따라 조건부 라우팅
            * true = mypage, false = loginpage
+           * 튜터님 강의 활용하여 접근시 ㅇㅋㅇㅋㅇㅋ
            */}
           {isLogin ?
             <>
               <Route path="/mypage" element={<MyPage />} />
             </>
-            :
-            <Route path="/login" element={<LoginPage />} />
+            : <>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/mypage" element={<Navigate replace to="/login" />} />
+            </>
+
           }
           <Route path="*" element={<Navigate replace to="/" />} />
 

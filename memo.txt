@@ -1,0 +1,17 @@
+review{
+    id:uuid
+    nickname:displayname,
+    comment:comment,
+    createdAt:sdfsdfjsdopi
+}
+불러올때
+data.filter(item=>{
+    return item.nickname === auth.currentuser.displayname
+})
+
+booking{
+    id:uuid,
+    nickname:displayname,
+    hospital:병원id
+    date:예약날짜
+}

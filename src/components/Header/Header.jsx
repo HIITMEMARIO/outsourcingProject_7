@@ -9,16 +9,15 @@ import { logout } from '../../redux/modules/authSlice';
 
 export default function Header() {
   const dispatch = useDispatch();
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log('user', user);
-    }
-  });
+  //확인용
+  const a = auth.currentUser;
+  console.log('a', a);
+  useEffect(() => {
+    const a = auth.currentUser;
 
-  // useEffect(() => {
-  //   const curruentUser = auth.currentUser;
-  //   console.log(curruentUser);
-  // }, []);
+    console.log('eff', a);
+  }, []);
+
   const navigate = useNavigate();
   const isLogin = useSelector((state) => state.authSlice.isLogin);
   console.log(isLogin);
@@ -30,7 +29,6 @@ export default function Header() {
     if (isLogin) {
       logOut();
       dispatch(logout());
-      localStorage.clear();
     }
   };
   return (
