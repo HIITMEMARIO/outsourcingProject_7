@@ -33,7 +33,7 @@ export default function MyProfile() {
     }
     setIsEdit(!isEdit);
     dispatch(__editReview({ id: params.id, newComment }));
-    if (isEdit == true) {
+    if (isEdit === true) {
       if (window.confirm('이대로 수정을 진행하시겠습니까?')) {
         // navigate('/');
       } else {
@@ -139,31 +139,28 @@ export default function MyProfile() {
   );
 }
 
-const StProfileContainer = styled.div`
+export const StProfileContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  /* border: 1px solid black; */
 `;
 
-const StScheduleContainer = styled.div`
+export const StScheduleContainer = styled.div`
   display: flex;
   justify-content: center;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  /* justify-items: start; */
   gap: 80px;
   margin: 0;
 `;
 
-const StScheduleBox = styled.div`
+export const StScheduleBox = styled.div`
   width: 200px;
   height: 200px;
   border: none;
   border-radius: 30px;
   background-color: #c3ebff;
-  /* background-image: linear-gradient(to bottom, #c3ebff, #7a97ff, #c3ebff); */
   margin-bottom: 50px;
   box-shadow: 15px 15px lightgray;
   cursor: pointer;
@@ -173,13 +170,11 @@ const StScheduleBox = styled.div`
   }
 `;
 
-const StReviewContainer = styled.div`
-  /* justify-content: center;
-  justify-items: center; */
+export const StReviewContainer = styled.div`
   height: 200px;
 `;
 
-const StReviewBox = styled.div`
+export const StReviewBox = styled.div`
   display: block;
   width: 700px;
   height: 100px;
@@ -189,7 +184,7 @@ const StReviewBox = styled.div`
   padding: 20px;
 `;
 
-const StRemoveBtn = styled.button`
+export const StRemoveBtn = styled.button`
   width: 100px;
   height: 50px;
   border-radius: 40px;
@@ -202,7 +197,7 @@ const StRemoveBtn = styled.button`
   }
 `;
 
-const StEditBtn = styled.button`
+export const StEditBtn = styled.button`
   width: 100px;
   height: 50px;
   border-radius: 40px;
@@ -215,11 +210,11 @@ const StEditBtn = styled.button`
   }
 `;
 
-const StBtns = styled.div`
+export const StBtns = styled.div`
   margin-left: 480px;
 `;
 
-const Textarea = styled.textarea`
+export const Textarea = styled.textarea`
   display: block;
   width: 700px;
   height: 100px;
@@ -229,4 +224,4 @@ const Textarea = styled.textarea`
   padding: 20px;
 `;
 
-const StReviewComment = styled.div``;
+export const StReviewComment = styled.div``;
