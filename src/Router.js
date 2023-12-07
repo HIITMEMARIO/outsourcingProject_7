@@ -12,7 +12,7 @@ export default function Router() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/mypage/:id" element={<MyPage />} />
         </Routes>
       </Layout>
     </BrowserRouter>

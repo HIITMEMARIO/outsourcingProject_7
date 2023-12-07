@@ -5,13 +5,12 @@ import { __addReview, __getReview } from '../../redux/modules/reviewSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function Review() {
-  // const [reviewInput, setReviewInput] = useState('');
   const [comment, setComment] = useState('');
   const [userId, setUserId] = useState('');
   const dispatch = useDispatch();
-  const { reviews } = useSelector((state) => state.reviewSlice);
+  const { review } = useSelector((state) => state.reviewSlice);
 
-  console.log('review', reviews);
+  console.log('review', review);
 
   useEffect(() => {
     dispatch(__getReview());
@@ -56,8 +55,8 @@ export default function Review() {
             병원이름의 리뷰보기
           </h1>
 
-          {reviews &&
-            reviews.map((item) => {
+          {review &&
+            review.map((item) => {
               return (
                 <div key={item.id}>
                   <StReviewBox>

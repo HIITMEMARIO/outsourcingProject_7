@@ -1,5 +1,12 @@
+import Review from './Review';
 import React from 'react';
+import Map from './Map';
 
 export default function Main() {
-  return <div>안녕</div>;
+  return (
+    <div>
+      <Map />
+      <Review />
+    </div>
+  );
 }

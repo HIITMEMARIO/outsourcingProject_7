@@ -12,7 +12,7 @@ const initialState = {
   isError: false,
   error: null,
 };
-
+// Add
 export const __addReview = createAsyncThunk(
   'addReviews',
   async (payload, thunkAPI) => {
@@ -42,6 +42,39 @@ export const __getReview = createAsyncThunk(
   },
 );
 
+// DELETE
+export const __deleteReview = createAsyncThunk(
+  'deleteReviews',
+  async (payload, thunkAPI) => {
+    try {
+      const res = await axios.delete(`http://localhost:5000/review/${payload}`);
+      // console.log('삭제', res.data);
+      return res.data;
+    } catch (error) {
+      console.log('error', error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+// EDIT
+export const __editReview = createAsyncThunk(
+  'editReviews',
+  async (payload, thunkAPI) => {
+    try {
+      const res = await axios.patch(
+        `http://localhost:5000/review/${payload.id}`,
+        { comment: payload.newComment },
+      );
+      console.log('res', res.data);
+      return res.data;
+    } catch (error) {
+      // console.log('error', error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
 //Slice
 export const ReviewSlice = createSlice({
   name: 'reviews',
@@ -55,12 +88,12 @@ export const ReviewSlice = createSlice({
       .addCase(__getReview.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        state.reviews = action.payload;
+        state.review = action.payload;
       })
       .addCase(__getReview.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        state.reviews = action.payload;
+        state.review = action.payload;
       })
       .addCase(__addReview.pending, (state) => {
         state.isLoading = true;
@@ -69,15 +102,49 @@ export const ReviewSlice = createSlice({
       .addCase(__addReview.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        state.reviews.push(action.payload);
+        state.review.push(action.payload);
       })
       .addCase(__addReview.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        state.reviews = action.payload;
+      })
+      .addCase(__deleteReview.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(__deleteReview.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.review = state.reviews.filter(
+          (data) => data.id === action.payload,
+        );
+      })
+      .addCase(__deleteReview.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.error = action.payload;
+      })
+      .addCase(__editReview.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(__editReview.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        console.log('qqq');
+        state.review = state.review.map((item) => {
+          if (item.id === Number(action.payload.id)) {
+            return { ...item, comment: action.payload.comment };
+          }
+          return item;
+        });
+      })
+      .addCase(__editReview.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.error = action.payload;
       });
   },
 });
-// add 만드셈
 export const {} = ReviewSlice.actions;
 export default ReviewSlice.reducer;

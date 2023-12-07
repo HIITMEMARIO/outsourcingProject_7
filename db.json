@@ -7,30 +7,34 @@
   ],
   "review": [
     {
-      "id": "bbb999",
-      "comment": "병원이 친절하고 의사가 멋있어요.",
-      "userId": "희원",
-      "createdAt": 1701622123145,
-      "hospital": "철야병원"
-    },
-    {
-      "id": "aaa111",
-      "comment": "병원이 친절하고 내부 시설이 깔끔해요.",
-      "userId": "몽구",
-      "createdAt": 1701622123145,
-      "hospital": "동물병원"
-    },
-    {
-      "id": "8811a065-476b-3f6c-03d7-cd8835ea48a1",
-      "comment": "불친절해요",
+      "id": 2,
+      "comment": "fffffffffffffff",
       "userId": "",
-      "createdAt": "2023-12-06 10:13:50"
+      "createdAt": "2023-12-06 17:28:23"
     },
     {
-      "id": "bf6929e1-4428-1917-bbf2-795390b42e65",
-      "comment": "ㅇㄴ링ㄴㅁㄹㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ",
+      "id": 3,
+      "comment": "fffffffffffffff",
       "userId": "",
-      "createdAt": "2023-12-06 10:14:42"
+      "createdAt": "2023-12-06 17:28:23"
+    },
+    {
+      "id": 8,
+      "comment": "어",
+      "userId": "",
+      "createdAt": "2023-12-06 17:28:23"
+    },
+    {
+      "id": 5,
+      "comment": "fffffffffffffff",
+      "userId": "",
+      "createdAt": "2023-12-06 17:28:23"
+    },
+    {
+      "id": "47753528-95be-ba6c-cb06-b19b02892e8b",
+      "comment": "ssss",
+      "userId": "",
+      "createdAt": "2023-12-07 08:17:20"
     }
   ],
   "booking": [
