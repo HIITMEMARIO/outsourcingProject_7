@@ -20,7 +20,7 @@ export const StLogoBox = styled.div`
     height: 60px;
     margin-left: 30px;
   }
-  p{  
+  p {
     display: flex;
     align-items: center;
     height: 100px;
@@ -29,4 +29,4 @@ export const StLogoBox = styled.div`
     font-weight: 1000;
     
   }
-`
+`;
