@@ -1,49 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { useDispatch } from 'react-redux';
-import { __login, login } from '../../redux/modules/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { __loginUser, __signupUser } from '../../redux/modules/authSlice';
 import useForm from 'Hooks/userForm';
-import { authApi } from 'api';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isLogin = useSelector((state) => state.authSlice.isLogin);
+  console.log('록읜상태', isLogin);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const { formState, onChangeHandler, resetForm } = useForm({
-    id: '',
+    email: '',
     password: '',
     nickname: '',
   });
-  const { id, password, nickname } = formState;
-
+  const { password, nickname, email } = formState;
+  useEffect(() => {
+    if (isLogin) navigate('/');
+  }, [isLogin]);
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    //로그인시
     if (isLoginMode) {
-      try {
-        const { type } = await dispatch(__login({ id, password }));
-        if (type === 'getUsers/fulfilled') {
-          navigate('/');
-        }
-      } catch (error) {
-        console.log('login', error);
-      }
+      dispatch(__loginUser({ email, password }));
 
       //   toast.success('로그인 성공');
     } else {
-      try {
-        await authApi.post('/user', {
-          id,
-          password,
-          nickname,
-        });
-        setIsLoginMode(true);
-        resetForm();
-      } catch (error) {
-        console.log(error);
-      }
-      //   setFormState(initailState); //input초기화 //커스텀훅
-      //   toast.success('회원가입 성공');
+      dispatch(__signupUser({ email, password, nickname }));
     }
   };
   return (
@@ -52,19 +37,17 @@ function Login() {
         <Title>{isLoginMode ? '로그인' : '회원가입'}</Title>
         <InputWrap>
           <Input
-            name="id"
-            value={id}
+            name="email"
+            value={email}
             onChange={onChangeHandler}
-            placeholder="아이디 (4~10글자)"
-            minLength={4}
-            maxLength={10}
+            placeholder="이메일을 입력해 주세요."
           />
           <Input
             name="password"
             value={password}
             onChange={onChangeHandler}
-            placeholder="비밀번호 (4~15글자)"
-            minLength={4}
+            placeholder="비밀번호 (6~15글자)"
+            minLength={6}
             maxLength={15}
           />
           {!isLoginMode && (
@@ -79,7 +62,9 @@ function Login() {
           )}
           <Button
             disabled={
-              isLoginMode ? !id || !password : !id || !password || !nickname
+              isLoginMode
+                ? !email || !password
+                : !email || !password || !nickname
             }
           >
             {isLoginMode ? '로그인' : '회원가입'}
