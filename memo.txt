@@ -3,6 +3,7 @@ review{
     nickname:displayname,
     comment:comment,
     createdAt:sdfsdfjsdopi
+hospital:병원id
 }
 불러올때
 data.filter(item=>{

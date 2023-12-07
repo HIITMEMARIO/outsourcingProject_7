@@ -24,7 +24,7 @@ export default function Router() {
             </>
             : <>
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/mypage" element={<Navigate replace to="/login" />} />
+              <Route path="/mypage/:id" element={<Navigate replace to="/login" />} />
             </>
 
           }
