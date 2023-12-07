@@ -3,6 +3,8 @@ import { StInput, StInputBox, StMapContainer } from './style';
 import { FcSearch } from 'react-icons/fc';
 import './map.css';
 import Modal from './Modal';
+import { useDispatch } from 'react-redux';
+import { data } from '../../redux/modules/mapSlice';
 const { kakao } = window;
 
 export default function Map() {
@@ -13,9 +15,12 @@ export default function Map() {
   const container = useRef(null);
   console.log('asdfafds', hospitalData);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [id, setId] = useState('');
+  // const [id, setId] = useState('');
   // const [Marker, setMarker] = useState('');
-  console.log(id);
+  // console.log(id);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     // ============================== 지도 생성 ====================================
     const options = {
@@ -96,10 +101,8 @@ export default function Map() {
     }
     // ===========================================================================
 
-    var markers = [];
     var customOverlays = [];
 
-    console.log(markers);
     // 지도에 마커를 표시하는 함수입니다
     function displayMarker(place) {
       console.log('place', place);
@@ -108,9 +111,6 @@ export default function Map() {
         map: map,
         position: new kakao.maps.LatLng(place.y, place.x),
       });
-      const newMarker = { name: marker.title, ...marker };
-      markers.push(newMarker);
-      console.log('markers', markers);
 
       const content = `<div class ="label"><span class="left"></span><span class="center">${place.place_name}</span><span class="right"></span></div>`;
       var customOverlay = new kakao.maps.CustomOverlay({
@@ -131,7 +131,7 @@ export default function Map() {
           customOverlay.setMap(map); // 닫혀있으면 열기
         }
         setIsModalOpen(true);
-        setId(place.id);
+        dispatch(data(place));
       });
 
       kakao.maps.event.addListener(map, 'click', function () {
