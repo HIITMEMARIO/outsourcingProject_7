@@ -54,93 +54,26 @@
     {
       "id": "47753528-95be-ba6c-cb06-b19b02892e8b",
       "comment": "ssss",
-      "userId": "",
+      "nickname": "",
       "createdAt": "2023-12-07 08:17:20"
     },
     {
       "id": "bbe4ccbe-91a9-7615-24a8-67f520853223",
       "comment": "ㅇㄹㅇㅊㅇ",
-      "userId": "",
+      "nickname": "",
       "createdAt": "2023-12-07 06:15:09"
     },
     {
-<<<<<<< HEAD
       "id": "a128b42f-ee6b-fa85-b4f5-1f85db86f908",
       "comment": "ㅇㅁㄹㄴㅇㅁㄴㅇ",
-      "userId": "",
+      "nickname": "",
       "createdAt": "2023-12-07 11:25:02"
     },
     {
       "id": "4663282a-eb50-85ae-dd68-8251f9b1255a",
       "comment": "ㅇㄹㅇㄹ",
-      "userId": "",
+      "nickname": "",
       "createdAt": "2023-12-07 11:25:06"
-    },
-    {
-      "id": "b8002259-4be5-944d-8b4c-b20af6abfc00",
-      "comment": "ㅇㄹㅇㄹㅇㄹ",
-      "userId": "",
-      "createdAt": "2023-12-07 11:25:07"
-    },
-    {
-      "id": "21a247e5-ac3c-43bc-bfa0-5ad1bbddfd1e",
-      "comment": "ㅇㄴㅁㅇㄴㄹ",
-      "userId": "",
-      "createdAt": "2023-12-07 11:25:09"
-    },
-    {
-      "id": "09074ebc-b283-ce0f-a6c4-9ec6381dd0c0",
-      "comment": "ㅁㅇㄻㅇㄹ",
-      "userId": "",
-      "createdAt": "2023-12-07 14:54:37"
-    },
-    {
-      "id": "2f4df2f0-4e4f-cb08-9a3f-974007823460",
-      "comment": "ㅇㅇㅇㅇㅇ",
-      "userId": "",
-      "createdAt": "2023-12-07 14:54:39"
-    },
-    {
-      "id": "9b4b6c55-a53f-2e59-90ef-6cb711b51ec5",
-      "comment": "ㅇㅇㅇㅇㅇㅇ",
-      "userId": "",
-      "createdAt": "2023-12-07 14:54:41"
-    },
-    {
-      "id": "66df5600-f666-69be-371c-27ec9d49ebee",
-      "comment": "ㅇㅇㅇㅇㅇ",
-      "userId": "",
-      "createdAt": "2023-12-07 14:54:43"
-    },
-    {
-      "id": "0b087274-e2c5-24d8-21a0-614611a42997",
-      "comment": "ㅇㅇㅇ",
-      "userId": "",
-      "createdAt": "2023-12-07 14:54:45"
-    },
-    {
-      "id": "c966b1ae-66f5-cfa5-01ce-4938e9054156",
-      "comment": "ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ",
-      "userId": "",
-      "createdAt": "2023-12-07 14:54:48"
-    },
-    {
-      "id": "3617155d-cc2d-99ea-7de3-0a64ee637c40",
-      "comment": "ㅁㅇㄻㅇㄴㄹ",
-      "userId": "",
-      "createdAt": "2023-12-07 14:54:59"
-    },
-    {
-      "id": "73734fef-7a26-f499-e781-fa717020e3e5",
-      "comment": "ㅇㄹㅇㄹㅇ",
-      "userId": "",
-      "createdAt": "2023-12-07 14:55:01"
-=======
-      "id": "6215b1f1-c6bc-9626-c582-39088b2c39a6",
-      "comment": "안녕하쇼",
-      "userId": "",
-      "createdAt": "2023-12-07 11:44:53"
->>>>>>> 449c2971ebbbedc726134fc0057d51b61eed67a5
     }
   ],
   "booking": [
@@ -152,4 +85,3 @@
     }
   ]
 }
-
