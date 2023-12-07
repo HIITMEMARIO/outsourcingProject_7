@@ -11,6 +11,9 @@ export default function Router() {
       <Layout>
         <Routes>
           <Route path="/" element={<MainPage />} />
+          {/**login과 my페이지는 isLogin 상태에 따라 조건부 라우팅
+           * true = mypage, false = loginpage
+           */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/mypage/:id" element={<MyPage />} />
         </Routes>

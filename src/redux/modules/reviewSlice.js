@@ -133,7 +133,7 @@ export const ReviewSlice = createSlice({
         state.isError = false;
         console.log('qqq');
         state.review = state.review.map((item) => {
-          if (item.id === Number(action.payload.id)) {
+          if (item.id === action.payload.id) {
             return { ...item, comment: action.payload.comment };
           }
           return item;
