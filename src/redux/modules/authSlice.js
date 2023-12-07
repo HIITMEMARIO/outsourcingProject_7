@@ -49,22 +49,7 @@ export const __signupUser = createAsyncThunk("getSginupUser", async (payload, th
         console.log('에러메세지', errorMessage);
     }
 })
-export const __login = createAsyncThunk("getUsers", async (payload, thunkApi) => {
-    try {
-        const { data } = await axios.get('http://localhost:5000/user')
-        const { id, password } = payload
-        const filteredData = await data.find(item => item.id === id && item.password === password);
-        console.log(filteredData)
-        if (!filteredData) {
-            throw new Error("일치하는 사용자가 없습니다.");
-        }
-        return filteredData
-    } catch (error) {
-        console.error("사용자 로그인 오류", error)
-        return thunkApi.rejectWithValue(error)
-        // throw error
-    }
-})
+
 const authSlice = createSlice({
     name: "auth",
     initialState,
@@ -112,7 +97,23 @@ const authSlice = createSlice({
 
 })
 export default authSlice.reducer
-export const { login, logout } = authSlice.actions
+export const { logout } = authSlice.actions
+// export const __login = createAsyncThunk("getUsers", async (payload, thunkApi) => {
+//     try {
+//         const { data } = await axios.get('http://localhost:5000/user')
+//         const { id, password } = payload
+//         const filteredData = await data.find(item => item.id === id && item.password === password);
+//         console.log(filteredData)
+//         if (!filteredData) {
+//             throw new Error("일치하는 사용자가 없습니다.");
+//         }
+//         return filteredData
+//     } catch (error) {
+//         console.error("사용자 로그인 오류", error)
+//         return thunkApi.rejectWithValue(error)
+//         // throw error
+//     }
+// })
 
 
 
