@@ -16,15 +16,17 @@ export const StLogoBox = styled.div`
   align-items: center;
   img {
     /* background-color: red; */
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
+    margin-left: 30px;
   }
   p {
     display: flex;
     align-items: center;
     height: 100px;
-    margin-left: 10%;
+    margin-left: 5%;
     font-size: 30px;
     font-weight: 1000;
+    
   }
 `;

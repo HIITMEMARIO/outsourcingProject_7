@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import uuid from 'react-uuid';
 import { __addReview, __getReview } from '../../redux/modules/reviewSlice';
 import { useDispatch, useSelector } from 'react-redux';
+// import {
+//   StBtn,
+//   StComment,
+//   StCommentsBox,
+//   // StContainer,
+//   StCreatedAt,
+//   StFormBox,
+//   // StHospitalInfo,
+//   StReviewBox,
+//   StReviewComment,
+//   StUserIDAndCreatedAt,
+//   StUserId,
+// } from './style';
+import styled from 'styled-components';
 
 export default function Review() {
   const [comment, setComment] = useState('');
