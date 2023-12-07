@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StContainer, StLogoBox } from './style';
 import myappologo from 'assets/myappologo.png';
 import { useNavigate } from 'react-router';

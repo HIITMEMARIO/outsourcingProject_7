@@ -1,10 +1,9 @@
-import UserDashboard from 'components/UserDashboard/UserDashboard';
 import React from 'react';
-
-export default function MyPage() {
+import MyPage from '../components/Mypage/MyProfile';
+export default function myPage() {
   return (
-    <>
-      <UserDashboard />
-    </>
+    <div>
+      <MyPage />
+    </div>
   );
 }
