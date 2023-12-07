@@ -1,32 +1,14 @@
 // import { createGlobalStyle } from 'styled-components';
-// import ONE Mobile OTF Regular from '._ONE Mobile OTF Regular.otf';
-// // import ._ONE Mobile Regular.ttf from './'
+// import ONEMobileOTFRegular from '';
 
 // const GlobalFonts = createGlobalStyle`
 //     @font-face {
-//         font-family: 'GmarketSansTTFBold';
-//         src: local('GmarketSansTTFBold'), local('GmarketSansTTFBold');
-//         font-style: normal;
-//         src: url(${GmarketSansOtfBold}) format('truetype');
+//     font-family: 'ONE-Mobile-POP';
+//     src: url(${ONEMobileOTFRegular}) format('woff');
+//     font-weight: normal;
+//     font-style: normal;
 // }
-/* @font-face {
-        font-family: 'GmarketSansTTFMedium';
-        src: local('GmarketSansTTFMedium'), local('GmarketSansTTFMedium');
-        font-style: normal;
-        src: url(${GmarketSansOtfMedium}) format('truetype');
-    }
-    @font-face {
-        font-family: 'GmarketSansTTFLight';
-        src: local('GmarketSansTTFLight'), local('GmarketSansTTFLight');
-        font-style: normal;
-        src: url(${GmarketSansOtfLight}) format('truetype');
-    }
-    @font-face {
-    font-family: 'EF_jejudoldam';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-} */
+
 // `;
 
 // export default GlobalFonts;
