@@ -10,7 +10,12 @@ import { useParams } from 'react-router';
 import { auth } from 'shared/firebase';
 
 export default function MyProfile() {
-  const nickname = auth.currentUser.displayName;
+  const [nickname, setNickname] = useState('');
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setNickname(user.displayName);
+    });
+  }, []);
   const dispatch = useDispatch();
   const [newComment, setNewComment] = useState('');
   const [isEdit, setIsEdit] = useState(false);
@@ -18,27 +23,37 @@ export default function MyProfile() {
 
   const { review, isLoading } = useSelector((state) => state.reviewSlice);
 
-  console.log('params', params);
   console.log('review', review);
+
   const myReview = review.filter((item) => {
-    // console.log('user', item.userid);
-    // console.log(nickname);
     return item.nickname === nickname;
   });
-  console.log('myrevvvvvvvvvvvview', myReview);
+
   useEffect(() => {
     dispatch(__getReview());
   }, [dispatch]);
+
+  const deleteTo = (id) => {
+    console.log('IDDDDD', id);
+    // if (window.confirm('삭제하시겠습니까?')) {
+    dispatch(__deleteReview(id)).then(() => {
+      dispatch(__getReview());
+      console.log('삭제성공');
+    });
+    console.log('디스패치 성공');
+  };
 
   if (isLoading) {
     return <p>로딩 중 ..</p>;
   }
 
   const editToggle = (id) => {
+    setIsEdit(!isEdit);
+
     if (!isEdit) {
       setNewComment('');
+      return;
     }
-    setIsEdit(!isEdit);
     dispatch(__editReview({ id, newComment }));
     if (isEdit === true) {
       if (window.confirm('이대로 수정을 진행하시겠습니까?')) {
@@ -46,12 +61,6 @@ export default function MyProfile() {
       } else {
         return;
       }
-    }
-  };
-
-  const deleteTo = (id) => {
-    if (window.confirm('삭제하시겠습니까?')) {
-      dispatch(__deleteReview(id));
     }
   };
 

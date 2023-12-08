@@ -1,14 +1,13 @@
 // import { createGlobalStyle } from 'styled-components';
-// import ONEMobileOTFRegular from '';
+// import ONEMobileOTFRegular from '../._ONE Mobile OTF Regular';
 
-// const GlobalFonts = createGlobalStyle`
+// const createGlobalStyle = createGlobalStyle`
 //     @font-face {
 //     font-family: 'ONE-Mobile-POP';
 //     src: url(${ONEMobileOTFRegular}) format('woff');
 //     font-weight: normal;
 //     font-style: normal;
 // }
-
 // `;
 
-// export default GlobalFonts;
+// export default createGlobalStyle;
