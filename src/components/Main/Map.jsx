@@ -148,6 +148,7 @@ export default function Map() {
       });
       customOverlays.push(customOverlay);
       console.log(customOverlays);
+      customOverlay.setMap(map);
 
       kakao.maps.event.addListener(marker, 'click', function () {
         if (customOverlay.getMap()) {
@@ -161,10 +162,6 @@ export default function Map() {
         console.log('marker', marker);
         setIsModalOpen(true);
         dispatch(data(place));
-      });
-
-      kakao.maps.event.addListener(map, 'click', function () {
-        isBooked ? customOverlay.setMap(map) : customOverlay.setMap(null);
       });
     }
   }, [inputValue, lt, lg]);
