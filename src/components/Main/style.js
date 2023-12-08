@@ -40,6 +40,7 @@ export const StContainer = styled.div`
 
 export const StHospitalInfo = styled.div`
   display: flex;
+  flex-direction: column;
   border: 1px solid #7a97ff;
   width: 700px;
   height: 300px;

@@ -115,7 +115,7 @@ export const ReviewSlice = createSlice({
       .addCase(__deleteReview.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        state.review = state.reviews.filter(
+        state.review = state.review.filter(
           (data) => data.id === action.payload,
         );
       })
@@ -146,5 +146,5 @@ export const ReviewSlice = createSlice({
       });
   },
 });
-export const {} = ReviewSlice.actions;
+export const { } = ReviewSlice.actions;
 export default ReviewSlice.reducer;

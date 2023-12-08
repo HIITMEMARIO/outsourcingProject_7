@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/modules/authSlice';
 import { auth } from 'shared/firebase';
 
 export default function TokenRemainingTime() {
   const [remainingMinutes, setRemainingMinutes] = useState(null);
   const [remainingSeconds, setRemainingSeconds] = useState(null);
+  const dispatch = useDispatch();
   useEffect(() => {
     let timeReload;
 
@@ -16,6 +19,10 @@ export default function TokenRemainingTime() {
             const remainingTime = tokenExpirationTime - currentTime;
             const minutes = Math.ceil(remainingTime / (60 * 1000));
             const seconds = Math.ceil(remainingTime / 1000) % 60;
+            console.log(minutes, seconds);
+            if (!minutes && !seconds) {
+              dispatch(logout());
+            }
             setRemainingMinutes(minutes);
             setRemainingSeconds(seconds);
           };
