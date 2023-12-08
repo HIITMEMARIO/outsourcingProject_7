@@ -3,7 +3,6 @@
     {
       "id": "2af2618c-2707-2c4c-7565-1f33c1ac2f22",
       "comment": "ㅇㅇㅇㅇㅇㅇ",
-
       "nickname": "에이닷",
       "createdAt": "2023-12-08 06:28:51",
       "hospitalId": "9746155"
@@ -11,7 +10,6 @@
     {
       "id": "589d3f32-59b1-a3ab-0085-6d0fa80435f7",
       "comment": "뉴요커",
-
       "nickname": "에이닷",
       "createdAt": "2023-12-08 06:30:37",
       "hospitalId": "786616546"
@@ -19,7 +17,6 @@
     {
       "id": "dd1c2888-1f84-3c07-89d5-4f3dc8579112",
       "comment": "연세치과",
-
       "nickname": "에이닷",
       "createdAt": "2023-12-08 07:03:42",
       "hospitalId": "2027456859"
@@ -37,6 +34,55 @@
       "nickname": "희원",
       "createdAt": "2023-12-08 07:11:11",
       "hospitalId": "786616546"
+    },
+    {
+      "id": "21ceb49d-5b84-d962-6bd7-4f3dddf39e28",
+      "comment": "좋아좋아",
+      "nickname": "fsdfsdfsdf",
+      "createdAt": "2023-12-08 08:32:52",
+      "hospitalId": "1856945434"
+    },
+    {
+      "id": "d905437c-c957-07b8-a861-ef18cc18658a",
+      "comment": "좋아",
+      "nickname": "fsdfsdfsdf",
+      "createdAt": "2023-12-08 08:33:11",
+      "hospitalId": "1856945434"
+    },
+    {
+      "id": "bcfa3708-701e-3537-29f5-8da801e9bf53",
+      "comment": "좋아좋아좋아",
+      "nickname": "fsdfsdfsdf",
+      "createdAt": "2023-12-08 08:33:12",
+      "hospitalId": "1856945434"
+    },
+    {
+      "id": "a06214b0-9279-6f6a-dda6-49c94d03ba1a",
+      "comment": "좋아좋아좋아좋아",
+      "nickname": "fsdfsdfsdf",
+      "createdAt": "2023-12-08 08:33:14",
+      "hospitalId": "1856945434"
+    },
+    {
+      "id": "5a7871e0-0378-047b-767d-2c10baafeef3",
+      "comment": "치",
+      "nickname": "fsdfsdfsdf",
+      "createdAt": "2023-12-08 08:38:14",
+      "hospitalId": "745388978"
+    },
+    {
+      "id": "785780b3-0ea1-74fa-52f3-8ab674a64462",
+      "comment": "꽈",
+      "nickname": "fsdfsdfsdf",
+      "createdAt": "2023-12-08 08:38:17",
+      "hospitalId": "745388978"
+    },
+    {
+      "id": "c5b95d1a-2459-1ea6-11d0-a822bb857b60",
+      "comment": "ㅊ",
+      "nickname": "fsdfsdfsdf",
+      "createdAt": "2023-12-08 08:39:47",
+      "hospitalId": "745388978"
     }
   ],
   "booking": [

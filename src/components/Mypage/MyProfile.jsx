@@ -10,7 +10,12 @@ import { useParams } from 'react-router';
 import { auth } from 'shared/firebase';
 
 export default function MyProfile() {
-  const nickname = auth.currentUser.displayName;
+  const [nickname, setNickname] = useState('');
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setNickname(user.displayName);
+    });
+  }, []);
   const dispatch = useDispatch();
   const [newComment, setNewComment] = useState('');
   const [isEdit, setIsEdit] = useState(false);
@@ -18,14 +23,11 @@ export default function MyProfile() {
 
   const { review, isLoading } = useSelector((state) => state.reviewSlice);
 
-  console.log('params', params);
   console.log('review', review);
+
   const myReview = review.filter((item) => {
-    // console.log('user', item.userid);
-    // console.log(nickname);
     return item.nickname === nickname;
   });
-  console.log('myrevvvvvvvvvvvview', myReview);
   useEffect(() => {
     dispatch(__getReview());
   }, [dispatch]);
@@ -34,12 +36,15 @@ export default function MyProfile() {
     return <p>로딩 중 ..</p>;
   }
 
-  const editToggle = () => {
+  const editToggle = (id) => {
+    setIsEdit(!isEdit);
+
     if (!isEdit) {
       setNewComment('');
+      return;
     }
-    setIsEdit(!isEdit);
-    dispatch(__editReview({ id: params.id, newComment }));
+
+    dispatch(__editReview({ id, newComment }));
     if (isEdit === true) {
       if (window.confirm('이대로 수정을 진행하시겠습니까?')) {
         // navigate('/');
@@ -50,6 +55,7 @@ export default function MyProfile() {
   };
 
   const deleteTo = (id) => {
+    console.log(id);
     if (window.confirm('삭제하시겠습니까?')) {
       dispatch(__deleteReview(id));
     }
@@ -95,7 +101,7 @@ export default function MyProfile() {
         </div>
 
         <StReviewContainer>
-          {myReview.map((item) => {
+          {myReview?.map((item) => {
             return (
               <div key={item.id}>
                 <div style={{ marginLeft: '550px', marginBottom: '10px' }}>
@@ -121,7 +127,9 @@ export default function MyProfile() {
                 <StBtns>
                   {isEdit ? (
                     <>
-                      <StEditBtn onClick={editToggle}>수정완료</StEditBtn>
+                      <StEditBtn onClick={() => editToggle(item.id)}>
+                        수정완료
+                      </StEditBtn>
                       <StEditBtn>취소하기</StEditBtn>
                     </>
                   ) : (
