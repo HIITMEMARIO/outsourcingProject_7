@@ -29,4 +29,4 @@ export const StLogoBox = styled.div`
     font-weight: 1000;
     
   }
-`;
+`
