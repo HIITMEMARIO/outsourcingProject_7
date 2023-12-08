@@ -15,18 +15,24 @@ export const __loginUser = createAsyncThunk("getLoginUser", async (payload, thun
         const auth = getAuth();
         const { email, password } = payload
         console.log(auth.currentUser)
+        // try {
+
         await signInWithEmailAndPassword(auth, email, password)
         if (!!auth.currentUser) {
             const { accessToken, displayName } = auth.currentUser
             return { accessToken, displayName }
         }
-        throw new Error('에러')
+        // } catch (error) {
+        //     throw error
+        // }
 
     } catch (error) {
         const errorCode = error.code;
         console.log('에러코드', errorCode);
         const errorMessage = error.message;
         console.log('에러메세지', errorMessage);
+        throw error
+
     }
 })
 export const __signupUser = createAsyncThunk("getSignupUser", async (payload, thunkApi) => {
@@ -42,7 +48,6 @@ export const __signupUser = createAsyncThunk("getSignupUser", async (payload, th
             const { accessToken, displayName } = auth.currentUser
             return { accessToken, displayName }
         }
-        throw new Error('에러')
 
 
     } catch (error) {
@@ -50,6 +55,8 @@ export const __signupUser = createAsyncThunk("getSignupUser", async (payload, th
         console.log('에러코드', errorCode);
         const errorMessage = error.message;
         console.log('에러메세지', errorMessage);
+        throw error
+
     }
 })
 
@@ -67,6 +74,7 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(__loginUser.pending, (state, action) => {
             state.isLoading = true;
+            state.isError = false;
 
         })
         builder.addCase(__loginUser.fulfilled, (state, action) => {

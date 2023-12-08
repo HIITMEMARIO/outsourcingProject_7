@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { auth } from 'shared/firebase';
 
 function Login() {
-  //어떻게 해야 email양식인지 , password 닉네임값을 요구할까?
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.authSlice.isLogin);
@@ -21,7 +20,7 @@ function Login() {
     nickname: '',
     validPasswrod: '',
   });
-  const { password, nickname, email, validPasswrod } = formState;
+  const { password, nickname, email, checkpassword } = formState;
 
   useEffect(() => {
     if (isLogin) navigate('/');
@@ -63,7 +62,7 @@ function Login() {
             <>
               <Input
                 name="validPasswrod"
-                value={validPasswrod}
+                value={checkpassword}
                 onChange={onChangeHandler}
                 placeholder="비밀번호 확인"
                 minLength={6}

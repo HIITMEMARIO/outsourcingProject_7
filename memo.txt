@@ -16,3 +16,12 @@ booking{
     hospital:병원id
     date:예약날짜
 }
+
+1. booking데이터를 가져온다.
+2.booking데이터 중 nickname이 현재 로그인한 유저의 displayname과 같은 데이터를 필터해둔다.
+3.선택한 병원의 place_name이 필터된 booking데이터 에 있으면 예약내역을 보여준다. 
+
+마이페이지
+1. booking데이터를 가져온다.
+2.booking데이터 중 nickname이 현재 로그인한 유저의 displayname과 같은 데이터를 필터해서 map을 통해 뿌려준다.
+3.수정 삭제 기능을 추가한다.
