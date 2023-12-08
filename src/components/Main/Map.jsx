@@ -15,9 +15,7 @@ export default function Map() {
   const container = useRef(null);
   console.log('asdfafds', hospitalData);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [id, setId] = useState('');
-  // const [Marker, setMarker] = useState('');
-  // console.log(id);
+  const [isBooked, setIsBooked] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -102,6 +100,7 @@ export default function Map() {
     // ===========================================================================
 
     var customOverlays = [];
+    console.log('cutomOverlays', customOverlays);
 
     // 지도에 마커를 표시하는 함수입니다
     function displayMarker(place) {
@@ -130,12 +129,13 @@ export default function Map() {
           }
           customOverlay.setMap(map); // 닫혀있으면 열기
         }
+        console.log('marker', marker);
         setIsModalOpen(true);
         dispatch(data(place));
       });
 
       kakao.maps.event.addListener(map, 'click', function () {
-        customOverlay.setMap(null); // 열려있으면 닫기
+        isBooked ? customOverlay.setMap(map) : customOverlay.setMap(null);
       });
     }
   }, [inputValue, lt, lg]);

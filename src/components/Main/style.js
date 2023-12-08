@@ -113,7 +113,7 @@ export const StUserId = styled.div``;
 export const StCreatedAt = styled.div``;
 
 export const StModal = styled.div`
-  width: 400px;
+  width: 358px;
   display: flex;
   z-index: 300;
   background-color: #fff;
@@ -125,11 +125,60 @@ export const StModal = styled.div`
     align-self: flex-start;
     padding: 20px;
     font-weight: 800;
-    font-size: 30px;
+    font-size: 20px;
+    transition: all.1s;
+    cursor: pointer;
+
+    &:hover {
+      color: #7a97ff;
+    }
   }
   h1 {
     font-weight: 1000;
-    font-size: 30px;
+    font-size: 18px;
     text-align: center;
+  }
+`;
+
+export const StMemoInput = styled.input`
+  border-radius: 10px;
+  border: 1px solid black;
+  font-size: 16px;
+  width: 300px;
+`;
+
+export const StMemoBox = styled.div`
+  position: absolute;
+  background-color: red;
+
+  h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+`;
+
+export const StButtonBox = styled.div`
+  width: 300px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 600px;
+`;
+export const Stbutton = styled.div`
+  height: 30px;
+  border: 1px solid #7a97ff;
+  border-radius: 10px;
+  background-color: #fff;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all.1s;
+
+  &:hover {
+    background-color: #c3ebff;
   }
 `;

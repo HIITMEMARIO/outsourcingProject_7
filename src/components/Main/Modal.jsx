@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
-import { StModal } from './style';
+import React, { forwardRef, useState } from 'react';
+import {
+  StButtonBox,
+  StInputBox,
+  StMemoBox,
+  StMemoInput,
+  StModal,
+  StModalContainer,
+  Stbutton,
+} from './style';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import styled from 'styled-components';
+import './modal.css';
+import { ko } from 'date-fns/esm/locale';
+import { useSelector } from 'react-redux';
 
 export default function Modal({ setIsModalOpen }) {
+  const data = useSelector((state) => {
+    return state.mapSlice.data;
+  });
+
   const [startDate, setStartDate] = useState(new Date());
 
   return (
@@ -16,12 +30,21 @@ export default function Modal({ setIsModalOpen }) {
       >
         X
       </button>
-      <h1>예약하기</h1>
-
+      <h1>{data.place_name} 예약하기</h1>
       <DatePicker
+        locale={ko}
         selected={startDate}
         onChange={(date) => setStartDate(date)}
+        dateFormat="yyyy년 MM월 dd일"
+        minDate={new Date()}
       />
+      <StButtonBox>
+        <Stbutton>예약</Stbutton>
+      </StButtonBox>
+      {/* <StMemoBox>
+        <h1>메모</h1>
+        <StMemoInput maxLength={20} />
+      </StMemoBox> */}
     </StModal>
   );
 }
