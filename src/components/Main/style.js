@@ -113,10 +113,23 @@ export const StUserId = styled.div``;
 export const StCreatedAt = styled.div``;
 
 export const StModal = styled.div`
-  width: 300px;
+  width: 400px;
   display: flex;
   z-index: 300;
   background-color: #fff;
   border-left: 1px solid #7a97ff;
   opacity: 0.9;
+  flex-direction: column;
+
+  button {
+    align-self: flex-start;
+    padding: 20px;
+    font-weight: 800;
+    font-size: 30px;
+  }
+  h1 {
+    font-weight: 1000;
+    font-size: 30px;
+    text-align: center;
+  }
 `;

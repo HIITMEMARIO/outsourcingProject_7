@@ -30,7 +30,7 @@ export default function Map() {
       useMapBounds: true,
       location: new kakao.maps.LatLng(lt, lg),
       useMapCenter: true,
-      radius: 1500,
+      radius: 2000,
     };
     const map = new window.kakao.maps.Map(container.current, options);
     // ===========================================================================
