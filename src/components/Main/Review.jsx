@@ -51,6 +51,10 @@ export default function Review() {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    if (!nickname) {
+      alert('로그인해라');
+      return;
+    }
     if (comment === '') {
       alert('내용을 입력해주세요');
       return;
@@ -135,9 +139,7 @@ export default function Review() {
               value={comment}
               onChange={onReviewChange}
               maxLength={100}
-            >
-              {/* 로그인한 유저만 댓글 작성 가능 */}
-            </StReviewComment>
+            ></StReviewComment>
           </StFormBox>
         </StCommentsBox>
       </StContainer>
