@@ -4,19 +4,21 @@ import myappologo from 'assets/myappologo.png';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { signOut } from '@firebase/auth';
-import { auth, onAuthStateChanged } from 'shared/firebase';
+import { auth } from 'shared/firebase';
 import { logout } from '../../redux/modules/authSlice';
+import TokenRemainingTime from './TokenRemainingTime';
 
 export default function Header() {
   const dispatch = useDispatch();
-  //확인용
-  const a = auth.currentUser;
-  console.log('a', a);
-  useEffect(() => {
-    const a = auth.currentUser;
 
-    console.log('eff', a);
-  }, []);
+  //확인용
+  // const a = auth.currentUser;
+  // console.log('a', a);
+  // useEffect(() => {
+  //   // const a = auth.currentUser;
+
+  //   console.log('dddddddddddddddddddddddddddddd', a);
+  // }, []);
 
   const navigate = useNavigate();
   const isLogin = useSelector((state) => state.authSlice.isLogin);
@@ -38,10 +40,13 @@ export default function Header() {
         <p>My아포</p>
       </StLogoBox>
       {isLogin ? (
-        <div>
-          <button onClick={() => navigate('/mypage')}>mypage</button>
-          <button onClick={onHandleLoginBtn}>logout</button>
-        </div>
+        <>
+          <TokenRemainingTime />
+          <div>
+            <button onClick={() => navigate('/mypage')}>mypage</button>
+            <button onClick={onHandleLoginBtn}>logout</button>
+          </div>
+        </>
       ) : (
         <button onClick={onHandleLoginBtn}>로그인</button>
       )}
