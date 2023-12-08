@@ -42,7 +42,7 @@ export default function Map() {
   console.log('bookingData', bookingData);
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      setNickname(user.displayName);
+      if (user) setNickname(user.displayName);
     });
   }, []);
   console.log('맵 닉네임', nickname);
