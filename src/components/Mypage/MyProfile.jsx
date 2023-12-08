@@ -11,7 +11,6 @@ import { auth } from 'shared/firebase';
 
 export default function MyProfile() {
   const nickname = auth.currentUser.displayName;
-  console.log(nickname);
   const dispatch = useDispatch();
   const [newComment, setNewComment] = useState('');
   const [isEdit, setIsEdit] = useState(false);
@@ -19,8 +18,8 @@ export default function MyProfile() {
 
   const { review, isLoading } = useSelector((state) => state.reviewSlice);
 
-  // console.log('params', params);
-  // console.log('review', review);
+  console.log('params', params);
+  console.log('review', review);
 
   useEffect(() => {
     dispatch(__getReview());
@@ -89,55 +88,53 @@ export default function MyProfile() {
           map --> 뿌려주기 */}
           내가 쓴 리뷰
         </div>
-        <StReviewContainer>
-          {review &&
-            review.map((item) => {
-              if (item.id === params.id) {
-                return (
-                  <div key={item.id}>
-                    <div style={{ marginLeft: '550px', marginBottom: '10px' }}>
-                      {item.createdAt}
-                    </div>
-                    <StReviewBox>
-                      <div>{item.comment}</div>
-                    </StReviewBox>
-                    <StReviewComment>
-                      {isEdit ? (
-                        <>
-                          <Textarea
-                            autoFocus
-                            defaultValue={item.comment}
-                            onChange={(e) => setNewComment(e.target.value)}
-                          />
-                        </>
-                      ) : (
-                        [item.comment]
-                      )}
-                    </StReviewComment>
 
-                    <StBtns>
-                      {isEdit ? (
-                        <>
-                          <StEditBtn onClick={editToggle}>수정완료</StEditBtn>
-                          <StEditBtn>취소하기</StEditBtn>
-                        </>
-                      ) : (
-                        <>
-                          <StEditBtn onClick={editToggle}>수정하기</StEditBtn>
-                          <StRemoveBtn
-                            onClick={() => {
-                              deleteTo(item.id);
-                            }}
-                          >
-                            삭제
-                          </StRemoveBtn>
-                        </>
-                      )}
-                    </StBtns>
-                  </div>
-                );
-              }
-            })}
+        <StReviewContainer>
+          {myReview?.map((item) => {
+            return (
+              <div key={item.id}>
+                <div style={{ marginLeft: '550px', marginBottom: '10px' }}>
+                  {item.createdAt}
+                </div>
+                <StReviewBox>
+                  <div>{item.comment}</div>
+                </StReviewBox>
+                <StReviewComment>
+                  {isEdit ? (
+                    <>
+                      <Textarea
+                        autoFocus
+                        defaultValue={item.comment}
+                        onChange={(e) => setNewComment(e.target.value)}
+                      />
+                    </>
+                  ) : (
+                    [item.comment]
+                  )}
+                </StReviewComment>
+
+                <StBtns>
+                  {isEdit ? (
+                    <>
+                      <StEditBtn onClick={editToggle}>수정완료</StEditBtn>
+                      <StEditBtn>취소하기</StEditBtn>
+                    </>
+                  ) : (
+                    <>
+                      <StEditBtn onClick={editToggle}>수정하기</StEditBtn>
+                      <StRemoveBtn
+                        onClick={() => {
+                          deleteTo(item.id);
+                        }}
+                      >
+                        삭제
+                      </StRemoveBtn>
+                    </>
+                  )}
+                </StBtns>
+              </div>
+            );
+          })}
         </StReviewContainer>
       </StProfileContainer>
     </div>
