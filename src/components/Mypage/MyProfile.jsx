@@ -23,7 +23,7 @@ export default function MyProfile() {
   const myReview = review.filter((item) => {
     // console.log('user', item.userid);
     // console.log(nickname);
-    return item.userId === nickname;
+    return item.nickname === nickname;
   });
   console.log('myrevvvvvvvvvvvview', myReview);
   useEffect(() => {
@@ -93,7 +93,7 @@ export default function MyProfile() {
         </div>
 
         <StReviewContainer>
-          {myReview?.map((item) => {
+          {myReview.map((item) => {
             return (
               <div key={item.id}>
                 <div style={{ marginLeft: '550px', marginBottom: '10px' }}>
