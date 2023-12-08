@@ -36,53 +36,16 @@
       "hospitalId": "786616546"
     },
     {
-      "id": "21ceb49d-5b84-d962-6bd7-4f3dddf39e28",
-      "comment": "좋아좋아",
-      "nickname": "fsdfsdfsdf",
-      "createdAt": "2023-12-08 08:32:52",
-      "hospitalId": "1856945434"
+      "id": "73734fef-7a26-f499-e781-fa717020e3e5",
+      "comment": "ㅇㄹㅇㄹㅇ",
+      "userId": "",
+      "createdAt": "2023-12-07 14:55:01"
     },
     {
-      "id": "d905437c-c957-07b8-a861-ef18cc18658a",
-      "comment": "좋아",
-      "nickname": "fsdfsdfsdf",
-      "createdAt": "2023-12-08 08:33:11",
-      "hospitalId": "1856945434"
-    },
-    {
-      "id": "bcfa3708-701e-3537-29f5-8da801e9bf53",
-      "comment": "좋아좋아좋아",
-      "nickname": "fsdfsdfsdf",
-      "createdAt": "2023-12-08 08:33:12",
-      "hospitalId": "1856945434"
-    },
-    {
-      "id": "a06214b0-9279-6f6a-dda6-49c94d03ba1a",
-      "comment": "좋아좋아좋아좋아",
-      "nickname": "fsdfsdfsdf",
-      "createdAt": "2023-12-08 08:33:14",
-      "hospitalId": "1856945434"
-    },
-    {
-      "id": "5a7871e0-0378-047b-767d-2c10baafeef3",
-      "comment": "치",
-      "nickname": "fsdfsdfsdf",
-      "createdAt": "2023-12-08 08:38:14",
-      "hospitalId": "745388978"
-    },
-    {
-      "id": "785780b3-0ea1-74fa-52f3-8ab674a64462",
-      "comment": "꽈",
-      "nickname": "fsdfsdfsdf",
-      "createdAt": "2023-12-08 08:38:17",
-      "hospitalId": "745388978"
-    },
-    {
-      "id": "c5b95d1a-2459-1ea6-11d0-a822bb857b60",
-      "comment": "ㅊ",
-      "nickname": "fsdfsdfsdf",
-      "createdAt": "2023-12-08 08:39:47",
-      "hospitalId": "745388978"
+      "id": "c5e84bf8-8f7a-701b-fd9e-5a651a333d9a",
+      "comment": "ㅇㄹㅇㄹ",
+      "userId": "",
+      "createdAt": "2023-12-08 11:45:24"
     }
   ],
   "booking": [
