@@ -20,6 +20,27 @@
       "nickname": "희원쓰",
       "createdAt": "2023-12-08 07:06:57",
       "hospitalId": "2027456859"
+    },
+    {
+      "id": "36890989-4c15-f53e-4ce4-1457dee338ef",
+      "comment": "",
+      "nickname": "희원",
+      "createdAt": "2023-12-08 13:35:24",
+      "hospitalId": "9522183"
+    },
+    {
+      "id": "57870142-219c-f432-2b3d-4c818879929f",
+      "comment": "좋습니당",
+      "nickname": "희원",
+      "createdAt": "2023-12-08 13:35:29",
+      "hospitalId": "9522183"
+    },
+    {
+      "id": "2814f61d-d4b6-f024-52b3-9804131602a6",
+      "comment": "ㅇㅇㅇㅇ",
+      "nickname": "희원",
+      "createdAt": "2023-12-08 13:35:34",
+      "hospitalId": "9522183"
     }
   ],
   "booking": [

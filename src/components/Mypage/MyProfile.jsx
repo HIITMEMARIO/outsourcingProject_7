@@ -98,8 +98,6 @@ export default function MyProfile() {
             fontSize: '30px',
           }}
         >
-          {/* filter --> 파이어베이스 displayName이랑 nickname이랑 같으면 
-          map --> 뿌려주기 */}
           내가 쓴 리뷰
         </div>
 
@@ -111,9 +109,6 @@ export default function MyProfile() {
                   {item.createdAt}
                 </div>
                 <StReviewBox>
-                  <div>{item.comment}</div>
-                </StReviewBox>
-                <StReviewComment>
                   {isEdit ? (
                     <>
                       <Textarea
@@ -123,9 +118,9 @@ export default function MyProfile() {
                       />
                     </>
                   ) : (
-                    [item.comment]
+                    <div>{item.comment}</div>
                   )}
-                </StReviewComment>
+                </StReviewBox>
 
                 <StBtns>
                   {isEdit ? (
@@ -190,13 +185,14 @@ export const StScheduleBox = styled.div`
 
 export const StReviewContainer = styled.div`
   height: 200px;
+  /* margin-bottom: 30px; */
 `;
 
 export const StReviewBox = styled.div`
   display: block;
   width: 700px;
   height: 100px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   border-radius: 40px;
   border: 1px solid lightgrey;
   padding: 20px;
@@ -240,6 +236,7 @@ export const Textarea = styled.textarea`
   border-radius: 40px;
   border: 1px solid lightgrey;
   padding: 20px;
+  resize: none;
 `;
 
-export const StReviewComment = styled.div``;
+// export const StReviewComment = styled.div``;
