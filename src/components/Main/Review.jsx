@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import uuid from 'react-uuid';
 import { __addReview, __getReview } from '../../redux/modules/reviewSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { auth, onAuthStateChanged } from 'shared/firebase';
 import {
   StBtn,
   StComment,
@@ -15,20 +16,31 @@ import {
   StUserIDAndCreatedAt,
   StUserId,
 } from './style';
-import styled from 'styled-components';
 
 export default function Review() {
   const [comment, setComment] = useState('');
-  const [userId, setUserId] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [user, setUser] = useState(null);
   const dispatch = useDispatch();
   const { review } = useSelector((state) => state.reviewSlice);
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        setNickname(user.displayName);
+      }
+    });
+  });
   console.log('review', review);
 
   const data = useSelector((state) => {
     return state.mapSlice.data;
   });
-  console.log(data);
+  console.log('hospital data', data);
+
+  const dataHospitalId = data.id;
+  console.log('이거보세요옷', dataHospitalId);
 
   useEffect(() => {
     dispatch(__getReview());
@@ -43,12 +55,12 @@ export default function Review() {
     const newReview = {
       id: uuid(),
       comment,
-      userId,
+      nickname: user.displayName,
       createdAt: new Date().toISOString().replace('T', ' ').substring(0, 19),
+      hospitalId: data.id,
     };
 
     dispatch(__addReview(newReview));
-    setUserId('');
     setComment('');
   };
 
@@ -61,7 +73,12 @@ export default function Review() {
       <StContainer>
         <StCommentsBox>
           <StHospitalInfo>
-            <div>Hospital Information</div>
+            <>
+              <h2>{data.place_name}</h2>
+              <div>{data.road_address_name}</div>
+              <div> {data.phone}</div>
+              <div> {data.place_url}</div>
+            </>
           </StHospitalInfo>
           <h1
             style={{
@@ -72,14 +89,17 @@ export default function Review() {
           >
             {data.place_name}의 리뷰보기
           </h1>
-
-          {review &&
-            review.map((item) => {
+          {review
+            .filter((item) => {
+              // console.log('이거;;', item.hospitalId);
+              return item.hospitalId === dataHospitalId;
+            })
+            .map((item) => {
               return (
                 <div key={item.id}>
                   <StReviewBox>
                     <StUserIDAndCreatedAt>
-                      <StUserId>{item.userId}</StUserId>
+                      <StUserId>작성자 : {item.nickname}</StUserId>
                       <StCreatedAt>{item.createdAt}</StCreatedAt>
                     </StUserIDAndCreatedAt>
                     <StComment>{item.comment}</StComment>
@@ -103,6 +123,8 @@ export default function Review() {
                 <StBtn type="submit">등록</StBtn>
               </form>
             </div>
+
+            {/* placeholder 로그인하지 않은 사람만 보이게 수정 */}
             <StReviewComment
               type="text"
               placeholder="로그인 후 이용해주세요 (100자 이내)"
@@ -118,93 +140,3 @@ export default function Review() {
     </>
   );
 }
-
-// const StContainer = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   text-align: center;
-//   /* align-items: center; */
-//   padding-bottom: 0px;
-// `;
-
-// const StHospitalInfo = styled.div`
-//   display: flex;
-//   border: 1px solid darkgray;
-//   width: 700px;
-//   height: 300px;
-//   margin: 50px;
-//   border-radius: 30px;
-//   padding: 20px;
-//   background-color: white;
-// `;
-
-// const StCommentsBox = styled.div`
-//   width: 800px;
-//   height: 1100px;
-//   border: none;
-//   border-radius: 30px;
-//   background-color: #c3ebff;
-// `;
-
-// const StComment = styled.div`
-//   width: 700px;
-//   height: 40px;
-//   border: none;
-//   background-color: white;
-//   border-radius: 30px;
-//   padding-top: 10px;
-//   margin-left: 50px;
-//   margin-right: 50px;
-//   text-overflow: ellipsis;
-//   white-space: nowrap;
-//   overflow: hidden;
-//   /* margin-bottom: 50px; */
-// `;
-
-// const StReviewComment = styled.input`
-//   width: 700px;
-//   height: 100px;
-//   border: none;
-//   background-color: white;
-//   border-radius: 30px;
-//   margin-left: 50px;
-//   margin-right: 50px;
-//   padding: 20px;
-//   /* margin-bottom: 30px; */
-//   margin-top: 20px;
-//   /* padding-top: 50px; */
-// `;
-
-// const StBtn = styled.button`
-//   border: 1px solid lightgray;
-//   margin-inline-start: 600px;
-//   background-color: lightgrey;
-//   width: 80px;
-//   height: 30px;
-//   border-radius: 30px;
-// `;
-
-// const StUserIDAndCreatedAt = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   margin-left: 50px;
-//   margin-right: 50px;
-//   margin-bottom: 20px;
-// `;
-
-// const StReviewBox = styled.div`
-//   background-color: #c3ebff;
-//   height: 120px;
-//   /* border-radius: 30px; */
-//   /* margin-bottom: 30px; */
-// `;
-
-// const StFormBox = styled.div`
-//   background-color: #c3ebff;
-//   padding-bottom: 50px;
-//   border-radius: 30px;
-// `;
-
-// const StUserId = styled.div``;
-
-// const StCreatedAt = styled.div``;
