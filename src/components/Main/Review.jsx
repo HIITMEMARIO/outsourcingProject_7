@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import uuid from 'react-uuid';
 import { __addReview, __getReview } from '../../redux/modules/reviewSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { auth, onAuthStateChanged } from 'shared/firebase';
 import {
   StBtn,
   StComment,
@@ -19,28 +18,16 @@ import {
 
 export default function Review() {
   const [comment, setComment] = useState('');
-  const [nickname, setNickname] = useState('');
-  const [user, setUser] = useState(null);
+  const [userId, setUserId] = useState('');
   const dispatch = useDispatch();
   const { review } = useSelector((state) => state.reviewSlice);
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-        setNickname(user.displayName);
-      }
-    });
-  });
   console.log('review', review);
 
   const data = useSelector((state) => {
     return state.mapSlice.data;
   });
-  console.log('hospital data', data);
-
-  const dataHospitalId = data.id;
-  console.log('이거보세요옷', dataHospitalId);
+  console.log(data);
 
   useEffect(() => {
     dispatch(__getReview());
@@ -55,31 +42,25 @@ export default function Review() {
     const newReview = {
       id: uuid(),
       comment,
-      nickname: user.displayName,
+      userId,
       createdAt: new Date().toISOString().replace('T', ' ').substring(0, 19),
-      hospitalId: data.id,
     };
 
     dispatch(__addReview(newReview));
+    setUserId('');
     setComment('');
   };
 
   const onReviewChange = (e) => {
     setComment(e.target.value);
   };
-  if (!dataHospitalId) return;
 
   return (
     <>
       <StContainer>
         <StCommentsBox>
           <StHospitalInfo>
-            <>
-              <h2>{data.place_name}</h2>
-              <div>{data.road_address_name}</div>
-              <div> {data.phone}</div>
-              <div> {data.place_url}</div>
-            </>
+            <div>Hospital Information</div>
           </StHospitalInfo>
           <h1
             style={{
@@ -90,17 +71,14 @@ export default function Review() {
           >
             {data.place_name}의 리뷰보기
           </h1>
-          {review
-            .filter((item) => {
-              // console.log('이거;;', item.hospitalId);
-              return item.hospitalId === dataHospitalId;
-            })
-            .map((item) => {
+
+          {review &&
+            review.map((item) => {
               return (
                 <div key={item.id}>
                   <StReviewBox>
                     <StUserIDAndCreatedAt>
-                      <StUserId>작성자 : {item.nickname}</StUserId>
+                      <StUserId>{item.userId}</StUserId>
                       <StCreatedAt>{item.createdAt}</StCreatedAt>
                     </StUserIDAndCreatedAt>
                     <StComment>{item.comment}</StComment>
@@ -124,8 +102,6 @@ export default function Review() {
                 <StBtn type="submit">등록</StBtn>
               </form>
             </div>
-
-            {/* placeholder 로그인하지 않은 사람만 보이게 수정 */}
             <StReviewComment
               type="text"
               placeholder="로그인 후 이용해주세요 (100자 이내)"

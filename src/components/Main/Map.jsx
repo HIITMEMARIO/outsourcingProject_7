@@ -6,6 +6,9 @@ import Modal from './Modal';
 import { useDispatch } from 'react-redux';
 import { data } from '../../redux/modules/mapSlice';
 import { auth } from 'shared/firebase';
+import bookingAxios from 'api/booking';
+import { __getBooking } from '../../redux/modules/bookingSlice';
+
 const { kakao } = window;
 
 export default function Map() {
@@ -18,6 +21,25 @@ export default function Map() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isBooked, setIsBooked] = useState(false);
   const [nickname, setNickname] = useState('');
+  const [bookingData, setBookingData] = useState([]);
+
+  useEffect(() => {
+    const getBookingData = async () => {
+      try {
+        const getBooking = await dispatch(__getBooking());
+        console.log(getBooking);
+        const idFiltered = getBooking.payload.filter((item) => {
+          console.log('item', item, 'nickname', nickname);
+          return item.nickname === nickname;
+        });
+        setBookingData(idFiltered);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getBookingData();
+  }, []);
+  console.log('bookingData', bookingData);
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setNickname(user.displayName);
@@ -118,7 +140,7 @@ export default function Map() {
         position: new kakao.maps.LatLng(place.y, place.x),
       });
 
-      const content = `<div class ="label"><span class="left"></span><span class="center">${place.place_name}</span><span class="right"></span></div>`;
+      const content = `<div class ="label"><span class="left"></span><span class="center"></span><span class="right"></span></div>`;
       var customOverlay = new kakao.maps.CustomOverlay({
         position: marker.getPosition(),
         content: content,
