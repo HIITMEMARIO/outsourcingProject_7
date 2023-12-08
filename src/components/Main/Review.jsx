@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import uuid from 'react-uuid';
 import { __addReview, __getReview } from '../../redux/modules/reviewSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { auth, onAuthStateChanged } from 'shared/firebase';
 import {
   StBtn,
   StComment,
@@ -16,14 +15,16 @@ import {
   StUserIDAndCreatedAt,
   StUserId,
 } from './style';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from 'shared/firebase';
 
 export default function Review() {
-  const [comment, setComment] = useState('');
   const [nickname, setNickname] = useState('');
   const [user, setUser] = useState(null);
+  const [comment, setComment] = useState('');
+  const [userId, setUserId] = useState('');
   const dispatch = useDispatch();
   const { review } = useSelector((state) => state.reviewSlice);
-
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -32,6 +33,7 @@ export default function Review() {
       }
     });
   });
+
   console.log('review', review);
 
   const data = useSelector((state) => {
@@ -41,6 +43,7 @@ export default function Review() {
 
   const dataHospitalId = data.id;
   console.log('이거보세요옷', dataHospitalId);
+  console.log(data);
 
   useEffect(() => {
     dispatch(__getReview());
@@ -48,6 +51,10 @@ export default function Review() {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    if (!nickname) {
+      alert('로그인 후 작성바랍니다');
+      return;
+    }
     if (comment === '') {
       alert('내용을 입력해주세요');
       return;
@@ -61,6 +68,7 @@ export default function Review() {
     };
 
     dispatch(__addReview(newReview));
+    setUserId('');
     setComment('');
   };
 
@@ -79,6 +87,7 @@ export default function Review() {
               <div> {data.phone}</div>
               <div> {data.place_url}</div>
             </>
+            <div>Hospital Information</div>
           </StHospitalInfo>
           <h1
             style={{
@@ -91,7 +100,6 @@ export default function Review() {
           </h1>
           {review
             .filter((item) => {
-              // console.log('이거;;', item.hospitalId);
               return item.hospitalId === dataHospitalId;
             })
             .map((item) => {
@@ -123,8 +131,6 @@ export default function Review() {
                 <StBtn type="submit">등록</StBtn>
               </form>
             </div>
-
-            {/* placeholder 로그인하지 않은 사람만 보이게 수정 */}
             <StReviewComment
               type="text"
               placeholder="로그인 후 이용해주세요 (100자 이내)"
