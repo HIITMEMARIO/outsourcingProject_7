@@ -3,23 +3,16 @@
     {
       "id": "2af2618c-2707-2c4c-7565-1f33c1ac2f22",
       "comment": "ㅇㅇㅇㅇㅇㅇ",
-      "nickname": "희원쓰",
+      "nickname": "에이닷",
       "createdAt": "2023-12-08 06:28:51",
       "hospitalId": "9746155"
     },
     {
       "id": "589d3f32-59b1-a3ab-0085-6d0fa80435f7",
       "comment": "뉴요커",
-      "nickname": "희원쓰",
+      "nickname": "에이닷",
       "createdAt": "2023-12-08 06:30:37",
       "hospitalId": "786616546"
-    },
-    {
-      "id": "dd1c2888-1f84-3c07-89d5-4f3dc8579112",
-      "comment": "연세치과",
-      "nickname": "희원쓰",
-      "createdAt": "2023-12-08 07:03:42",
-      "hospitalId": "2027456859"
     },
     {
       "id": "43f89aad-ae91-43f8-bcca-918661df1d81",
@@ -29,11 +22,25 @@
       "hospitalId": "2027456859"
     },
     {
-      "id": "67cc4d9e-df37-ff26-51e7-ba83cf63ba6b",
-      "comment": "뉴요크",
+      "id": "1818ffa5-66d2-aa8e-02ce-6da46a4ca6fd",
+      "comment": "ㅇㄴㄹㅇㄴㄹ",
       "nickname": "희원",
-      "createdAt": "2023-12-08 07:11:11",
-      "hospitalId": "786616546"
+      "createdAt": "2023-12-08 08:43:23",
+      "hospitalId": "273784557"
+    },
+    {
+      "id": "4cbbf945-a91a-97cd-437d-45165a77072c",
+      "comment": "ㄴㅇㄺㅅㄱㄷㅅ",
+      "nickname": "희원",
+      "createdAt": "2023-12-08 08:43:24",
+      "hospitalId": "273784557"
+    },
+    {
+      "id": "351e838c-8a8f-205d-16b1-cef84e9b7668",
+      "comment": "ㄴㅇㄹㅇㄴ",
+      "nickname": "희원",
+      "createdAt": "2023-12-08 08:43:25",
+      "hospitalId": "273784557"
     }
   ],
   "booking": [

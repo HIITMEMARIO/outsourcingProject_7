@@ -48,7 +48,7 @@ export const __deleteReview = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const res = await axios.delete(`http://localhost:5000/review/${payload}`);
-      // console.log('삭제', res.data);
+      console.log('삭제', res.data);
       return res.data;
     } catch (error) {
       console.log('error', error);
@@ -115,7 +115,7 @@ export const ReviewSlice = createSlice({
       .addCase(__deleteReview.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        state.review = state.reviews.filter(
+        state.review = state.review.filter(
           (data) => data.id === action.payload,
         );
       })
