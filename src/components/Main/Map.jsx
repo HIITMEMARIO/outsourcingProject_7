@@ -42,7 +42,7 @@ export default function Map() {
   console.log('bookingData', bookingData);
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      if (user) setNickname(user.displayName);
+      setNickname(user.displayName);
     });
   }, []);
   console.log('맵 닉네임', nickname);
@@ -140,10 +140,13 @@ export default function Map() {
         position: new kakao.maps.LatLng(place.y, place.x),
       });
 
-      const content = `<div class ="label"><span class="left"></span><span class="center"></span><span class="right"></span></div>`;
+      // const content = bookingData.filter((item)=>{
+      //   if()
+      //   return `<div class ="label"><span class="left"></span><span class="center"></span><span class="right"></span></div>`;
+      // })
       var customOverlay = new kakao.maps.CustomOverlay({
         position: marker.getPosition(),
-        content: content,
+        // content: content,
         yAnchor: 1.4,
       });
       customOverlays.push(customOverlay);
