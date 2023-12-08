@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { auth } from "shared/firebase";
 const initialState = {
     isLogin: !!localStorage.getItem("accessToken"),
     loginUser: "",
@@ -58,6 +59,7 @@ const authSlice = createSlice({
     reducers: {
         logout: (state, action) => {
             state.isLogin = false;
+            signOut(auth)
             localStorage.clear()
         }
 
@@ -85,8 +87,6 @@ const authSlice = createSlice({
         })
         builder.addCase(__signupUser.fulfilled, (state, action) => {
             const { accessToken, displayName } = action.payload
-            // const { displayName } = action.payload
-
             state.isLoading = false;
             state.isLogin = true;
             state.loginUser = displayName
@@ -102,42 +102,3 @@ const authSlice = createSlice({
 })
 export default authSlice.reducer
 export const { logout } = authSlice.actions
-// export const __login = createAsyncThunk("getUsers", async (payload, thunkApi) => {
-//     try {
-//         const { data } = await axios.get('http://localhost:5000/user')
-//         const { id, password } = payload
-//         const filteredData = await data.find(item => item.id === id && item.password === password);
-//         console.log(filteredData)
-//         if (!filteredData) {
-//             throw new Error("일치하는 사용자가 없습니다.");
-//         }
-//         return filteredData
-//     } catch (error) {
-//         console.error("사용자 로그인 오류", error)
-//         return thunkApi.rejectWithValue(error)
-//         // throw error
-//     }
-// })
-
-
-
-// extraReducers: (builder) => {
-//     builder.addCase(__login.pending, (state, action) => {
-//         state.isLoading = true;
-//         state.isLogin = true;
-
-//     });
-//     builder.addCase(__login.fulfilled, (state, action) => {
-//         const { id, password } = action.payload
-//         state.isLogin = true;
-//         state.userData = action.payload;
-//         localStorage.setItem("userId", id)
-//         localStorage.setItem("password", password)
-
-//     });
-//     builder.addCase(__login.rejected, (state, action) => {
-//         state.isLoading = false
-//         state.isError = true
-//         state.error = action.payload
-//     });
-// },

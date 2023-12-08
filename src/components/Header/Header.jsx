@@ -23,13 +23,10 @@ export default function Header() {
   const navigate = useNavigate();
   const isLogin = useSelector((state) => state.authSlice.isLogin);
   console.log(isLogin);
-  const logOut = async () => {
-    await signOut(auth);
-  };
+
   const onHandleLoginBtn = () => {
     navigate('/login');
     if (isLogin) {
-      logOut();
       dispatch(logout());
     }
   };
