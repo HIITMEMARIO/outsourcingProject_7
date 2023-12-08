@@ -1,9 +1,4 @@
-import {
-  // asyncThunkCreator,
-  // buildCreateSlice,
-  createAsyncThunk,
-  createSlice,
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
@@ -33,7 +28,6 @@ export const __getReview = createAsyncThunk(
     try {
       const res = await axios.get('http://localhost:5000/review');
       console.log('getReviews', res.data);
-      // return thunkAPI.fulfillWithValue(res.data);
       return res.data;
     } catch (error) {
       console.log('error', error);
@@ -69,14 +63,13 @@ export const __editReview = createAsyncThunk(
       console.log('res', res.data);
       return res.data;
     } catch (error) {
-      // console.log('error', error);
       return thunkAPI.rejectWithValue(error);
     }
   },
 );
 
 //Slice
-export const ReviewSlice = createSlice({
+export const reviewSlice = createSlice({
   name: 'reviews',
   initialState,
   extraReducers: (builder) => {
@@ -132,7 +125,6 @@ export const ReviewSlice = createSlice({
       .addCase(__editReview.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        console.log('qqq');
         state.review = state.review.map((item) => {
           if (item.id === action.payload.id) {
             return { ...item, comment: action.payload.comment };
@@ -147,5 +139,5 @@ export const ReviewSlice = createSlice({
       });
   },
 });
-export const {} = ReviewSlice.actions;
-export default ReviewSlice.reducer;
+export const {} = reviewSlice.actions;
+export default reviewSlice.reducer;

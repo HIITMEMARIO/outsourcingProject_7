@@ -35,12 +35,13 @@ export default function MyProfile() {
 
   const deleteTo = (id) => {
     console.log('IDDDDD', id);
-    // if (window.confirm('삭제하시겠습니까?')) {
-    dispatch(__deleteReview(id)).then(() => {
-      dispatch(__getReview());
-      console.log('삭제성공');
-    });
-    console.log('디스패치 성공');
+    if (window.confirm('삭제하시겠습니까?')) {
+      dispatch(__deleteReview(id)).then(() => {
+        dispatch(__getReview());
+        // console.log('삭제성공');
+      });
+    }
+    // console.log('디스패치 성공');
   };
 
   if (isLoading) {
@@ -118,7 +119,7 @@ export default function MyProfile() {
                       />
                     </>
                   ) : (
-                    <div>{item.comment}</div>
+                    <>{item.comment}</>
                   )}
                 </StReviewBox>
 
@@ -234,9 +235,10 @@ export const Textarea = styled.textarea`
   height: 100px;
   margin-bottom: 20px;
   border-radius: 40px;
-  border: 1px solid lightgrey;
+  border: none;
   padding: 20px;
   resize: none;
+  padding: 10px;
 `;
 
 // export const StReviewComment = styled.div``;
