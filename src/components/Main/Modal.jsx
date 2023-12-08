@@ -20,6 +20,7 @@ export default function Modal({ setIsModalOpen }) {
   });
 
   const [startDate, setStartDate] = useState(new Date());
+  console.log(startDate);
 
   return (
     <StModal>
@@ -39,7 +40,13 @@ export default function Modal({ setIsModalOpen }) {
         minDate={new Date()}
       />
       <StButtonBox>
-        <Stbutton>예약</Stbutton>
+        <Stbutton
+          onClick={() => {
+            setIsModalOpen(false);
+          }}
+        >
+          예약
+        </Stbutton>
       </StButtonBox>
       {/* <StMemoBox>
         <h1>메모</h1>
