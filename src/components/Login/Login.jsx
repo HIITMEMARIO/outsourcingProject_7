@@ -4,19 +4,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { __loginUser, __signupUser } from '../../redux/modules/authSlice';
 import useForm from 'Hooks/userForm';
 import { useNavigate } from 'react-router-dom';
+import { auth } from 'shared/firebase';
 
 function Login() {
+  //어떻게 해야 email양식인지 , password 닉네임값을 요구할까?
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.authSlice.isLogin);
   console.log('록읜상태', isLogin);
   const [isLoginMode, setIsLoginMode] = useState(true);
+  // const [validEmail, setValidEmail] = useState(true);
   const { formState, onChangeHandler, resetForm } = useForm({
     email: '',
     password: '',
+    checkpassword: '',
     nickname: '',
+    validPasswrod: '',
   });
-  const { password, nickname, email } = formState;
+  const { password, nickname, email, validPasswrod } = formState;
+
   useEffect(() => {
     if (isLogin) navigate('/');
   }, [isLogin]);
@@ -28,7 +34,9 @@ function Login() {
 
       //   toast.success('로그인 성공');
     } else {
+      //회원가입시
       dispatch(__signupUser({ email, password, nickname }));
+      resetForm();
     }
   };
   return (
@@ -46,19 +54,31 @@ function Login() {
             name="password"
             value={password}
             onChange={onChangeHandler}
-            placeholder="비밀번호 (6~15글자)"
+            placeholder="비밀번호를 입력해 주세요. (6~15글자)"
             minLength={6}
             maxLength={15}
+            type="password"
           />
           {!isLoginMode && (
-            <Input
-              name="nickname"
-              value={nickname}
-              onChange={onChangeHandler}
-              placeholder="닉네임 (1~10글자)"
-              minLength={1}
-              maxLength={10}
-            />
+            <>
+              <Input
+                name="validPasswrod"
+                value={validPasswrod}
+                onChange={onChangeHandler}
+                placeholder="비밀번호 확인"
+                minLength={6}
+                maxLength={15}
+                type="password"
+              />
+              <Input
+                name="nickname"
+                value={nickname}
+                onChange={onChangeHandler}
+                placeholder="닉네임을 입력해 주세요. (1~10글자)"
+                minLength={1}
+                maxLength={10}
+              />
+            </>
           )}
           <Button
             disabled={
