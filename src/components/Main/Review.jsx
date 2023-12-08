@@ -19,18 +19,10 @@ import {
 
 export default function Review() {
   const [comment, setComment] = useState('');
-  // const [userId, setUserId] = useState('');
   const [nickname, setNickname] = useState('');
-  // const [hospitalId, setHospitalId] = useState('');
   const [user, setUser] = useState(null);
   const dispatch = useDispatch();
   const { review } = useSelector((state) => state.reviewSlice);
-
-  // onAuthStateChanged(auth, (user) => {
-  //   if (user) {
-  //     console.log('이거', user);
-  //   }
-  // });
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -46,6 +38,9 @@ export default function Review() {
     return state.mapSlice.data;
   });
   console.log('hospital data', data);
+
+  const dataHospitalId = data.id;
+  console.log('이거보세요옷', dataHospitalId);
 
   useEffect(() => {
     dispatch(__getReview());
@@ -94,19 +89,17 @@ export default function Review() {
           >
             {data.place_name}의 리뷰보기
           </h1>
-          {/* 클릭한 병원을 state에 []로 담기  */}
-          {/*  */}
-          {/* {data.filter((item)=>{
-          return item.id === 
-          })}
-           */}
-          {review &&
-            review.map((item) => {
+          {review
+            .filter((item) => {
+              // console.log('이거;;', item.hospitalId);
+              return item.hospitalId === dataHospitalId;
+            })
+            .map((item) => {
               return (
                 <div key={item.id}>
                   <StReviewBox>
                     <StUserIDAndCreatedAt>
-                      <StUserId>{item.userId}</StUserId>
+                      <StUserId>작성자 : {item.nickname}</StUserId>
                       <StCreatedAt>{item.createdAt}</StCreatedAt>
                     </StUserIDAndCreatedAt>
                     <StComment>{item.comment}</StComment>
@@ -130,6 +123,8 @@ export default function Review() {
                 <StBtn type="submit">등록</StBtn>
               </form>
             </div>
+
+            {/* placeholder 로그인하지 않은 사람만 보이게 수정 */}
             <StReviewComment
               type="text"
               placeholder="로그인 후 이용해주세요 (100자 이내)"

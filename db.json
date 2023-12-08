@@ -64,6 +64,27 @@
       "nickname": "희원쓰",
       "createdAt": "2023-12-08 06:30:37",
       "hospitalId": "786616546"
+    },
+    {
+      "id": "dd1c2888-1f84-3c07-89d5-4f3dc8579112",
+      "comment": "연세치과",
+      "nickname": "희원쓰",
+      "createdAt": "2023-12-08 07:03:42",
+      "hospitalId": "2027456859"
+    },
+    {
+      "id": "43f89aad-ae91-43f8-bcca-918661df1d81",
+      "comment": "연세치과 리뷰입니다",
+      "nickname": "희원쓰",
+      "createdAt": "2023-12-08 07:06:57",
+      "hospitalId": "2027456859"
+    },
+    {
+      "id": "67cc4d9e-df37-ff26-51e7-ba83cf63ba6b",
+      "comment": "뉴요크",
+      "nickname": "희원",
+      "createdAt": "2023-12-08 07:11:11",
+      "hospitalId": "786616546"
     }
   ],
   "booking": [

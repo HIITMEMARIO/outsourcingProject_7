@@ -19,8 +19,8 @@ export default function MyProfile() {
 
   const { review, isLoading } = useSelector((state) => state.reviewSlice);
 
-  console.log('params', params);
-  console.log('review', review);
+  // console.log('params', params);
+  // console.log('review', review);
 
   useEffect(() => {
     dispatch(__getReview());
@@ -85,6 +85,8 @@ export default function MyProfile() {
             fontSize: '30px',
           }}
         >
+          {/* filter --> 파이어베이스 displayName이랑 nickname이랑 같으면 
+          map --> 뿌려주기 */}
           내가 쓴 리뷰
         </div>
         <StReviewContainer>
