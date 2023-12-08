@@ -7,8 +7,11 @@ import {
   __getReview,
 } from '../../redux/modules/reviewSlice';
 import { useParams } from 'react-router';
+import { auth } from 'shared/firebase';
 
 export default function MyProfile() {
+  const nickname = auth.currentUser.displayName;
+  console.log(nickname);
   const dispatch = useDispatch();
   const [newComment, setNewComment] = useState('');
   const [isEdit, setIsEdit] = useState(false);
@@ -59,7 +62,7 @@ export default function MyProfile() {
             fontSize: '40px',
           }}
         >
-          userId 님, 반갑습니다 🖐🏻
+          <p>{nickname} 님, 반갑습니다 🖐🏻</p>
         </div>
         <div
           style={{
