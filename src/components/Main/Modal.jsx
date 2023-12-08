@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import {
   StButtonBox,
   StInputBox,
@@ -13,8 +13,16 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './modal.css';
 import { ko } from 'date-fns/esm/locale';
 import { useSelector } from 'react-redux';
+import { auth } from 'shared/firebase';
 
 export default function Modal({ setIsModalOpen }) {
+  const [nickname, setNickname] = useState('');
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setNickname(user.displayName);
+    });
+  }, []);
+  console.log('모달닉네임', nickname);
   const data = useSelector((state) => {
     return state.mapSlice.data;
   });

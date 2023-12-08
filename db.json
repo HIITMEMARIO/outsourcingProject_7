@@ -34,24 +34,12 @@
       "nickname": "희원",
       "createdAt": "2023-12-08 07:11:11",
       "hospitalId": "786616546"
-    },
-    {
-      "id": "73734fef-7a26-f499-e781-fa717020e3e5",
-      "comment": "ㅇㄹㅇㄹㅇ",
-      "userId": "",
-      "createdAt": "2023-12-07 14:55:01"
-    },
-    {
-      "id": "c5e84bf8-8f7a-701b-fd9e-5a651a333d9a",
-      "comment": "ㅇㄹㅇㄹ",
-      "userId": "",
-      "createdAt": "2023-12-08 11:45:24"
     }
   ],
   "booking": [
     {
       "id": "abab",
-      "userId": "fdfdfd",
+      "nickname": "fdfdfd",
       "date": "날짜양식이 들어갈거야",
       "hospital": "철야병원"
     }

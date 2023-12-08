@@ -5,6 +5,7 @@ import './map.css';
 import Modal from './Modal';
 import { useDispatch } from 'react-redux';
 import { data } from '../../redux/modules/mapSlice';
+import { auth } from 'shared/firebase';
 const { kakao } = window;
 
 export default function Map() {
@@ -16,7 +17,13 @@ export default function Map() {
   console.log('asdfafds', hospitalData);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isBooked, setIsBooked] = useState(false);
-
+  const [nickname, setNickname] = useState('');
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setNickname(user.displayName);
+    });
+  }, []);
+  console.log('맵 닉네임', nickname);
   const dispatch = useDispatch();
 
   useEffect(() => {

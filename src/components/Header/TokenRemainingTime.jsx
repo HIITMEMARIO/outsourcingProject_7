@@ -19,7 +19,7 @@ export default function TokenRemainingTime() {
             const remainingTime = tokenExpirationTime - currentTime;
             const minutes = Math.ceil(remainingTime / (60 * 1000));
             const seconds = Math.ceil(remainingTime / 1000) % 60;
-            console.log(minutes, seconds);
+            // console.log(minutes, seconds);
             if (!minutes && !seconds) {
               dispatch(logout());
             }
