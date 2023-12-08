@@ -67,6 +67,7 @@ export default function Review() {
   const onReviewChange = (e) => {
     setComment(e.target.value);
   };
+  if (!dataHospitalId) return;
 
   return (
     <>
