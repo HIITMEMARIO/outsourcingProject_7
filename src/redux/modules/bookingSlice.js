@@ -85,12 +85,12 @@ export const bookingSlice = createSlice({
       .addCase(__getBooking.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        // state.review = action.payload;
+        // state. = action.payload;
       })
       .addCase(__getBooking.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        state.review = action.payload;
+        // state.review = action.payload;
       })
       .addCase(__addBooking.pending, (state) => {
         state.isLoading = true;

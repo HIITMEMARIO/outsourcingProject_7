@@ -17,14 +17,16 @@ export default function Map() {
   const [lt, setLatitude] = useState(0);
   const [lg, setLongitude] = useState(0);
   const container = useRef(null);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isBooked, setIsBooked] = useState(false);
+  // const [isBooked, setIsBooked] = useState(false);
   const [nickname, setNickname] = useState('');
   const [bookingData, setBookingData] = useState([]);
   const [myBooking, setMybooking] = useState([]);
   console.log('내예약##############################', myBooking);
 
   useEffect(() => {
+
     auth.onAuthStateChanged((user) => {
       if (user) setNickname(user.displayName);
     });
@@ -49,6 +51,7 @@ export default function Map() {
     };
     getBookingData();
   }, [nickname]);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -105,7 +108,7 @@ export default function Map() {
 
     // 장소 검색 객체를 생성합니다
     var ps = new kakao.maps.services.Places(map);
-    console.log(ps);
+    // console.log(ps);
     // 키워드로 장소를 검색합니다
     searchPlaces();
     // 키워드 검색을 요청하는 함수
@@ -118,6 +121,7 @@ export default function Map() {
 
     function placesSearchCB(data, status, pagination) {
       if (data !== 'ERROR') setHospitalData(data);
+
       if (status === kakao.maps.services.Status.OK) {
         let bounds = new kakao.maps.LatLngBounds();
         for (let i = 0; i < data.length; i++) {
@@ -134,13 +138,21 @@ export default function Map() {
 
     // 지도에 마커를 표시하는 함수입니다
     function displayMarker(place) {
+
       // 마커를 생성하고 지도에 표시합니다
       var marker = new kakao.maps.Marker({
         map: map,
         position: new kakao.maps.LatLng(place.y, place.x),
       });
+      // const filteredBooking = bookingData.filter((item) => {
+      //   hospitalData.forEach((i) => {
+      //     return item.hospital === i.id;
+      //   });
+      //   return
+      // });
 
       const content = `<div class ="label"><span class="left"></span><span class="center"></span><span class="right"></span></div>`;
+
       var customOverlay = new kakao.maps.CustomOverlay({
         position: marker.getPosition(),
         content: content,
@@ -157,15 +169,13 @@ export default function Map() {
           }
           customOverlay.setMap(map); // 닫혀있으면 열기
         }
+
         setIsModalOpen(true);
         dispatch(data(place));
       });
-
-      kakao.maps.event.addListener(map, 'click', function () {
-        isBooked ? customOverlay.setMap(map) : customOverlay.setMap(null);
-      });
     }
   }, [inputValue, lt, lg]);
+
   return (
     <>
       <StInputBox>
