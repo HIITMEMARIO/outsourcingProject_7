@@ -6,7 +6,6 @@ import Modal from './Modal';
 import { useDispatch } from 'react-redux';
 import { data } from '../../redux/modules/mapSlice';
 import { auth } from 'shared/firebase';
-import bookingAxios from 'api/booking';
 import { __getBooking } from '../../redux/modules/bookingSlice';
 
 const { kakao } = window;
@@ -19,14 +18,13 @@ export default function Map() {
   const container = useRef(null);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [isBooked, setIsBooked] = useState(false);
   const [nickname, setNickname] = useState('');
   const [bookingData, setBookingData] = useState([]);
   const [myBooking, setMybooking] = useState([]);
+
   console.log('내예약##############################', myBooking);
 
   useEffect(() => {
-
     auth.onAuthStateChanged((user) => {
       if (user) setNickname(user.displayName);
     });
@@ -38,17 +36,20 @@ export default function Map() {
     const myBooking = bookingData.filter((booking) =>
       hospitalData.some((hospital) => booking.hospital === hospital.id),
     );
+
     setMybooking(myBooking);
   }, [hospitalData, bookingData]);
 
   useEffect(() => {
     const getBookingData = async () => {
-      const getBooking = await dispatch(__getBooking());
+      const getBooking = await dispatch(__getBooking(nickname));
       const idFiltered = getBooking.payload.filter((item) => {
         return item.nickname === nickname;
       });
       setBookingData(idFiltered);
+      console.log(getBooking);
     };
+
     getBookingData();
   }, [nickname]);
 
@@ -66,6 +67,7 @@ export default function Map() {
       radius: 2000,
     };
     const map = new window.kakao.maps.Map(container.current, options);
+
     // ===========================================================================
 
     // ============================== 맵 줌 컨트롤 ==================================
@@ -120,6 +122,7 @@ export default function Map() {
     // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 
     function placesSearchCB(data, status, pagination) {
+      console.log('dddd', data);
       if (data !== 'ERROR') setHospitalData(data);
 
       if (status === kakao.maps.services.Status.OK) {
@@ -138,20 +141,29 @@ export default function Map() {
 
     // 지도에 마커를 표시하는 함수입니다
     function displayMarker(place) {
-
       // 마커를 생성하고 지도에 표시합니다
       var marker = new kakao.maps.Marker({
         map: map,
         position: new kakao.maps.LatLng(place.y, place.x),
       });
-      // const filteredBooking = bookingData.filter((item) => {
-      //   hospitalData.forEach((i) => {
-      //     return item.hospital === i.id;
-      //   });
-      //   return
-      // });
 
-      const content = `<div class ="label"><span class="left"></span><span class="center"></span><span class="right"></span></div>`;
+      let text = '';
+      const booking = myBooking.find((booking) => {
+        return booking.hospital === place.id;
+      });
+      console.log('============================');
+      console.log(booking);
+      console.log(myBooking);
+      console.log('333', place.id); // 내가 찍은 마커의 정보
+      console.log('============================');
+
+      if (booking) {
+        text = booking.hospitalName;
+      } else {
+        text = '';
+      }
+
+      const content = `<div class ="label"><span class="left"></span><span class="center">${text}</span><span class="right"></span></div>`;
 
       var customOverlay = new kakao.maps.CustomOverlay({
         position: marker.getPosition(),
@@ -159,7 +171,7 @@ export default function Map() {
         yAnchor: 1.4,
       });
       customOverlays.push(customOverlay);
-
+      console.log(customOverlays);
       kakao.maps.event.addListener(marker, 'click', function () {
         if (customOverlay.getMap()) {
           customOverlay.setMap(null); // 열려있으면 닫기
@@ -171,6 +183,7 @@ export default function Map() {
         }
 
         setIsModalOpen(true);
+
         dispatch(data(place));
       });
     }
