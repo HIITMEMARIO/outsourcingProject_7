@@ -3,7 +3,7 @@ import { StInput, StInputBox, StMapContainer } from './style';
 import { FcSearch } from 'react-icons/fc';
 import './map.css';
 import Modal from './Modal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { data } from '../../redux/modules/mapSlice';
 import { auth } from 'shared/firebase';
 import { __getBooking } from '../../redux/modules/bookingSlice';
@@ -11,6 +11,7 @@ import { __getBooking } from '../../redux/modules/bookingSlice';
 const { kakao } = window;
 
 export default function Map() {
+  const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState('');
   const [hospitalData, setHospitalData] = useState([]);
   const [lt, setLatitude] = useState(0);
@@ -21,40 +22,43 @@ export default function Map() {
   const [nickname, setNickname] = useState('');
   const [bookingData, setBookingData] = useState([]);
   const [myBooking, setMybooking] = useState([]);
-
-  console.log('내예약##############################', myBooking);
-
+  const booking = useSelector((state) => state.bookingSlice);
+  const [문길, set문길] = useState([]);
+  // 1
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) setNickname(user.displayName);
     });
   }, []);
 
-  useEffect(() => {
-    console.log('총병원@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', hospitalData);
-    console.log('bookingData&&&&&&&&&&&&&&&&&&&&&&&&&&&&', bookingData);
-    const myBooking = bookingData.filter((booking) =>
-      hospitalData.some((hospital) => booking.hospital === hospital.id),
-    );
-
-    setMybooking(myBooking);
-  }, [hospitalData, bookingData]);
-
+  //2
   useEffect(() => {
     const getBookingData = async () => {
       const getBooking = await dispatch(__getBooking(nickname));
       const idFiltered = getBooking.payload.filter((item) => {
         return item.nickname === nickname;
       });
+      console.log(idFiltered);
+      const myBooking = idFiltered.filter((booking) =>
+        hospitalData.some((hospital) => booking.hospital === hospital.id),
+      );
+      set문길(idFiltered);
+      console.log(myBooking);
       setBookingData(idFiltered);
-      console.log(getBooking);
     };
-
     getBookingData();
   }, [nickname]);
 
-  const dispatch = useDispatch();
+  //3
+  useEffect(() => {
+    const myBooking = bookingData.filter((booking) =>
+      hospitalData.some((hospital) => booking.hospital === hospital.id),
+    );
+    console.log(myBooking);
+    setMybooking(myBooking);
+  }, [hospitalData, bookingData]);
 
+  // 카카오 맵
   useEffect(() => {
     // ============================== 지도 생성 ====================================
     const options = {
@@ -99,8 +103,8 @@ export default function Map() {
     } else {
       // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 
-      var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
-        message = 'geolocation을 사용할수 없어요..';
+      var locPosition = new kakao.maps.LatLng(33.450701, 126.570667);
+      var message = 'geolocation을 사용할수 없어요..';
 
       displayMarker(locPosition, message);
     }
@@ -122,9 +126,8 @@ export default function Map() {
     // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 
     function placesSearchCB(data, status, pagination) {
-      console.log('dddd', data);
       if (data !== 'ERROR') setHospitalData(data);
-
+      if (status === 'ZERO_RESULT') return;
       if (status === kakao.maps.services.Status.OK) {
         let bounds = new kakao.maps.LatLngBounds();
         for (let i = 0; i < data.length; i++) {
@@ -148,19 +151,25 @@ export default function Map() {
       });
 
       let text = '';
-      const booking = myBooking.find((booking) => {
+      console.log(place);
+      // 민석님과 준혁님이  하신것
+      // const booking = myBooking.find((booking) => {
+      //   return booking.hospital === place.id;
+      // });
+      console.log(문길);
+      const booking = 문길.find((booking) => {
         return booking.hospital === place.id;
       });
-      console.log('============================');
-      console.log(booking);
-      console.log(myBooking);
-      console.log('333', place.id); // 내가 찍은 마커의 정보
-      console.log('============================');
 
+      console.log('333', place.id); // 내가 찍은 마커의 정보
+
+      console.log(booking);
       if (booking) {
+        console.log('..............................');
         text = booking.hospitalName;
-      } else {
-        text = '';
+      } else if (booking === undefined) {
+        console.log('000000000', place.place_name);
+        text = place.place_name;
       }
 
       const content = `<div class ="label"><span class="left"></span><span class="center">${text}</span><span class="right"></span></div>`;
@@ -171,12 +180,12 @@ export default function Map() {
         yAnchor: 1.4,
       });
       customOverlays.push(customOverlay);
-      console.log(customOverlays);
       kakao.maps.event.addListener(marker, 'click', function () {
         if (customOverlay.getMap()) {
           customOverlay.setMap(null); // 열려있으면 닫기
         } else {
           for (var i = 0; i < customOverlays.length; i++) {
+            console.log(customOverlays);
             customOverlays[i]?.setMap(null);
           }
           customOverlay.setMap(map); // 닫혀있으면 열기
@@ -187,7 +196,7 @@ export default function Map() {
         dispatch(data(place));
       });
     }
-  }, [inputValue, lt, lg]);
+  }, [inputValue, lt, lg, 문길]);
 
   return (
     <>
