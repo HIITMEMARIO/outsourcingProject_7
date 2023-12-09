@@ -34,16 +34,11 @@ export default function Review() {
     });
   });
 
-  console.log('review', review);
-
   const data = useSelector((state) => {
     return state.mapSlice.data;
   });
-  console.log('hospital data', data);
 
   const dataHospitalId = data.id;
-  console.log('이거보세요옷', dataHospitalId);
-  console.log(data);
 
   useEffect(() => {
     dispatch(__getReview());
@@ -101,7 +96,6 @@ export default function Review() {
           </h1>
           {review
             .filter((item) => {
-              // console.log('이거;;', item.hospitalId);
               return item.hospitalId === dataHospitalId;
             })
             .map((item) => {

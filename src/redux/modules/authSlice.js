@@ -14,7 +14,6 @@ export const __loginUser = createAsyncThunk("getLoginUser", async (payload, thun
 
         const auth = getAuth();
         const { email, password } = payload
-        console.log(auth.currentUser)
         // try {
 
         await signInWithEmailAndPassword(auth, email, password)

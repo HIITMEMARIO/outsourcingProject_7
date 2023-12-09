@@ -10,7 +10,6 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.authSlice.isLogin);
-  console.log('록읜상태', isLogin);
   const [isLoginMode, setIsLoginMode] = useState(true);
   // const [validEmail, setValidEmail] = useState(true);
   const { formState, onChangeHandler, resetForm } = useForm({
@@ -21,6 +20,8 @@ function Login() {
     validPasswrod: '',
   });
   const { password, nickname, email, checkpassword } = formState;
+  const eamilRegex =
+    /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
   useEffect(() => {
     if (isLogin) navigate('/');

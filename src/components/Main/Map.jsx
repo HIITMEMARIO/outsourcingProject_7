@@ -17,35 +17,38 @@ export default function Map() {
   const [lt, setLatitude] = useState(0);
   const [lg, setLongitude] = useState(0);
   const container = useRef(null);
-  console.log('asdfafds', hospitalData);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isBooked, setIsBooked] = useState(false);
   const [nickname, setNickname] = useState('');
   const [bookingData, setBookingData] = useState([]);
+  const [myBooking, setMybooking] = useState([]);
+  console.log('내예약##############################', myBooking);
 
-  useEffect(() => {
-    const getBookingData = async () => {
-      try {
-        const getBooking = await dispatch(__getBooking());
-        console.log(getBooking);
-        const idFiltered = getBooking.payload.filter((item) => {
-          console.log('item', item, 'nickname', nickname);
-          return item.nickname === nickname;
-        });
-        setBookingData(idFiltered);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getBookingData();
-  }, []);
-  console.log('bookingData', bookingData);
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) setNickname(user.displayName);
     });
   }, []);
-  console.log('맵 닉네임', nickname);
+
+  useEffect(() => {
+    console.log('총병원@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', hospitalData);
+    console.log('bookingData&&&&&&&&&&&&&&&&&&&&&&&&&&&&', bookingData);
+    const myBooking = bookingData.filter((booking) =>
+      hospitalData.some((hospital) => booking.hospital === hospital.id),
+    );
+    setMybooking(myBooking);
+  }, [hospitalData, bookingData]);
+
+  useEffect(() => {
+    const getBookingData = async () => {
+      const getBooking = await dispatch(__getBooking());
+      const idFiltered = getBooking.payload.filter((item) => {
+        return item.nickname === nickname;
+      });
+      setBookingData(idFiltered);
+    };
+    getBookingData();
+  }, [nickname]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -114,8 +117,7 @@ export default function Map() {
     // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 
     function placesSearchCB(data, status, pagination) {
-      console.log(data);
-      setHospitalData(data);
+      if (data !== 'ERROR') setHospitalData(data);
       if (status === kakao.maps.services.Status.OK) {
         let bounds = new kakao.maps.LatLngBounds();
         for (let i = 0; i < data.length; i++) {
@@ -129,11 +131,9 @@ export default function Map() {
     // ===========================================================================
 
     var customOverlays = [];
-    console.log('cutomOverlays', customOverlays);
 
     // 지도에 마커를 표시하는 함수입니다
     function displayMarker(place) {
-      console.log('place', place);
       // 마커를 생성하고 지도에 표시합니다
       var marker = new kakao.maps.Marker({
         map: map,
@@ -147,7 +147,6 @@ export default function Map() {
         yAnchor: 1.4,
       });
       customOverlays.push(customOverlay);
-      console.log(customOverlays);
 
       kakao.maps.event.addListener(marker, 'click', function () {
         if (customOverlay.getMap()) {
@@ -158,7 +157,6 @@ export default function Map() {
           }
           customOverlay.setMap(map); // 닫혀있으면 열기
         }
-        console.log('marker', marker);
         setIsModalOpen(true);
         dispatch(data(place));
       });
@@ -168,7 +166,6 @@ export default function Map() {
       });
     }
   }, [inputValue, lt, lg]);
-  console.log(isModalOpen);
   return (
     <>
       <StInputBox>
