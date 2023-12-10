@@ -162,7 +162,7 @@ export default function Map() {
           for (var i = 0; i < customOverlays.length; i++) {
             customOverlays[i]?.setMap(null);
           }
-          customOverlay.setMap(map); // 닫혀있으면 열기
+          customOverlay.setMap(map);
         }
 
         setIsModalOpen(true);

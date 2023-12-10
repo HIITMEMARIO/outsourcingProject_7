@@ -34,6 +34,20 @@
       "nickname": "에이닷",
       "createdAt": "2023-12-10 08:37:41",
       "hospitalId": "8198698"
+    },
+    {
+      "id": "e5f35a7e-5ea8-728f-53ab-8b14a69d0536",
+      "comment": "치까치꽈",
+      "nickname": "에이닷",
+      "createdAt": "2023-12-10 12:32:50",
+      "hospitalId": "17464878"
+    },
+    {
+      "id": "b1f91cc5-89fa-dc7e-3721-04849c43ae20",
+      "comment": "수정 함 해봄!",
+      "nickname": "에이닷",
+      "createdAt": "2023-12-10 12:34:13",
+      "hospitalId": "17464878"
     }
   ],
   "booking": [

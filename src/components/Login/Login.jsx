@@ -243,7 +243,6 @@ const CheckBtn = styled.button`
   color: white;
   border-radius: 50%;
   ${({ nothing }) => {
-    console.log(nothing);
     if (nothing === 'nothing') {
       return css`
         background-color: inherit;
@@ -262,8 +261,6 @@ const CheckBtn = styled.button`
   font-size: 5px;
   ${({ $isLoginMode }) => {
     if ($isLoginMode) {
-      console.log($isLoginMode);
-
       return css`
         display: none;
       `;

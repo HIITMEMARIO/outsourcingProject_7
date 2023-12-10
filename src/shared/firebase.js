@@ -1,4 +1,3 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -17,13 +16,4 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 export { auth, onAuthStateChanged, db };
-const fetchSignInMethodsForEmail = async (auth, email) => {
-  try {
-    const signInMethods = await auth.fetchSignInMethodsForEmail(email);
-    return signInMethods;
-  } catch (error) {
-    throw error;
-  }
-};
 
-export { fetchSignInMethodsForEmail };
