@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { data } from '../../redux/modules/mapSlice';
 import { auth } from 'shared/firebase';
 import { __getBooking } from '../../redux/modules/bookingSlice';
+import myappologo from '../../assets/myappologo.png';
 
 const { kakao } = window;
 
@@ -130,17 +131,14 @@ export default function Map() {
 
     var customOverlays = [];
 
+    const imageSrc = myappologo;
+    const imageSize = new kakao.maps.Size(40, 40);
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
     // 지도에 마커를 표시하는 함수입니다
     function displayMarker(place) {
-      // 마커를 생성하고 지도에 표시합니다
-      var marker = new kakao.maps.Marker({
-        map: map,
-        position: new kakao.maps.LatLng(place.y, place.x),
-      });
-
       let hospitalname = '';
       let date = '';
-      console.log(문길);
       const booking = 문길.find((booking) => {
         return booking.hospital === place.id;
       });
@@ -154,6 +152,12 @@ export default function Map() {
       } else if (booking === undefined) {
         hospitalname = place.place_name;
       }
+      // 마커를 생성하고 지도에 표시합니다
+      var marker = new kakao.maps.Marker({
+        map: map,
+        position: new kakao.maps.LatLng(place.y, place.x),
+        image: booking ? markerImage : '',
+      });
 
       const content = `<div class ="label"><span class="hospitalname">${hospitalname}</span><span class="date">${date}에 예약되어 있어요!</span><span class="right"></span></div>`;
       const noBookingcontent = `<div class ="label"><span class="left">${hospitalname}</span><span class="center"></span><span class="right"></span></div>`;

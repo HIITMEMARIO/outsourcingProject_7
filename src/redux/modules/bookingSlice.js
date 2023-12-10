@@ -57,9 +57,7 @@ export const __editBooking = createAsyncThunk(
   'editBooking',
   async (payload, thunkAPI) => {
     try {
-      const res = await bookingAxios.patch(`/booking/${payload.id}`, {
-        comment: payload.newComment,
-      });
+      const res = await bookingAxios.patch(`/booking/${payload.id}`, {});
 
       return res.data;
     } catch (error) {
@@ -82,13 +80,11 @@ export const bookingSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.booking = action.payload;
-
       })
       .addCase(__getBooking.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.booking = action.payload;
-
       })
       .addCase(__addBooking.pending, (state) => {
         state.isLoading = true;
@@ -128,12 +124,6 @@ export const bookingSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         console.log('qqq');
-        // state.review = state.review.map((item) => {
-        //   if (item.id === action.payload.id) {
-        //     return { ...item, comment: action.payload.comment };
-        //   }
-        //   return item;
-        // });
       })
       .addCase(__editBooking.rejected, (state, action) => {
         state.isLoading = false;

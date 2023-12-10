@@ -16,8 +16,8 @@ export const StLogoBox = styled.div`
   align-items: center;
   img {
     /* background-color: red; */
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     margin-left: 30px;
   }
   p {
@@ -27,6 +27,5 @@ export const StLogoBox = styled.div`
     margin-left: 5%;
     font-size: 30px;
     font-weight: 1000;
-    
   }
-`
+`;
