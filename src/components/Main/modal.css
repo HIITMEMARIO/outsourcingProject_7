@@ -18,7 +18,7 @@
 
 
 .react-datepicker__tab-loop {
-  width: 300px;
+  /* width: 300px; */
   display: flex;
 }
 
@@ -36,6 +36,7 @@
   text-shadow: 0 0 0 black;
   transition: .1s;
   border-radius: 10px;
+  width: 300px;
 }
 
 .react-datepicker__input-container>input:hover {
@@ -67,9 +68,8 @@
 
 
 .react-datepicker__time-container {
-  width: 300px !important;
+  width: 300px;
   border-left: none !important;
-
   border-top: 1px solid #7a97ff;
 
 
