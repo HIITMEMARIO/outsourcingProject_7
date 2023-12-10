@@ -137,8 +137,10 @@ export const bookingSlice = createSlice({
         state.isError = false;
         console.log('qqq');
         state.booking = state.booking.map((item) => {
+          // console.log('item', item.id);
           if (item.id === action.payload.id) {
-            console.log('dfsfsdfafrfref', action.payload);
+            console.log('dfsfsdfafrfdsfref', action.payload.id);
+            console.log('sdfdd', item.id);
             return { ...item, date: action.payload.date };
           }
           return item;
