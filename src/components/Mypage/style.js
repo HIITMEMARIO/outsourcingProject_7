@@ -15,26 +15,40 @@ export const StScheduleContainer = styled.div`
   justify-items: center;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+
   gap: 80px;
   margin: 0;
 `;
 
-export const StScheduleInfo = styled.div``;
+export const StScheduleInfo = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 50px;
+`;
 
 export const StBookingBtns = styled.div`
   display: flex;
-  margin-left: 300px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
-  margin-top: 100px;
+  margin-top: 30px;
 `;
 
-export const StBookingDate = styled.div``;
-export const StBookingHospital = styled.div``;
+export const StBookingDate = styled.div`
+  width: 300px;
+  margin-bottom: 20px;
+`;
+export const StBookingHospital = styled.div`
+  width: 300px;
+`;
 
-export const StBookingCancelBtn = styled.div`
+export const StBookingCancelBtn = styled.button`
   border-radius: 10px;
   background-color: lightgray;
-  width: 60px;
+  width: 100px;
   height: 30px;
   cursor: pointer;
   &:hover {
@@ -45,7 +59,7 @@ export const StBookingCancelBtn = styled.div`
 export const StBookingEditBtn = styled.button`
   border-radius: 10px;
   background-color: lightgray;
-  width: 60px;
+  width: 100px;
   height: 30px;
   cursor: pointer;
   &:hover {
@@ -55,11 +69,8 @@ export const StBookingEditBtn = styled.button`
 `;
 
 export const StScheduleBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 500px;
-  height: 200px;
+  height: 250px;
   border: none;
   border-radius: 30px;
   background-color: #c3ebff;
@@ -69,7 +80,7 @@ export const StScheduleBox = styled.div`
 export const StBookingDeleteBtn = styled.button`
   border-radius: 10px;
   background-color: lightgray;
-  width: 60px;
+  width: 100px;
   height: 30px;
   cursor: pointer;
   &:hover {
@@ -121,7 +132,7 @@ export const StEditBtn = styled.button`
 `;
 
 export const StBtns = styled.div`
-  margin-left: 480px;
+  /* margin-left: 480px; */
 `;
 
 export const Textarea = styled.textarea`

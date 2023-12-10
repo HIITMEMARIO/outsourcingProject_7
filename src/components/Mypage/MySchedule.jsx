@@ -17,6 +17,7 @@ export default function MySchedule({
   booking,
   nickname,
   isModalOpen,
+  setIsModalOpen,
   selectedBookingId,
   editBookingToggle,
   deleteBooking,
@@ -69,7 +70,9 @@ export default function MySchedule({
                           수정완료
                         </StBookingEditBtn>
                         <StBookingCancelBtn>취소하기</StBookingCancelBtn>
-                        <EditBooking schedule={item} />
+                        <div>
+                          <EditBooking schedule={item} />
+                        </div>
                       </>
                     ) : (
                       <>

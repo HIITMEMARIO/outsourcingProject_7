@@ -14,7 +14,7 @@ let { kakao } = window;
 
 export default function Map() {
   let dispatch = useDispatch();
-
+  const [render, setRender] = useState(true);
   const [inputValue, setInputValue] = useState('');
   const [lt, setLatitude] = useState(0);
   const [lg, setLongitude] = useState(0);
@@ -44,7 +44,7 @@ export default function Map() {
       setMyBooking(idFiltered);
     };
     getBookingData();
-  }, [nickname]);
+  }, [nickname, render]);
   // useEffect내용 적당히 분리하면서 코드 짤것
 
   // 카카오 맵
@@ -200,7 +200,15 @@ export default function Map() {
 
       <StMapContainer ref={container}>
         <div style={{ width: '99%', height: '800px' }}></div>
-        {isModalOpen ? <Modal setIsModalOpen={setIsModalOpen} /> : ''}
+        {isModalOpen ? (
+          <Modal
+            setIsModalOpen={setIsModalOpen}
+            render={render}
+            setRender={setRender}
+          />
+        ) : (
+          ''
+        )}
       </StMapContainer>
     </>
   );
