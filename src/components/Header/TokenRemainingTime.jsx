@@ -43,7 +43,7 @@ export default function TokenRemainingTime() {
   );
 }
 const RemainTime = styled.p`
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
   user-select: none;
 

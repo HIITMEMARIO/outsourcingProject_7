@@ -13,11 +13,9 @@ export const StLogoBox = styled.div`
   cursor: pointer;
   width: 260px;
   height: 100px;
-  /* background-color: rebeccapurple; */
   display: flex;
   align-items: center;
   img {
-    /* background-color: red; */
     width: 200px;
     height: 70px;
     margin-left: 30px;

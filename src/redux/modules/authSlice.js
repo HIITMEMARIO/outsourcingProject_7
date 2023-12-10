@@ -8,21 +8,17 @@ const initialState = {
     isLoading: false,
     isError: false,
     error: null,
-
 }
-
 export const __loginUser = createAsyncThunk("getLoginUser", async (payload, thunkApi) => {
     try {
 
         const auth = getAuth();
         const { email, password } = payload
-
         await signInWithEmailAndPassword(auth, email, password)
         if (!!auth.currentUser) {
             const { accessToken, displayName } = auth.currentUser
             return { accessToken, displayName }
         }
-
 
     } catch (error) {
         const errorCode = error.code;
