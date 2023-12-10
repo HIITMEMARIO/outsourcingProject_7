@@ -2,7 +2,7 @@
   "review": [
     {
       "id": "63d63c31-bb9f-3909-7f40-bbe413166208",
-      "comment": "",
+      "comment": "ㅇㄴㅀㄴ",
       "nickname": "희원",
       "createdAt": "2023-12-10 12:06:39",
       "hospitalId": "8816782",
@@ -17,42 +17,50 @@
       "hospitalName": "김종화치과의원"
     },
     {
-      "id": "ddbeb2fb-b13b-58e1-65eb-a485b9459318",
-      "comment": "야!",
+      "id": "165515fd-8226-931f-699d-8f61c3c46adb",
+      "comment": "리뷰122ㄹㄹㄹㄹ",
       "nickname": "에이닷",
-      "createdAt": "2023-12-10 17:09:10",
-      "hospitalId": "10898229",
-      "hospitalName": "시지FM치과병원"
+      "createdAt": "2023-12-10 13:47:06",
+      "hospitalId": "10889257",
+      "hospitalName": "평화치과"
+    },
+    {
+      "id": "ed0752ca-2677-0489-e791-9b0fed4544fc",
+      "comment": "리뷰3좋아",
+      "nickname": "에이닷",
+      "createdAt": "2023-12-10 13:47:15",
+      "hospitalId": "10889257",
+      "hospitalName": "평화치과"
     }
   ],
   "booking": [
     {
-      "id": "eaac5864-b8fc-cb59-0680-5767784b291e",
+      "id": "e7040c87-113a-b707-ed89-4b547dc2307f",
       "nickname": "에이닷",
-      "date": "2023-12-11T13:14:40.000Z",
-      "hospital": "26933114",
-      "hospitalName": "사랑을심는치과의원"
+      "date": "2023년 12월 21일",
+      "hospital": "9673754",
+      "hospitalName": "김상현소아청소년과의원"
     },
     {
-      "id": "f3476a54-7b08-e307-6818-ebc2f619f065",
+      "id": "ca817150-388e-d19a-d6b6-b525a2720fcc",
       "nickname": "에이닷",
-      "date": "2023-12-10T23:50:00.000Z",
-      "hospital": "14820818",
-      "hospitalName": "365열린치과의원"
+      "date": "2023-12-11T01:00:00.000",
+      "hospital": "17464878",
+      "hospitalName": "스마일치과의원"
     },
     {
-      "id": "30a192b1-8eed-9454-ced0-cfa0e38104f3",
+      "id": "f201e35c-3b62-3ece-3740-6e19ac0a0cca",
       "nickname": "에이닷",
-      "date": "2023-12-10T15:00:00.000Z",
-      "hospital": "1716449764",
-      "hospitalName": "도레미키즈치과의원"
+      "date": "",
+      "hospital": "9673754",
+      "hospitalName": "김상현소아청소년과의원"
     },
     {
-      "id": "21d574a4-1891-41a7-d2a7-eb9af8d8b368",
+      "id": "270c42d3-992a-4d1f-5902-73ce33637402",
       "nickname": "에이닷",
-      "date": "2023-12-11T00:00:51.006Z",
-      "hospital": "14820818",
-      "hospitalName": "365열린치과의원"
+      "date": "2023-12-13T01:00:00.000",
+      "hospital": "9673754",
+      "hospitalName": "김상현소아청소년과의원"
     }
   ]
 }

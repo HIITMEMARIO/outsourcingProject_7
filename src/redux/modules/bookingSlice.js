@@ -29,8 +29,7 @@ export const __getBooking = createAsyncThunk(
       const res = await bookingAxios.get('/booking');
       const resData = res.data.filter((item) => {
         const changeDateform = new Date(item.date);
-        const nowDate = new Date();
-
+        const nowDate = new Date(Date.now());
         return changeDateform.getTime() > nowDate.getTime();
       });
       return resData;
@@ -127,7 +126,6 @@ export const bookingSlice = createSlice({
       .addCase(__editBooking.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-
         state.booking = state.booking.map((item) => {
           if (item.id === action.payload.id) {
             return { ...item, date: action.payload.date };
