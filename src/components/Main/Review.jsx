@@ -22,8 +22,6 @@ import { toast } from 'react-toastify';
 export default function Review() {
   const [nickname, setNickname] = useState('');
   const [comment, setComment] = useState('');
-  const [userId, setUserId] = useState('');
-  const [hospitalName, setHospitalName] = useState('');
   const dispatch = useDispatch();
   const { review } = useSelector((state) => state.reviewSlice);
   useEffect(() => {
@@ -37,8 +35,6 @@ export default function Review() {
   const data = useSelector((state) => {
     return state.mapSlice.data;
   });
-
-  console.log('data', data);
 
   const dataHospitalId = data.id;
 

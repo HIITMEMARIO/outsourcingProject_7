@@ -1,8 +1,11 @@
 import React from 'react';
 import { StContainer, StLogoBox } from './style';
-import myappologo from 'assets/myappologo.png';
+import { IoIosLogOut } from 'react-icons/io';
+import { CgProfile } from 'react-icons/cg';
+import { CiLogin } from 'react-icons/ci';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
+import mainlogo from '../../assets/mainlogo.png';
 import { logout } from '../../redux/modules/authSlice';
 import TokenRemainingTime from './TokenRemainingTime';
 import styled from 'styled-components';
@@ -22,22 +25,28 @@ export default function Header() {
   return (
     <StContainer>
       <StLogoBox onClick={() => navigate('/')}>
-        <img src={myappologo} alt="logoIMG" />
-        <p style={{ fontFamily: 'ONE-Mobile-POP' }}>My아포</p>
+        <img src={mainlogo} alt="logoIMG" />
+        {/* <p style={{ fontFamily: 'ONE-Mobile-POP' }}>My아포</p> */}
       </StLogoBox>
       {isLogin ? (
         <>
           <NavWrapper>
             <TokenRemainingTime />
             <div>
-              <NavBtn onClick={() => navigate('/mypage')}>Mypage</NavBtn>
-              <NavBtn onClick={onHandleLoginBtn}>Logout</NavBtn>
+              <NavBtn onClick={() => navigate('/mypage')}>
+                <CgProfile size={50} style={{ marginRight: '20px' }} />
+              </NavBtn>
+              <NavBtn onClick={onHandleLoginBtn}>
+                <IoIosLogOut size={50} />
+              </NavBtn>
             </div>
           </NavWrapper>
         </>
       ) : (
         <NavWrapper>
-          <NavBtn onClick={onHandleLoginBtn}>로그인</NavBtn>
+          <NavBtn onClick={onHandleLoginBtn}>
+            <CiLogin size={50} />
+          </NavBtn>
         </NavWrapper>
       )}
     </StContainer>

@@ -18,8 +18,8 @@ export const StLogoBox = styled.div`
   align-items: center;
   img {
     /* background-color: red; */
-    width: 50px;
-    height: 50px;
+    width: 200px;
+    height: 70px;
     margin-left: 30px;
   }
   p {
