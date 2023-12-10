@@ -59,7 +59,7 @@ function Login() {
     } else {
       const res = await dispatch(__signupUser({ email, password, nickname }));
       if (res.type === 'getSignupUser/rejected') {
-        toast.error('회원가입에 실패하셨습니다. 다시 시도해 주세요.');
+        toast.error(`회원가입에 실패하셨습니다. 다시 시도해 주세요.`);
       } else if (res.type === 'getSignupUser/fulfilled') {
         toast.success(
           `${res.payload.displayName}님, My아포에 오신걸 환영합니다.`,
@@ -225,7 +225,8 @@ function Login() {
 
 export default Login;
 const GuideText = styled.span`
-  font-size: 3px;
+  font-size: 13px;
+  color: #7a7979;
 `;
 const SignupWrapper = styled.div`
   display: flex;
@@ -258,7 +259,7 @@ const CheckBtn = styled.button`
       `;
     }
   }}
-  font-size: 5px;
+  font-size: 13px;
   ${({ $isLoginMode }) => {
     if ($isLoginMode) {
       return css`
@@ -334,6 +335,7 @@ const Input = styled.input`
   margin-bottom: 16px;
   outline: none;
   padding: 12px 0;
+  font-size: 15px;
 `;
 const ToggleText = styled.div`
   text-align: center;
