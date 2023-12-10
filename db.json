@@ -2,7 +2,7 @@
   "review": [
     {
       "id": "63d63c31-bb9f-3909-7f40-bbe413166208",
-      "comment": "",
+      "comment": "ㅇㄴㅀㄴ",
       "nickname": "희원",
       "createdAt": "2023-12-10 12:06:39",
       "hospitalId": "8816782",
@@ -21,10 +21,30 @@
     {
       "id": "753ad368-f692-8741-632b-b03f58990140",
       "nickname": "희원",
-      "date": "2023년 12월 12일",
+      "date": "2023년 12월 10일",
       "hospital": "1874275411",
       "hospitalName": "바른플란트치과의원"
+    },
+    {
+      "id": "77ddd47d-2497-e7b1-8f35-3099aeae9502",
+      "nickname": "희원",
+      "date": "2023년 12월 14일",
+      "hospital": "2027456859",
+      "hospitalName": "연세바로치과 인천점"
+    },
+    {
+      "id": "e25b5f42-18b3-6072-0556-7e239fe429c2",
+      "nickname": "희원",
+      "date": "2023년 12월 11일",
+      "hospital": "564413943",
+      "hospitalName": "예온치과의원 인천점"
+    },
+    {
+      "id": "7fdf0c19-37af-c5ec-2a63-21e8429a14ab",
+      "nickname": "희원",
+      "date": "2023년 12월 10일",
+      "hospital": "39670162",
+      "hospitalName": "감동플란트치과의원"
     }
   ]
 }
-

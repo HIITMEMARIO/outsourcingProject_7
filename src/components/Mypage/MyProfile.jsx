@@ -149,37 +149,39 @@ export default function MyProfile() {
               return (
                 <div key={item.id}>
                   <StScheduleBox>
-                    <div>{item.date}</div>
-                    <div>{item.hospitalName}</div>
-                    <div>{item.nickname}</div>
-                  </StScheduleBox>
-                  <StBookingBtns>
-                    {isModalOpen && selectedBookingId === item.id ? (
-                      <>
-                        <StBookingEditBtn
-                          onClick={() => editBookingToggle(item.id)}
-                        >
-                          수정완료
-                        </StBookingEditBtn>
-                        <StBookingCancelBtn>취소하기</StBookingCancelBtn>
-                        <EditBooking schedule={item} />
-                      </>
-                    ) : (
-                      <>
-                        <StBookingEditBtn
-                          onClick={() => editBookingToggle(item.id)}
-                        >
-                          수정하기
-                        </StBookingEditBtn>
+                    <StScheduleInfo>
+                      <div>{item.date}</div>
+                      <div>{item.hospitalName}</div>
+                      <div>{item.nickname}</div>
+                    </StScheduleInfo>
+                    <StBookingBtns>
+                      {isModalOpen && selectedBookingId === item.id ? (
+                        <>
+                          <StBookingEditBtn
+                            onClick={() => editBookingToggle(item.id)}
+                          >
+                            수정완료
+                          </StBookingEditBtn>
+                          <StBookingCancelBtn>취소하기</StBookingCancelBtn>
+                          <EditBooking schedule={item} />
+                        </>
+                      ) : (
+                        <>
+                          <StBookingEditBtn
+                            onClick={() => editBookingToggle(item.id)}
+                          >
+                            수정하기
+                          </StBookingEditBtn>
 
-                        <StBookingDeleteBtn
-                          onClick={() => deleteBooking(item.id)}
-                        >
-                          삭제하기
-                        </StBookingDeleteBtn>
-                      </>
-                    )}
-                  </StBookingBtns>
+                          <StBookingDeleteBtn
+                            onClick={() => deleteBooking(item.id)}
+                          >
+                            삭제하기
+                          </StBookingDeleteBtn>
+                        </>
+                      )}
+                    </StBookingBtns>
+                  </StScheduleBox>
                 </div>
               );
             })}
@@ -349,6 +351,7 @@ const StBookingEditBtn = styled.button`
   }
 `;
 
+const StScheduleInfo = styled.div``;
 const StBookingDeleteBtn = styled.button`
   border-radius: 30px;
   background-color: lightgray;
