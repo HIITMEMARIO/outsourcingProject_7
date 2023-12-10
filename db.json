@@ -15,6 +15,14 @@
       "createdAt": "2023-12-10 12:06:41",
       "hospitalId": "8816782",
       "hospitalName": "김종화치과의원"
+    },
+    {
+      "id": "ddbeb2fb-b13b-58e1-65eb-a485b9459318",
+      "comment": "야!",
+      "nickname": "에이닷",
+      "createdAt": "2023-12-10 17:09:10",
+      "hospitalId": "10898229",
+      "hospitalName": "시지FM치과병원"
     }
   ],
   "booking": [
@@ -38,6 +46,13 @@
       "date": "2023-12-10T15:00:00.000Z",
       "hospital": "1716449764",
       "hospitalName": "도레미키즈치과의원"
+    },
+    {
+      "id": "21d574a4-1891-41a7-d2a7-eb9af8d8b368",
+      "nickname": "에이닷",
+      "date": "2023-12-11T00:00:51.006Z",
+      "hospital": "14820818",
+      "hospitalName": "365열린치과의원"
     }
   ]
 }

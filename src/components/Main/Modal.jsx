@@ -27,7 +27,7 @@ export default function Modal({ setIsModalOpen }) {
   });
 
   const [startDate, setStartDate] = useState(
-    setHours(setMinutes(new Date(), 0), 9),
+    setHours(setMinutes(new Date(), 0), 0),
   );
   const filterPassedTime = (time) => {
     const currentDate = new Date();
@@ -36,7 +36,7 @@ export default function Modal({ setIsModalOpen }) {
     return currentDate.getTime() < selectedDate.getTime();
   };
   const booking = async () => {
-    const response = await bookingAxios.post('/booking', {
+    await bookingAxios.post('/booking', {
       id: uuid(),
       nickname: nickname,
       date: startDate,

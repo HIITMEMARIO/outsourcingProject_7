@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import bookingAxios from 'api/booking';
-import axios from 'axios';
 
 const initialState = {
   booking: [],
@@ -31,14 +30,9 @@ export const __getBooking = createAsyncThunk(
       const resData = res.data.filter((item) => {
         const changeDateform = new Date(item.date);
         const nowDate = new Date();
-        console.log(changeDateform);
-        console.log(nowDate);
-        // if (changeDateform.getTime() < nowDate.getTime()) {
-        // axios.delete(`/booking/${item}`);
-        //   }
+
         return changeDateform.getTime() > nowDate.getTime();
       });
-      // console.log(resData);
       return resData;
     } catch (error) {
       console.log('error', error);
@@ -52,7 +46,7 @@ export const __deleteBooking = createAsyncThunk(
   'deleteBooking',
   async (payload, thunkAPI) => {
     try {
-      const res = await bookingAxios.delete(`/booking/${payload}`);
+      await bookingAxios.delete(`/booking/${payload}`);
 
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
@@ -70,7 +64,6 @@ export const __editBooking = createAsyncThunk(
       const res = await bookingAxios.patch(`/booking/${payload.id}`, {
         date: payload.newDate,
       });
-      console.log('이거 좀 ', res.data);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -105,7 +98,6 @@ export const bookingSlice = createSlice({
       .addCase(__addBooking.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        // state.review.push(action.payload);
       })
       .addCase(__addBooking.rejected, (state, action) => {
         state.isLoading = false;
@@ -135,12 +127,9 @@ export const bookingSlice = createSlice({
       .addCase(__editBooking.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        console.log('qqq');
+
         state.booking = state.booking.map((item) => {
-          // console.log('item', item.id);
           if (item.id === action.payload.id) {
-            console.log('dfsfsdfafrfdsfref', action.payload.id);
-            console.log('sdfdd', item.id);
             return { ...item, date: action.payload.date };
           }
           return item;
