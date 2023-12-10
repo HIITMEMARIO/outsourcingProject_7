@@ -241,11 +241,6 @@ export const StScheduleBox = styled.div`
   background-color: #c3ebff;
   margin-bottom: 30px;
   box-shadow: 10px 10px lightgray;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.1);
-    transition: all 0.2s;
-  }
 `;
 
 export const StReviewContainer = styled.div`
@@ -310,6 +305,11 @@ const StBookingEditBtn = styled.button`
   background-color: lightgray;
   width: 60px;
   height: 30px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+    transition: all 0.2s;
+  }
 `;
 
 const StBookingDeleteBtn = styled.button`
@@ -317,6 +317,11 @@ const StBookingDeleteBtn = styled.button`
   background-color: lightgray;
   width: 60px;
   height: 30px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+    transition: all 0.2s;
+  }
 `;
 
 const StBookingBtns = styled.div`

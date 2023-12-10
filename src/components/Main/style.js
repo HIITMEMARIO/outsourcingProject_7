@@ -3,9 +3,12 @@ import styled from 'styled-components';
 export const StMapContainer = styled.div`
   width: 100%;
   display: flex;
+  display: flex;
   border-radius: 10px;
   border: 1px solid #7a97ff;
   margin-top: 100px;
+  align-self: center;
+  justify-content: center;
   align-self: center;
   justify-content: center;
 `;
