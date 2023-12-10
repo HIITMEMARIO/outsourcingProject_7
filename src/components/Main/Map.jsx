@@ -9,21 +9,19 @@ import { auth } from 'shared/firebase';
 import { __getBooking } from '../../redux/modules/bookingSlice';
 import myappologo from '../../assets/myappologo.png';
 
-const { kakao } = window;
+let { kakao } = window;
 
 export default function Map() {
-  const dispatch = useDispatch();
-  const [inputValue, setInputValue] = useState('');
-  const [hospitalData, setHospitalData] = useState([]);
-  const [lt, setLatitude] = useState(0);
-  const [lg, setLongitude] = useState(0);
-  const container = useRef(null);
+  let dispatch = useDispatch();
+  let [inputValue, setInputValue] = useState('');
+  let [hospitalData, setHospitalData] = useState([]);
+  let [lt, setLatitude] = useState(0);
+  let [lg, setLongitude] = useState(0);
+  let container = useRef(null);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [nickname, setNickname] = useState('');
-  const [bookingData, setBookingData] = useState([]);
-
-  const [문길, set문길] = useState([]);
+  let [isModalOpen, setIsModalOpen] = useState(false);
+  let [nickname, setNickname] = useState('');
+  let [myBooking, setMyBooking] = useState([]);
   // 1
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -33,18 +31,15 @@ export default function Map() {
 
   //2
   useEffect(() => {
-    const getBookingData = async () => {
-      const getBooking = await dispatch(__getBooking(nickname));
-      const idFiltered = getBooking.payload.filter((item) => {
+    let getBookingData = async () => {
+      let getBooking = await dispatch(__getBooking(nickname));
+      let idFiltered = getBooking.payload.filter((item) => {
         return item.nickname === nickname;
       });
-      console.log(idFiltered);
-      const myBooking = idFiltered.filter((booking) =>
-        hospitalData.some((hospital) => booking.hospital === hospital.id),
-      );
-      set문길(idFiltered);
-      console.log(myBooking);
-      setBookingData(idFiltered);
+      // let myBooking = idFiltered.filter((booking) =>
+      //   hospitalData.some((hospital) => booking.hospital === hospital.id),
+      // );
+      setMyBooking(idFiltered);
     };
     getBookingData();
   }, [nickname]);
@@ -53,7 +48,7 @@ export default function Map() {
   // 카카오 맵
   useEffect(() => {
     // ============================== 지도 생성 ====================================
-    const options = {
+    let options = {
       center: new window.kakao.maps.LatLng(lt, lg),
       level: 4,
       category_group_code: 'HP8',
@@ -62,14 +57,14 @@ export default function Map() {
       useMapCenter: true,
       radius: 2000,
     };
-    const map = new window.kakao.maps.Map(container.current, options);
+    let map = new window.kakao.maps.Map(container.current, options);
     // ===========================================================================
 
     // ============================== 맵 줌 컨트롤 ==================================
     map.setZoomable(false);
-    var mapTypeControl = new kakao.maps.MapTypeControl();
+    let mapTypeControl = new kakao.maps.MapTypeControl();
     map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPLEFT);
-    var zoomControl = new kakao.maps.ZoomControl();
+    let zoomControl = new kakao.maps.ZoomControl();
     map.addControl(zoomControl, kakao.maps.ControlPosition.LEFT);
     // ===========================================================================
 
@@ -77,13 +72,13 @@ export default function Map() {
     if (navigator.geolocation) {
       // GeoLocation을 이용해서 접속 위치를 얻어옵니다
       navigator.geolocation.getCurrentPosition(function (position) {
-        var lat = position.coords.latitude, // 위도
+        let lat = position.coords.latitude, // 위도
           lon = position.coords.longitude; // 경도
 
         setLatitude(lat);
         setLongitude(lon);
 
-        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+        let locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
           message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
 
         // 마커와 인포윈도우를 표시합니다
@@ -103,7 +98,6 @@ export default function Map() {
 
     // 장소 검색 객체를 생성합니다
     var ps = new kakao.maps.services.Places(map);
-    // console.log(ps);
     // 키워드로 장소를 검색합니다
     searchPlaces();
     // 키워드 검색을 요청하는 함수
@@ -131,21 +125,18 @@ export default function Map() {
 
     var customOverlays = [];
 
-    const imageSrc = myappologo;
-    const imageSize = new kakao.maps.Size(40, 40);
+    let imageSrc = myappologo;
+    let imageSize = new kakao.maps.Size(40, 40);
     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
     // 지도에 마커를 표시하는 함수입니다
     function displayMarker(place) {
       let hospitalname = '';
       let date = '';
-      const booking = 문길.find((booking) => {
+      let booking = myBooking.find((booking) => {
         return booking.hospital === place.id;
       });
 
-      console.log('333', place.id); // 내가 찍은 마커의 정보
-
-      console.log(booking);
       if (booking) {
         hospitalname = booking.hospitalName;
         date = booking.date;
@@ -159,8 +150,8 @@ export default function Map() {
         image: booking ? markerImage : '',
       });
 
-      const content = `<div class ="label"><span class="hospitalname">${hospitalname}</span><span class="date">${date}에 예약되어 있어요!</span><span class="right"></span></div>`;
-      const noBookingcontent = `<div class ="label"><span class="left">${hospitalname}</span><span class="center"></span><span class="right"></span></div>`;
+      let content = `<div class ="label"><span class="hospitalname">${hospitalname}</span><span class="date">${date}에 예약되어 있어요!</span><span class="right"></span></div>`;
+      let noBookingcontent = `<div class ="label"><span class="left">${hospitalname}</span><span class="center"></span><span class="right"></span></div>`;
 
       var customOverlay = new kakao.maps.CustomOverlay({
         position: marker.getPosition(),
@@ -173,7 +164,6 @@ export default function Map() {
           customOverlay.setMap(null); // 열려있으면 닫기
         } else {
           for (var i = 0; i < customOverlays.length; i++) {
-            console.log(customOverlays);
             customOverlays[i]?.setMap(null);
           }
           customOverlay.setMap(map); // 닫혀있으면 열기
@@ -184,7 +174,7 @@ export default function Map() {
         dispatch(data(place));
       });
     }
-  }, [inputValue, lt, lg, 문길]);
+  }, [inputValue, lt, lg, myBooking]);
 
   return (
     <>

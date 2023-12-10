@@ -18,15 +18,12 @@ export default function Modal({ setIsModalOpen }) {
       if (user) setNickname(user.displayName);
     });
   }, []);
-  console.log('모달닉네임', nickname);
 
   const data = useSelector((state) => {
     return state.mapSlice.data;
   });
 
   const [startDate, setStartDate] = useState(new Date());
-  console.log(startDate);
-  console.log(data.place_name);
   const booking = async () => {
     const response = await bookingAxios.post('/booking', {
       id: uuid(),
@@ -37,7 +34,6 @@ export default function Modal({ setIsModalOpen }) {
     });
     toast.success('예약 되셨습니다!');
     setIsModalOpen(false);
-    console.log('부킹', response.data);
   };
 
   const dateFormatChange =

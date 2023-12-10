@@ -8,16 +8,11 @@ import { useSelector } from 'react-redux';
 
 export default function Router() {
   const isLogin = useSelector(state => state.authSlice.isLogin)
-  console.log(isLogin)
   return (
     <BrowserRouter>
       <Layout>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          {/**login과 my페이지는 isLogin 상태에 따라 조건부 라우팅
-           * true = mypage, false = loginpage
-           * 튜터님 강의 활용하여 접근시 ㅇㅋㅇㅋㅇㅋ
-           */}
           {isLogin ?
             <>
               <Route path="/mypage" element={<MyPage />} />
