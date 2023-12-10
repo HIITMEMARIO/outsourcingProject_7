@@ -43,7 +43,7 @@ export default function EditBooking({ schedule }) {
     <>
       {!!nickname ? (
         <StModal>
-          <h1>예약 수정하기</h1>
+          <StButtonBox></StButtonBox>
           <DatePicker
             locale={ko}
             showTimeSelect
@@ -53,15 +53,13 @@ export default function EditBooking({ schedule }) {
             filterTime={filterPassedTime}
             minDate={new Date()}
           />
-          <StButtonBox>
-            <Stbutton
-              onClick={() => {
-                booking();
-              }}
-            >
-              예약
-            </Stbutton>
-          </StButtonBox>
+          <Stbutton
+            onClick={() => {
+              booking();
+            }}
+          >
+            예약
+          </Stbutton>
         </StModal>
       ) : (
         ''

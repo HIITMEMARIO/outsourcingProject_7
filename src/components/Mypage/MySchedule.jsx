@@ -1,11 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import EditBooking from './EditBooking';
+import {
+  StScheduleInfo,
+  StBookingBtns,
+  StBookingCancelBtn,
+  StBookingEditBtn,
+  StScheduleBox,
+  StBookingDeleteBtn,
+  StScheduleContainer,
+  StBookingDate,
+  StBookingHospital,
+} from './style';
 
 export default function MySchedule({
   booking,
   nickname,
   isModalOpen,
+  setIsModalOpen,
   selectedBookingId,
   editBookingToggle,
   deleteBooking,
@@ -46,9 +58,10 @@ export default function MySchedule({
               <div key={item.id}>
                 <StScheduleBox>
                   <StScheduleInfo>
-                    <div>{formattedDate}</div>
-                    <div>{item.hospitalName}</div>
-                    <div>{item.nickname}</div>
+                    <StBookingDate>예약 날짜 : {formattedDate}</StBookingDate>
+                    <StBookingHospital>
+                      예약 병원 : {item.hospitalName}
+                    </StBookingHospital>
                   </StScheduleInfo>
                   <StBookingBtns>
                     {isModalOpen && selectedBookingId === item.id ? (
@@ -57,7 +70,9 @@ export default function MySchedule({
                           수정완료
                         </StBookingEditBtn>
                         <StBookingCancelBtn>취소하기</StBookingCancelBtn>
-                        <EditBooking schedule={item} />
+                        <div>
+                          <EditBooking schedule={item} />
+                        </div>
                       </>
                     ) : (
                       <>
@@ -83,64 +98,3 @@ export default function MySchedule({
     </>
   );
 }
-export const StScheduleContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 80px;
-  margin: 0;
-  margin-bottom: 100px;
-`;
-
-const StScheduleInfo = styled.div``;
-
-const StBookingBtns = styled.div`
-  display: flex;
-  margin-left: 80px;
-  gap: 10px;
-`;
-
-const StBookingCancelBtn = styled.div`
-  border-radius: 30px;
-  background-color: lightgray;
-  width: 60px;
-  height: 30px;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.1);
-    transition: all 0.2s;
-  }
-`;
-const StBookingEditBtn = styled.button`
-  border-radius: 30px;
-  background-color: lightgray;
-  width: 60px;
-  height: 30px;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.1);
-    transition: all 0.2s;
-  }
-`;
-
-export const StScheduleBox = styled.div`
-  width: 200px;
-  height: 200px;
-  border: none;
-  border-radius: 30px;
-  background-color: #c3ebff;
-  margin-bottom: 30px;
-  box-shadow: 10px 10px lightgray;
-`;
-const StBookingDeleteBtn = styled.button`
-  border-radius: 30px;
-  background-color: lightgray;
-  width: 60px;
-  height: 30px;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.1);
-    transition: all 0.2s;
-  }
-`;
