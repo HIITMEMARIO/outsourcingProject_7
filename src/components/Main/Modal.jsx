@@ -30,7 +30,6 @@ export default function Modal({ setIsModalOpen }) {
     setHours(setMinutes(new Date(), 0), 0),
   );
   const koreaTimeZoneDate = new Date(startDate.getTime());
-  console.log(koreaTimeZoneDate);
   const filterPassedTime = (time) => {
     const currentDate = new Date();
     const selectedDate = new Date(time);

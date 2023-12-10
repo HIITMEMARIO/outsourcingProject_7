@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import bookingAxios from 'api/booking';
-import axios from 'axios';
 
 const initialState = {
   booking: [],
@@ -64,7 +63,6 @@ export const __editBooking = createAsyncThunk(
       const res = await bookingAxios.patch(`/booking/${payload.id}`, {
         date: payload.newDate,
       });
-      console.log('이거 좀 ', res.data);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -99,7 +97,6 @@ export const bookingSlice = createSlice({
       .addCase(__addBooking.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        // state.review.push(action.payload);
       })
       .addCase(__addBooking.rejected, (state, action) => {
         state.isLoading = false;
@@ -130,7 +127,6 @@ export const bookingSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.booking = state.booking.map((item) => {
-          // console.log('item', item.id);
           if (item.id === action.payload.id) {
             console.log('dfsfsdfafrfdsfref', action.payload.id);
             console.log('sdfdd', item.id);

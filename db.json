@@ -2,7 +2,7 @@
   "review": [
     {
       "id": "63d63c31-bb9f-3909-7f40-bbe413166208",
-      "comment": "",
+      "comment": "ㅇㄴㅀㄴ",
       "nickname": "희원",
       "createdAt": "2023-12-10 12:06:39",
       "hospitalId": "8816782",
@@ -18,23 +18,15 @@
     },
     {
       "id": "165515fd-8226-931f-699d-8f61c3c46adb",
-      "comment": "리뷰122",
+      "comment": "리뷰122ㄹㄹㄹㄹ",
       "nickname": "에이닷",
       "createdAt": "2023-12-10 13:47:06",
       "hospitalId": "10889257",
       "hospitalName": "평화치과"
     },
     {
-      "id": "a5d0440d-df91-bc49-b4bf-d0e699fe0ee6",
-      "comment": "리뷰2fff",
-      "nickname": "에이닷",
-      "createdAt": "2023-12-10 13:47:10",
-      "hospitalId": "10889257",
-      "hospitalName": "평화치과"
-    },
-    {
       "id": "ed0752ca-2677-0489-e791-9b0fed4544fc",
-      "comment": "리뷰3",
+      "comment": "리뷰3좋아",
       "nickname": "에이닷",
       "createdAt": "2023-12-10 13:47:15",
       "hospitalId": "10889257",
@@ -55,6 +47,20 @@
       "date": "2023-12-11T01:00:00.000",
       "hospital": "17464878",
       "hospitalName": "스마일치과의원"
+    },
+    {
+      "id": "f201e35c-3b62-3ece-3740-6e19ac0a0cca",
+      "nickname": "에이닷",
+      "date": "",
+      "hospital": "9673754",
+      "hospitalName": "김상현소아청소년과의원"
+    },
+    {
+      "id": "270c42d3-992a-4d1f-5902-73ce33637402",
+      "nickname": "에이닷",
+      "date": "2023-12-13T01:00:00.000",
+      "hospital": "9673754",
+      "hospitalName": "김상현소아청소년과의원"
     }
   ]
 }
