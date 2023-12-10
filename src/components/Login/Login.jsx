@@ -13,7 +13,7 @@ function Login() {
   const dispatch = useDispatch();
   const [isValidEmail, setIsValidEmail] = useState(true);
   const isLogin = useSelector((state) => state.authSlice.isLogin);
-  const [isLoginMode, setIsLoginMode] = useState(false);
+  const [isLoginMode, setIsLoginMode] = useState(true);
 
   const [canUseEmail, setCanUseEmail] = useState(false);
   const [canUseNickname, setCanUseNickname] = useState(false);

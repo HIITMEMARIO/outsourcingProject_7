@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 import { __getBooking } from '../../redux/modules/bookingSlice';
 import { format, setHours, setMinutes } from 'date-fns';
 
-export default function Modal({ setIsModalOpen }) {
+export default function Modal({ setIsModalOpen, render, setRender }) {
   const dispatch = useDispatch();
 
   const [nickname, setNickname] = useState('');
@@ -46,6 +46,7 @@ export default function Modal({ setIsModalOpen }) {
     });
     dispatch(__getBooking());
     toast.success('예약 되셨습니다!');
+    setRender(!render);
     setIsModalOpen(false);
   };
 
