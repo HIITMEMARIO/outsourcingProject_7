@@ -30,6 +30,7 @@ export const __getBooking = createAsyncThunk(
       const res = await bookingAxios.get('/booking');
       const resData = res.data.filter((item) => {
         const changeDateform = new Date(item.date);
+        console.log('하암', new Date(item.data));
         const nowDate = new Date();
         console.log(changeDateform);
         console.log(nowDate);
