@@ -1,275 +1,46 @@
 {
   "review": [
     {
-      "id": "0c86f09f-ec20-4e0e-1c36-43b21bcf3a1d",
-      "comment": "ㄴㅇㅁㄴ",
+      "id": "63d63c31-bb9f-3909-7f40-bbe413166208",
+      "comment": "",
       "nickname": "희원",
-      "createdAt": "2023-12-09 18:28:56",
-      "hospitalId": "1380407513"
+      "createdAt": "2023-12-10 12:06:39",
+      "hospitalId": "8816782",
+      "hospitalName": "김종화치과의원"
     },
     {
-      "id": "45714631-81d3-b8ab-7904-c27b5d965f5d",
-      "comment": "ㄴㅁㅇㄴㅁㅇ",
+      "id": "e66eecbf-bdb7-8964-29aa-bc52a9e3922d",
+      "comment": "ㄴㅇㄹㄴㅇㄹ",
       "nickname": "희원",
-      "createdAt": "2023-12-09 18:29:05",
-      "hospitalId": "1380407513"
-    },
-    {
-      "id": "07a16e6e-84cb-45a0-9ec4-2d2fbbc8ca7a",
-      "comment": "vsdfs",
-      "nickname": "희원",
-      "createdAt": "2023-12-09 18:29:46",
-      "hospitalId": "671653521"
-    },
-    {
-      "id": "4fae87b7-5a12-a2a1-5052-9193a061975c",
-      "comment": " 아핫",
-      "nickname": "에이닷",
-      "createdAt": "2023-12-10 08:37:31",
-      "hospitalId": "8198698"
-    },
-    {
-      "id": "93480ec3-b6a2-22b6-5a02-cc1213a2f48a",
-      "comment": "리뷰가 두개지요",
-      "nickname": "에이닷",
-      "createdAt": "2023-12-10 08:37:41",
-      "hospitalId": "8198698"
-    },
-    {
-      "id": "e5f35a7e-5ea8-728f-53ab-8b14a69d0536",
-      "comment": "치까치꽈",
-      "nickname": "에이닷",
-      "createdAt": "2023-12-10 12:32:50",
-      "hospitalId": "17464878"
-    },
-    {
-      "id": "b1f91cc5-89fa-dc7e-3721-04849c43ae20",
-      "comment": "수정 함 해봄!",
-      "nickname": "에이닷",
-      "createdAt": "2023-12-10 12:34:13",
-      "hospitalId": "17464878"
+      "createdAt": "2023-12-10 12:06:41",
+      "hospitalId": "8816782",
+      "hospitalName": "김종화치과의원"
     }
   ],
   "booking": [
     {
-      "id": "abab",
-      "nickname": "fdfdfd",
-      "date": "날짜양식이 들어갈거야",
-      "hospital": "철야병원"
+      "id": "43a9ce6c-5b4c-49eb-06ba-81c61bbc17db",
+      "nickname": "희원",
+      "date": "2023년 12월 14일",
+      "hospital": "10633882",
+      "hospitalName": "인천예치과의원"
     },
     {
-      "id": "63e464d1-aa1f-f5a2-a054-c6ff96d0dff9",
-      "nickname": "abcd123@na",
-      "date": "2023-12-19T15:32:25.000Z",
-      "hospital": "도레미키즈치과의원"
+      "id": "34567fbd-5a87-84ca-5f54-81e3993f58c5",
+      "nickname": "희원",
+      "date": ""
     },
     {
-      "id": "f963e53d-5e0d-11b0-5bdc-d46e3a007b7d",
-      "nickname": "abcd123@na",
-      "date": "2023-12-19T15:34:00.000Z",
-      "hospital": "도레미키즈치과의원"
+      "id": "e34f5869-bc7c-09e2-e782-72fce0128797",
+      "nickname": "희원",
+      "date": ""
     },
     {
-      "id": "2222f8a5-4bb8-92aa-acea-c211183e459c",
-      "nickname": "abcd123@na",
-      "date": "2023-12-26T15:36:44.000Z",
-      "hospital": "365열린치과의원"
-    },
-    {
-      "id": "d65313c1-04d9-525e-55a9-3e0278731575",
-      "nickname": "에이닷",
-      "date": "2023-12-12T17:08:01.000Z",
-      "hospital": "1716449764",
-      "hospitalName": "도레미키즈치과의원"
-    },
-    {
-      "id": "b07d4a3b-88e7-fd43-6e3d-45fd14ff655d",
-      "nickname": "삐다",
-      "date": "2023-12-13T17:55:46.000Z",
-      "hospital": "8198698",
-      "hospitalName": "그린치과의원"
-    },
-    {
-      "id": "28d3b773-0bad-1805-9f26-787fcf8592ec",
-      "nickname": "삐다",
-      "date": "2023-12-10T18:00:11.000Z",
-      "hospital": "10663073",
-      "hospitalName": "연세정형외과의원"
-    },
-    {
-      "id": "a2ec1959-dc87-dcab-fcca-ca8e8fce6f5e",
-      "nickname": "삐다",
-      "date": "2023-12-13T18:00:55.000Z",
-      "hospital": "10889257",
-      "hospitalName": "평화치과"
-    },
-    {
-      "id": "7895187b-c8f9-c45d-0cc3-646301a0b5c4",
-      "nickname": "삐다",
-      "date": "2023-12-11T18:10:40.000Z",
-      "hospital": "8198698",
-      "hospitalName": "그린치과의원"
-    },
-    {
-      "id": "b0a6d9d9-7172-772b-1c5e-f6c452f59051",
-      "nickname": "에이닷",
-      "date": "2023-12-08T18:12:54.268Z",
-      "hospital": "581828835",
-      "hospitalName": "정평대연치과의원"
-    },
-    {
-      "id": "320390f2-2bd9-43c2-c00c-12f717af067e",
-      "nickname": "에이닷",
-      "date": "2023-12-18T18:26:12.000Z",
-      "hospital": "11119514",
-      "hospitalName": "시지퍼스트치과"
-    },
-    {
-      "id": "67a9d189-63e0-4e79-6276-b81128a17cf3",
-      "nickname": "에이닷",
-      "date": "2023-12-19T18:50:56.000Z",
-      "hospital": "1094350657",
-      "hospitalName": "웰치과교정과치과의원"
-    },
-    {
-      "id": "8b8c9c45-4f1b-2799-22a1-53ec9d7c3b6a",
-      "nickname": "aa@aa.com",
-      "date": "2023-12-08T19:18:13.248Z",
-      "hospital": "26933114",
-      "hospitalName": "사랑을심는치과의원"
-    },
-    {
-      "id": "759a0a90-4420-3cea-1a54-2d82879b81b8",
-      "nickname": "aa@aa.com",
-      "date": "2023-12-08T19:20:24.348Z",
-      "hospital": "26933114",
-      "hospitalName": "사랑을심는치과의원"
-    },
-    {
-      "id": "82d7e321-b55a-1658-4711-431a83decedc",
-      "nickname": "aa@aa.com",
-      "date": "2023-12-19T19:20:39.000Z",
-      "hospital": "1964798161",
-      "hospitalName": "시지튼튼치과보철과치과의원"
-    },
-    {
-      "id": "1f6a9c9c-31b4-17fa-93b4-effcf4896905",
-      "nickname": "aa@aa.com",
-      "date": "2023-12-11T19:25:13.000Z",
-      "hospital": "26933114",
-      "hospitalName": "사랑을심는치과의원"
-    },
-    {
-      "id": "fb5b0ee0-674a-16c5-50b7-c7d5b3d051d2",
-      "nickname": "aa@aa.com",
-      "date": "2023-12-08T19:34:39.696Z",
-      "hospital": "11119514",
-      "hospitalName": "시지퍼스트치과"
-    },
-    {
-      "id": "fcb6028a-4071-7a10-1b81-d4a006bdc64c",
-      "nickname": "aa@aa.com",
-      "date": "2023-12-08T19:35:04.971Z",
-      "hospital": "11119514",
-      "hospitalName": "시지퍼스트치과"
-    },
-    {
-      "id": "5afb22de-8a7a-2b63-75dc-0397b569d6ba",
-      "nickname": "aa@aa.com",
-      "date": "2023-12-08T19:36:04.800Z",
-      "hospital": "26933114",
-      "hospitalName": "사랑을심는치과의원"
-    },
-    {
-      "id": "85536c6a-636b-4685-e172-cf1631c884da",
-      "nickname": "aa@aa.com",
-      "date": "2023-12-21T07:51:03.000Z",
-      "hospital": "14820818",
-      "hospitalName": "365열린치과의원"
-    },
-    {
-      "id": "e479986f-fa88-ece5-176a-b155dcb3a3fd",
-      "nickname": "aa@aa.com",
-      "date": "2023-12-26T08:26:07.000Z",
-      "hospital": "10898229",
-      "hospitalName": "시지FM치과병원"
-    },
-    {
-      "id": "22c3deef-f8ec-0aa5-32d9-c56f8ae911d5",
-      "nickname": "에이닷",
-      "date": "2023-12-18T15:09:50.000Z",
-      "hospital": "14820818",
-      "hospitalName": "365열린치과의원"
-    },
-    {
-      "id": "e25f14c4-dec6-4e17-dbcf-991e1580cce3",
-      "nickname": "문파룸파",
-      "date": "2023-12-09T15:38:11.667Z",
-      "hospital": "12279001",
-      "hospitalName": "e-안치과의원"
-    },
-    {
-      "id": "e164fdbe-045d-22f1-d608-4992b96c8570",
-      "nickname": "문파룸파",
-      "date": "2023-12-09T15:42:39.647Z",
-      "hospital": "12279001",
-      "hospitalName": "e-안치과의원"
-    },
-    {
-      "id": "d8ccbecd-7f06-19af-7a79-f700402c291f",
-      "nickname": "문파룸파",
-      "date": "2023-12-09T15:42:47.795Z",
-      "hospital": "13500603",
-      "hospitalName": "고운이치과의원"
-    },
-    {
-      "id": "250ef777-6256-c519-d186-614b3ca12f3c",
-      "nickname": "문파룸파",
-      "date": "2023-12-09T16:00:24.012Z",
-      "hospital": "13500603",
-      "hospitalName": "고운이치과의원"
-    },
-    {
-      "id": "ee9c01e9-6498-2a2a-e046-e26da45421b8",
-      "nickname": "문파룸파",
-      "date": "2023-12-09T16:00:30.367Z",
-      "hospital": "8095591",
-      "hospitalName": "최종호치과의원"
-    },
-    {
-      "id": "0434aecf-c90b-8f9a-9b7a-4f21fbe02ae9",
-      "nickname": "문파룸파",
-      "date": "2023-12-09T16:46:33.822Z",
-      "hospital": "18400023",
-      "hospitalName": "서울삼성치과의원"
-    },
-    {
-      "id": "0a5b50c1-b451-8c9a-3ad8-7fe5c6b0403e",
-      "nickname": "kim@kim.co",
-      "date": "2023-12-10T06:41:51.316Z",
-      "hospital": "11119514",
-      "hospitalName": "시지퍼스트치과"
-    },
-    {
-      "id": "748f3551-7ea0-3f14-916a-bb2937690fe4",
-      "nickname": "na@na.com",
+      "id": "6afb274e-348f-a3b3-9ef4-f67fa5105745",
+      "nickname": "희원",
       "date": "2023년 12월 10일",
-      "hospital": "1964798161",
-      "hospitalName": "시지튼튼치과보철과치과의원"
-    },
-    {
-      "id": "1c4c6e31-c256-ba6a-8189-e69c5a617dc1",
-      "nickname": "na@na.com",
-      "date": "2023년 12월 10일",
-      "hospital": "1964798161",
-      "hospitalName": "시지튼튼치과보철과치과의원"
-    },
-    {
-      "id": "904051c4-6130-c9fb-a8a3-6545b6c95e8a",
-      "nickname": "에이닷",
-      "date": "2023년 12월 20일",
-      "hospital": "8198698",
-      "hospitalName": "그린치과의원"
+      "hospital": "9945942",
+      "hospitalName": "용치과의원"
     }
   ]
 }

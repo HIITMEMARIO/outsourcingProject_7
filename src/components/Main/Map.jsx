@@ -6,6 +6,7 @@ import Modal from './Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { data } from '../../redux/modules/mapSlice';
 import { auth } from 'shared/firebase';
+
 import { __getBooking } from '../../redux/modules/bookingSlice';
 
 const { kakao } = window;
@@ -16,6 +17,7 @@ export default function Map() {
   const [hospitalData, setHospitalData] = useState([]);
   const [lt, setLatitude] = useState(0);
   const [lg, setLongitude] = useState(0);
+  const [myBooking, setMybooking] = useState();
   const container = useRef(null);
 
   const [isModalOpen, setIsModalOpen] = useState(false);

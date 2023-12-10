@@ -6,15 +6,24 @@ import {
   __editReview,
   __getReview,
 } from '../../redux/modules/reviewSlice';
-import { __deleteBooking } from '../../redux/modules/bookingSlice';
+import {
+  __deleteBooking,
+  __editBooking,
+} from '../../redux/modules/bookingSlice';
 import { auth } from 'shared/firebase';
 import { __getBooking } from '../../redux/modules/bookingSlice';
 import { useNavigate } from 'react-router-dom';
+import Modal from 'components/Main/Modal';
+import '../Main/modal.css';
+import EditBooking from './EditBooking';
 
 export default function MyProfile() {
   const [nickname, setNickname] = useState('');
-  // const [bookingData, setBookingData] = useState();
-  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedBookingId, setSelectedBookingId] = useState(null);
+  const [selectedReviewId, setSelectedReviewId] = useState(null);
+  const [newDate, setNewDate] = useState();
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setNickname(user.displayName);
@@ -25,6 +34,7 @@ export default function MyProfile() {
   const [isEdit, setIsEdit] = useState(false);
   const { review, isLoading } = useSelector((state) => state.reviewSlice);
   const { booking } = useSelector((state) => state.bookingSlice);
+
   const myReview = review.filter((item) => {
     return item.nickname === nickname;
   });
@@ -33,11 +43,9 @@ export default function MyProfile() {
     const getBookingData = async () => {
       try {
         const getBooking = await dispatch(__getBooking());
-        const idFiltered = getBooking.payload.filter((item) => {
+        getBooking.payload.filter((item) => {
           return item.nickname === nickname;
         });
-
-        // setBookingData(idFiltered);
       } catch (error) {
         console.log(error);
       }
@@ -52,27 +60,7 @@ export default function MyProfile() {
     }
   };
 
-  const editDate = (id) => {
-    if (
-      window.confirm('날짜를 수정하시겠습니까? 확인 누르면 예약페이지로 이동함')
-    ) {
-      dispatch(__deleteBooking(id)).then(() => {
-        dispatch(__getBooking());
-        // navigate('/', { state: { value: bookingData } });
-      });
-    }
-  };
-
-  // const deleteBooking = async (id) => {
-  //   if (window.confirm('삭제하시겠습니까?')) {
-  //     try {
-  //       await dispatch(__deleteBooking(id));
-  //       await dispatch(__getBooking());
-  //     } catch (error) {
-  //       console.error('error', error);
-  //     }
-  //   }
-  // };
+  console.log('이거 찾아보자', booking);
 
   useEffect(() => {
     dispatch(__getBooking());
@@ -94,11 +82,29 @@ export default function MyProfile() {
     return <p>로딩 중 ..</p>;
   }
 
+  const editBookingToggle = (id) => {
+    setIsModalOpen(!isModalOpen);
+    // setSelectedBookingId(id);
+
+    if (!isModalOpen) {
+      setNewDate('');
+      return;
+    }
+    dispatch(__editBooking({ id, newDate }));
+    // if (isModalOpen === true) {
+    //   if (window.confirm('이대로 수정을 진행하시겠습니까?')) {
+    //   } else {
+    //     return;
+    //   }
+    // }
+  };
+
   const editToggle = (id) => {
     setIsEdit(!isEdit);
 
     if (!isEdit) {
       setNewComment('');
+      setSelectedReviewId(id);
       return;
     }
     dispatch(__editReview({ id, newComment }));
@@ -135,6 +141,7 @@ export default function MyProfile() {
         <StScheduleContainer>
           {booking
             ?.filter((item) => {
+              // console.log('dddd', item);
               return item.nickname === nickname;
             })
             .map((item) => {
@@ -144,21 +151,34 @@ export default function MyProfile() {
                     <div>{item.date}</div>
                     <div>{item.hospitalName}</div>
                     <div>{item.nickname}</div>
-                    <button
-                      onClick={() => {
-                        editDate(item.id);
-                      }}
-                    >
-                      수정
-                    </button>
-                    <button
-                      onClick={() => {
-                        deleteBooking(item.id);
-                      }}
-                    >
-                      삭제
-                    </button>
                   </StScheduleBox>
+                  <StBookingBtns>
+                    {isModalOpen ? (
+                      <>
+                        <StBookingEditBtn
+                          onClick={() => editBookingToggle(item.id)}
+                        >
+                          수정완료
+                          <EditBooking />
+                        </StBookingEditBtn>
+                        <StBookingCancelBtn>취소하기</StBookingCancelBtn>
+                      </>
+                    ) : (
+                      <>
+                        <StBookingEditBtn
+                          onClick={() => editBookingToggle(item.id)}
+                        >
+                          수정하기
+                        </StBookingEditBtn>
+
+                        <StBookingDeleteBtn
+                          onClick={() => deleteBooking(item.id)}
+                        >
+                          삭제하기
+                        </StBookingDeleteBtn>
+                      </>
+                    )}
+                  </StBookingBtns>
                 </div>
               );
             })}
@@ -172,52 +192,61 @@ export default function MyProfile() {
           내가 쓴 리뷰
         </div>
 
-        <StReviewContainer>
-          {myReview?.map((item) => {
-            return (
-              <div key={item.id}>
-                <div style={{ marginLeft: '550px', marginBottom: '10px' }}>
-                  {item.createdAt}
-                </div>
-                <StReviewBox>
-                  {isEdit ? (
-                    <>
-                      <Textarea
-                        autoFocus
-                        defaultValue={item.comment}
-                        onChange={(e) => setNewComment(e.target.value)}
-                      />
-                    </>
-                  ) : (
-                    <>{item.comment}</>
-                  )}
-                </StReviewBox>
-
-                <StBtns>
-                  {isEdit ? (
-                    <>
-                      <StEditBtn onClick={() => editToggle(item.id)}>
-                        수정완료
-                      </StEditBtn>
-                      <StEditBtn>취소하기</StEditBtn>
-                    </>
-                  ) : (
-                    <>
-                      <StEditBtn onClick={editToggle}>수정하기</StEditBtn>
-                      <StRemoveBtn
-                        onClick={() => {
-                          deleteReview(item.id);
-                        }}
-                      >
-                        삭제
-                      </StRemoveBtn>
-                    </>
-                  )}
-                </StBtns>
+        {/* <StReviewContainer> */}
+        {myReview?.map((item) => {
+          return (
+            <StReviewContainer key={item.id}>
+              <div
+                style={{
+                  marginBottom: '10px',
+                  gap: '50px',
+                }}
+              >
+                {item.hospitalName}
+                {item.createdAt}
               </div>
-            );
-          })}
-        </StReviewContainer>
+
+              <StReviewBox>
+                {isEdit && selectedReviewId === item.id ? (
+                  <>
+                    <Textarea
+                      autoFocus
+                      defaultValue={item.comment}
+                      onChange={(e) => setNewComment(e.target.value)}
+                    />
+                  </>
+                ) : (
+                  <>{item.comment}</>
+                )}
+              </StReviewBox>
+
+              <StBtns>
+                {isEdit && selectedReviewId === item.id ? (
+                  <>
+                    <StEditBtn onClick={() => editToggle(item.id)}>
+                      수정완료
+                    </StEditBtn>
+                    <StEditBtn>취소하기</StEditBtn>
+                  </>
+                ) : (
+                  <>
+                    <StEditBtn onClick={() => editToggle(item.id)}>
+                      수정하기
+                    </StEditBtn>
+                    <StRemoveBtn
+                      onClick={() => {
+                        deleteReview(item.id);
+                      }}
+                    >
+                      삭제
+                    </StRemoveBtn>
+                  </>
+                )}
+              </StBtns>
+            </StReviewContainer>
+          );
+        })}
+        {/* </StReviewContainer> */}
       </StProfileContainer>
     </div>
   );
@@ -237,6 +266,7 @@ export const StScheduleContainer = styled.div`
   grid-template-columns: repeat(4, 1fr);
   gap: 80px;
   margin: 0;
+  margin-bottom: 100px;
 `;
 
 export const StScheduleBox = styled.div`
@@ -245,25 +275,20 @@ export const StScheduleBox = styled.div`
   border: none;
   border-radius: 30px;
   background-color: #c3ebff;
-  margin-bottom: 50px;
-  box-shadow: 15px 15px lightgray;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.1);
-    transition: all 0.2s;
-  }
+  margin-bottom: 30px;
+  box-shadow: 10px 10px lightgray;
 `;
 
 export const StReviewContainer = styled.div`
   height: 200px;
-  /* margin-bottom: 30px; */
+  margin-bottom: 100px;
 `;
 
 export const StReviewBox = styled.div`
   display: block;
   width: 700px;
   height: 100px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   border-radius: 40px;
   border: 1px solid lightgrey;
   padding: 20px;
@@ -311,4 +336,44 @@ export const Textarea = styled.textarea`
   padding: 10px;
 `;
 
-// export const StReviewComment = styled.div``;
+const StBookingEditBtn = styled.button`
+  border-radius: 30px;
+  background-color: lightgray;
+  width: 60px;
+  height: 30px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+    transition: all 0.2s;
+  }
+`;
+
+const StBookingDeleteBtn = styled.button`
+  border-radius: 30px;
+  background-color: lightgray;
+  width: 60px;
+  height: 30px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+    transition: all 0.2s;
+  }
+`;
+
+const StBookingBtns = styled.div`
+  display: flex;
+  margin-left: 80px;
+  gap: 10px;
+`;
+
+const StBookingCancelBtn = styled.div`
+  border-radius: 30px;
+  background-color: lightgray;
+  width: 60px;
+  height: 30px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+    transition: all 0.2s;
+  }
+`;

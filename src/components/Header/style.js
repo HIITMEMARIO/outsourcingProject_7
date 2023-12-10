@@ -29,6 +29,6 @@ cursor: pointer;
     margin-left: 5%;
     font-size: 30px;
     font-weight: 1000;
-    
+    font-family: 'ONE-Mobile-POP';
   }
-`
+`;
