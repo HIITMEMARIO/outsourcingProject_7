@@ -8,35 +8,34 @@ import { useDispatch, useSelector } from 'react-redux';
 import { auth } from 'shared/firebase';
 import bookingAxios from 'api/booking';
 import uuid from 'react-uuid';
+import { __editBooking } from '../../redux/modules/bookingSlice';
 
-export default function EditBooking() {
+export default function EditBooking({ schedule }) {
+  console.log('선택한 스케줄', schedule);
+  const dispatch = useDispatch();
   const [nickname, setNickname] = useState('');
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) setNickname(user.displayName);
     });
   }, []);
-  // console.log('모달닉네임', nickname);
-
-  const data = useSelector((state) => {
-    return state.mapSlice.data;
-  });
 
   const [startDate, setStartDate] = useState(new Date());
-  console.log(startDate);
-  console.log(data.place_name);
+  // console.log(startDate);
+  // console.log(data.place_name);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newDate, setNewDate] = useState();
   const booking = async () => {
-    const response = await bookingAxios.post('/booking', {
-      id: uuid(),
-      nickname: nickname,
-      date: dateFormatChange,
-      hospital: data.id,
-      hospitalName: data.place_name,
-    });
+    dispatch(__editBooking({ newDate: dateFormatChange, id: schedule.id }));
+    // const response = await bookingAxios.post('/booking', {
+    //   id: uuid(),
+    //   nickname: nickname,
+    //   date: dateFormatChange,
+    //   hospital: data.id,
+    //   hospitalName: data.place_name,
+    // });
     setIsModalOpen(false);
-    console.log('부킹', response.data);
+    // console.log('부킹', response.data);
   };
 
   const dateFormatChange =
@@ -58,7 +57,7 @@ export default function EditBooking() {
           >
             X
           </button>
-          <h1>{data.place_name} 예약 수정하기</h1>
+          <h1>예약 수정하기</h1>
           <DatePicker
             locale={ko}
             selected={startDate}
@@ -71,6 +70,7 @@ export default function EditBooking() {
               onClick={() => {
                 booking();
               }}
+              s
             >
               예약
             </Stbutton>
