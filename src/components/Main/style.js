@@ -91,6 +91,7 @@ export const StBtn = styled.button`
   width: 80px;
   height: 30px;
   border-radius: 10px;
+  cursor: pointer;
 `;
 
 export const StUserIDAndCreatedAt = styled.div`
