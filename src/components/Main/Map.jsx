@@ -20,9 +20,8 @@ export default function Map() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [nickname, setNickname] = useState('');
-  const [bookingData, setBookingData] = useState([]);
 
-  const [문길, set문길] = useState([]);
+  const [myBooking, setMyBooking] = useState([]);
   // 1
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -37,13 +36,10 @@ export default function Map() {
       const idFiltered = getBooking.payload.filter((item) => {
         return item.nickname === nickname;
       });
-      console.log(idFiltered);
       const myBooking = idFiltered.filter((booking) =>
         hospitalData.some((hospital) => booking.hospital === hospital.id),
       );
-      set문길(idFiltered);
-      console.log(myBooking);
-      setBookingData(idFiltered);
+      setMyBooking(idFiltered);
     };
     getBookingData();
   }, [nickname]);
@@ -102,7 +98,6 @@ export default function Map() {
 
     // 장소 검색 객체를 생성합니다
     var ps = new kakao.maps.services.Places(map);
-    // console.log(ps);
     // 키워드로 장소를 검색합니다
     searchPlaces();
     // 키워드 검색을 요청하는 함수
@@ -140,14 +135,10 @@ export default function Map() {
 
       let hospitalname = '';
       let date = '';
-      console.log(문길);
-      const booking = 문길.find((booking) => {
+      const booking = myBooking.find((booking) => {
         return booking.hospital === place.id;
       });
 
-      console.log('333', place.id); // 내가 찍은 마커의 정보
-
-      console.log(booking);
       if (booking) {
         hospitalname = booking.hospitalName;
         date = booking.date;
@@ -169,7 +160,6 @@ export default function Map() {
           customOverlay.setMap(null); // 열려있으면 닫기
         } else {
           for (var i = 0; i < customOverlays.length; i++) {
-            console.log(customOverlays);
             customOverlays[i]?.setMap(null);
           }
           customOverlay.setMap(map); // 닫혀있으면 열기
@@ -180,7 +170,7 @@ export default function Map() {
         dispatch(data(place));
       });
     }
-  }, [inputValue, lt, lg, 문길]);
+  }, [inputValue, lt, lg, myBooking]);
 
   return (
     <>
