@@ -3,10 +3,9 @@ import { StInput, StInputBox, StMapContainer } from './style';
 import { FcSearch } from 'react-icons/fc';
 import './map.css';
 import Modal from './Modal';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { data } from '../../redux/modules/mapSlice';
 import { auth } from 'shared/firebase';
-
 import { __getBooking } from '../../redux/modules/bookingSlice';
 import myappologo from '../../assets/myappologo.png';
 
@@ -24,28 +23,22 @@ export default function Map() {
   const [myBooking, setMyBooking] = useState([]);
   const [dateFormResult, setDateFormResult] = useState('');
 
-  // 1
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) setNickname(user.displayName);
     });
   }, []);
 
-  //2
   useEffect(() => {
     let getBookingData = async () => {
       let getBooking = await dispatch(__getBooking(nickname));
       let idFiltered = getBooking.payload.filter((item) => {
         return item.nickname === nickname;
       });
-      // let myBooking = idFiltered.filter((booking) =>
-      //   hospitalData.some((hospital) => booking.hospital === hospital.id),
-      // );
       setMyBooking(idFiltered);
     };
     getBookingData();
   }, [nickname, render]);
-  // useEffect내용 적당히 분리하면서 코드 짤것
 
   // 카카오 맵
   useEffect(() => {
@@ -60,42 +53,33 @@ export default function Map() {
       radius: 2000,
     };
     let map = new window.kakao.maps.Map(container.current, options);
-    // ===========================================================================
-
     // ============================== 맵 줌 컨트롤 ==================================
     map.setZoomable(false);
     let mapTypeControl = new kakao.maps.MapTypeControl();
     map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPLEFT);
     let zoomControl = new kakao.maps.ZoomControl();
     map.addControl(zoomControl, kakao.maps.ControlPosition.LEFT);
-    // ===========================================================================
-
     // ============================= 현재 위치 ==================================
     if (navigator.geolocation) {
-      // GeoLocation을 이용해서 접속 위치를 얻어옵니다
       navigator.geolocation.getCurrentPosition(function (position) {
-        let lat = position.coords.latitude, // 위도
-          lon = position.coords.longitude; // 경도
+        let lat = position.coords.latitude,
+          lon = position.coords.longitude;
 
         setLatitude(lat);
         setLongitude(lon);
 
-        let locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-          message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+        let locPosition = new kakao.maps.LatLng(lat, lon),
+          message = '<div style="padding:5px;">여기에 계신가요?!</div>';
 
         // 마커와 인포윈도우를 표시합니다
         displayMarker(locPosition, message);
       });
     } else {
-      // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-
       var locPosition = new kakao.maps.LatLng(33.450701, 126.570667);
       var message = 'geolocation을 사용할수 없어요..';
 
       displayMarker(locPosition, message);
     }
-    // ===========================================================================
-
     // =============================== 조건 검색 ============================================
 
     // 장소 검색 객체를 생성합니다
@@ -108,10 +92,8 @@ export default function Map() {
 
       ps.keywordSearch(inputValue, placesSearchCB, options);
     }
-    // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 
     function placesSearchCB(data, status, pagination) {
-      // if (data !== 'ERROR') setHospitalData(data);
       if (status === 'ZERO_RESULT') return;
       if (status === kakao.maps.services.Status.OK) {
         let bounds = new kakao.maps.LatLngBounds();
@@ -123,7 +105,6 @@ export default function Map() {
         map.setBounds(bounds);
       }
     }
-    // ===========================================================================
 
     var customOverlays = [];
 
@@ -169,7 +150,7 @@ export default function Map() {
       customOverlays.push(customOverlay);
       kakao.maps.event.addListener(marker, 'click', function () {
         if (customOverlay.getMap()) {
-          customOverlay.setMap(null); // 열려있으면 닫기
+          customOverlay.setMap(null);
         } else {
           for (var i = 0; i < customOverlays.length; i++) {
             customOverlays[i]?.setMap(null);
