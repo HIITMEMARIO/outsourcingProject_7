@@ -84,10 +84,11 @@ export default function MyProfile() {
 
   const editBookingToggle = (id) => {
     setIsModalOpen(!isModalOpen);
-    // setSelectedBookingId(id);
+    setSelectedBookingId(id);
 
     if (!isModalOpen) {
       setNewDate('');
+
       return;
     }
     dispatch(__editBooking({ id, newDate }));
@@ -153,15 +154,15 @@ export default function MyProfile() {
                     <div>{item.nickname}</div>
                   </StScheduleBox>
                   <StBookingBtns>
-                    {isModalOpen ? (
+                    {isModalOpen && selectedBookingId === item.id ? (
                       <>
                         <StBookingEditBtn
                           onClick={() => editBookingToggle(item.id)}
                         >
                           수정완료
-                          <EditBooking />
                         </StBookingEditBtn>
                         <StBookingCancelBtn>취소하기</StBookingCancelBtn>
+                        <EditBooking schedule={item} />
                       </>
                     ) : (
                       <>

@@ -19,28 +19,12 @@
   ],
   "booking": [
     {
-      "id": "43a9ce6c-5b4c-49eb-06ba-81c61bbc17db",
+      "id": "753ad368-f692-8741-632b-b03f58990140",
       "nickname": "희원",
-      "date": "2023년 12월 14일",
-      "hospital": "10633882",
-      "hospitalName": "인천예치과의원"
-    },
-    {
-      "id": "34567fbd-5a87-84ca-5f54-81e3993f58c5",
-      "nickname": "희원",
-      "date": ""
-    },
-    {
-      "id": "e34f5869-bc7c-09e2-e782-72fce0128797",
-      "nickname": "희원",
-      "date": ""
-    },
-    {
-      "id": "6afb274e-348f-a3b3-9ef4-f67fa5105745",
-      "nickname": "희원",
-      "date": "2023년 12월 10일",
-      "hospital": "9945942",
-      "hospitalName": "용치과의원"
+      "date": "2023년 12월 12일",
+      "hospital": "1874275411",
+      "hospitalName": "바른플란트치과의원"
     }
   ]
 }
+
