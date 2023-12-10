@@ -8,6 +8,7 @@ export const StContainer = styled.div`
   max-width: 1950px;
   min-width: 800px;
   margin: auto;
+  background-color: #e8f3fa;
 `;
 export const StMain = styled.main`
   width: 100%;

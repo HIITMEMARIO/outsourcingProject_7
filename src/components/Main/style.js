@@ -33,6 +33,7 @@ export const StInput = styled.input`
   border-radius: 10px;
   font-weight: 800;
   text-align: center;
+  background-color: #ffffff;
 `;
 
 export const StContainer = styled.div`

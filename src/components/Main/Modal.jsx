@@ -10,7 +10,7 @@ import bookingAxios from 'api/booking';
 import uuid from 'react-uuid';
 import { toast } from 'react-toastify';
 import { __getBooking } from '../../redux/modules/bookingSlice';
-import { setHours, setMinutes } from 'date-fns';
+import { format, setHours, setMinutes } from 'date-fns';
 
 export default function Modal({ setIsModalOpen }) {
   const dispatch = useDispatch();
@@ -27,8 +27,9 @@ export default function Modal({ setIsModalOpen }) {
   });
 
   const [startDate, setStartDate] = useState(
-    setHours(setMinutes(new Date(), 0), 9),
+    setHours(setMinutes(new Date(), 0), 0),
   );
+  const koreaTimeZoneDate = new Date(startDate.getTime());
   const filterPassedTime = (time) => {
     const currentDate = new Date();
     const selectedDate = new Date(time);
@@ -36,10 +37,10 @@ export default function Modal({ setIsModalOpen }) {
     return currentDate.getTime() < selectedDate.getTime();
   };
   const booking = async () => {
-    const response = await bookingAxios.post('/booking', {
+    await bookingAxios.post('/booking', {
       id: uuid(),
       nickname: nickname,
-      date: startDate,
+      date: format(koreaTimeZoneDate, "yyyy-MM-dd'T'HH:mm:ss.SSS"),
       hospital: data.id,
       hospitalName: data.place_name,
     });

@@ -12,8 +12,9 @@ import {
 } from '../../redux/modules/bookingSlice';
 import { auth } from 'shared/firebase';
 import { __getBooking } from '../../redux/modules/bookingSlice';
-import '../Main/modal.css';
-import EditBooking from './EditBooking';
+// import '../Main/modal.css';
+import MyReview from './MyReview';
+import MySchedule from './MySchedule';
 
 export default function MyProfile() {
   const [nickname, setNickname] = useState('');
@@ -58,7 +59,7 @@ export default function MyProfile() {
     }
   };
 
-  console.log('이거 찾아보자', booking);
+  // console.log('이거 찾아보자', booking);
 
   useEffect(() => {
     dispatch(__getBooking());
@@ -80,33 +81,9 @@ export default function MyProfile() {
     return <p>로딩 중 ..</p>;
   }
 
-  const originalDate = new Date();
-
-  const year = originalDate.getFullYear();
-  const month = originalDate.getMonth() + 1;
-  const day = originalDate.getDate();
-  const hours = originalDate.getHours();
-  const minutes = originalDate.getMinutes();
-
-  const formattedDate = `${year}년 ${month}월 ${day}일 ${hours}시 ${minutes}분`;
-  console.log(formattedDate);
-
   const editBookingToggle = (id) => {
     setIsModalOpen(!isModalOpen);
     setSelectedBookingId(id);
-
-    if (!isModalOpen) {
-      setNewDate('');
-
-      return;
-    }
-    dispatch(__editBooking({ id, newDate }));
-    // if (isModalOpen === true) {
-    //   if (window.confirm('이대로 수정을 진행하시겠습니까?')) {
-    //   } else {
-    //     return;
-    //   }
-    // }
   };
 
   const editToggle = (id) => {
@@ -139,126 +116,23 @@ export default function MyProfile() {
         >
           <p>{nickname} 님, 반갑습니다 🖐🏻</p>
         </div>
-        <div
-          style={{
-            margin: '50px',
-            fontSize: '30px',
-          }}
-        >
-          {/* 스케줄 박스 누르면 메인페이지 해당 주소로 이동하게 하기? */}
-          나의 스케줄
-        </div>
-        <StScheduleContainer>
-          {booking
-            ?.filter((item) => {
-              // console.log('dddd', item);
-              return item.nickname === nickname;
-            })
-            .map((item) => {
-              return (
-                <div key={item.id}>
-                  <StScheduleBox>
-                    <StScheduleInfo>
-                      <div>{item.date}</div>
-                      <div>{item.hospitalName}</div>
-                      <div>{item.nickname}</div>
-                    </StScheduleInfo>
-                    <StBookingBtns>
-                      {isModalOpen && selectedBookingId === item.id ? (
-                        <>
-                          <StBookingEditBtn
-                            onClick={() => editBookingToggle(item.id)}
-                          >
-                            수정완료
-                          </StBookingEditBtn>
-                          <StBookingCancelBtn>취소하기</StBookingCancelBtn>
-                          <EditBooking schedule={item} />
-                        </>
-                      ) : (
-                        <>
-                          <StBookingEditBtn
-                            onClick={() => editBookingToggle(item.id)}
-                          >
-                            수정하기
-                          </StBookingEditBtn>
+        <MySchedule
+          booking={booking}
+          nickname={nickname}
+          isModalOpen={isModalOpen}
+          selectedBookingId={selectedBookingId}
+          editBookingToggle={editBookingToggle}
+          deleteBooking={deleteBooking}
+        />
 
-                          <StBookingDeleteBtn
-                            onClick={() => deleteBooking(item.id)}
-                          >
-                            삭제하기
-                          </StBookingDeleteBtn>
-                        </>
-                      )}
-                    </StBookingBtns>
-                  </StScheduleBox>
-                </div>
-              );
-            })}
-        </StScheduleContainer>
-        <div
-          style={{
-            margin: '50px',
-            fontSize: '30px',
-          }}
-        >
-          내가 쓴 리뷰
-        </div>
-
-        {/* <StReviewContainer> */}
-        {myReview?.map((item) => {
-          return (
-            <StReviewContainer key={item.id}>
-              <div
-                style={{
-                  marginBottom: '10px',
-                  gap: '50px',
-                }}
-              >
-                {item.hospitalName}
-                {item.createdAt}
-              </div>
-
-              <StReviewBox>
-                {isEdit && selectedReviewId === item.id ? (
-                  <>
-                    <Textarea
-                      autoFocus
-                      defaultValue={item.comment}
-                      onChange={(e) => setNewComment(e.target.value)}
-                    />
-                  </>
-                ) : (
-                  <>{item.comment}</>
-                )}
-              </StReviewBox>
-
-              <StBtns>
-                {isEdit && selectedReviewId === item.id ? (
-                  <>
-                    <StEditBtn onClick={() => editToggle(item.id)}>
-                      수정완료
-                    </StEditBtn>
-                    <StEditBtn>취소하기</StEditBtn>
-                  </>
-                ) : (
-                  <>
-                    <StEditBtn onClick={() => editToggle(item.id)}>
-                      수정하기
-                    </StEditBtn>
-                    <StRemoveBtn
-                      onClick={() => {
-                        deleteReview(item.id);
-                      }}
-                    >
-                      삭제
-                    </StRemoveBtn>
-                  </>
-                )}
-              </StBtns>
-            </StReviewContainer>
-          );
-        })}
-        {/* </StReviewContainer> */}
+        <MyReview
+          myReview={myReview}
+          isEdit={isEdit}
+          selectedReviewId={selectedReviewId}
+          setNewComment={setNewComment}
+          deleteReview={deleteReview}
+          editToggle={editToggle}
+        />
       </StProfileContainer>
     </div>
   );
@@ -269,124 +143,4 @@ export const StProfileContainer = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-`;
-
-export const StScheduleContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 80px;
-  margin: 0;
-  margin-bottom: 100px;
-`;
-
-export const StScheduleBox = styled.div`
-  width: 200px;
-  height: 200px;
-  border: none;
-  border-radius: 30px;
-  background-color: #c3ebff;
-  margin-bottom: 30px;
-  box-shadow: 10px 10px lightgray;
-`;
-
-export const StReviewContainer = styled.div`
-  height: 200px;
-  margin-bottom: 100px;
-`;
-
-export const StReviewBox = styled.div`
-  display: block;
-  width: 700px;
-  height: 100px;
-  margin-bottom: 20px;
-  border-radius: 40px;
-  border: 1px solid lightgrey;
-  padding: 20px;
-`;
-
-export const StRemoveBtn = styled.button`
-  width: 100px;
-  height: 50px;
-  border-radius: 40px;
-  margin-left: 10px;
-  background-color: lightgrey;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.1);
-    transition: all 0.2s;
-  }
-`;
-
-export const StEditBtn = styled.button`
-  width: 100px;
-  height: 50px;
-  border-radius: 40px;
-  background-color: lightgrey;
-  margin-left: 10px;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.1);
-    transition: all 0.2s;
-  }
-`;
-
-export const StBtns = styled.div`
-  margin-left: 480px;
-`;
-
-export const Textarea = styled.textarea`
-  display: block;
-  width: 700px;
-  height: 100px;
-  margin-bottom: 20px;
-  border-radius: 40px;
-  border: none;
-  padding: 20px;
-  resize: none;
-  padding: 10px;
-`;
-
-const StBookingEditBtn = styled.button`
-  border-radius: 30px;
-  background-color: lightgray;
-  width: 60px;
-  height: 30px;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.1);
-    transition: all 0.2s;
-  }
-`;
-
-const StScheduleInfo = styled.div``;
-const StBookingDeleteBtn = styled.button`
-  border-radius: 30px;
-  background-color: lightgray;
-  width: 60px;
-  height: 30px;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.1);
-    transition: all 0.2s;
-  }
-`;
-
-const StBookingBtns = styled.div`
-  display: flex;
-  margin-left: 80px;
-  gap: 10px;
-`;
-
-const StBookingCancelBtn = styled.div`
-  border-radius: 30px;
-  background-color: lightgray;
-  width: 60px;
-  height: 30px;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.1);
-    transition: all 0.2s;
-  }
 `;
