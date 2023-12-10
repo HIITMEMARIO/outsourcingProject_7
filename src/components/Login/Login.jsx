@@ -18,7 +18,6 @@ function Login() {
   const [canUseEmail, setCanUseEmail] = useState(false);
   const [canUseNickname, setCanUseNickname] = useState(false);
 
-  // const [validEmail, setValidEmail] = useState(true);
   const { formState, onChangeHandler, resetForm } = useForm({
     email: '',
     password: '',

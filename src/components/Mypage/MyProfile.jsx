@@ -59,8 +59,6 @@ export default function MyProfile() {
     }
   };
 
-  // console.log('이거 찾아보자', booking);
-
   useEffect(() => {
     dispatch(__getBooking());
   }, [nickname]);
