@@ -15,6 +15,22 @@
       "createdAt": "2023-12-10 12:06:41",
       "hospitalId": "8816782",
       "hospitalName": "김종화치과의원"
+    },
+    {
+      "id": "e98b7c18-480b-83ee-d557-b24aa76937c9",
+      "comment": "ㅇㄴㄹㄴㅇㄹ",
+      "nickname": "희원",
+      "createdAt": "2023-12-10 16:25:40",
+      "hospitalId": "8816782",
+      "hospitalName": "김종화치과의원"
+    },
+    {
+      "id": "1665963c-3801-bc52-e7a9-5efdc21dcada",
+      "comment": "친절하고 진료를 잘 봅니다 ^^",
+      "nickname": "희원",
+      "createdAt": "2023-12-10 16:47:42",
+      "hospitalId": "564413943",
+      "hospitalName": "예온치과의원 인천점"
     }
   ],
   "booking": [
@@ -101,6 +117,34 @@
       "date": "2023-12-11T00:00:38.542Z",
       "hospital": "1380407513",
       "hospitalName": "모든이치과의원"
+    },
+    {
+      "id": "920bfc09-3ca5-80a1-75df-d005494dfa1b",
+      "nickname": "희원",
+      "date": "2023-12-12T22:00:00.000Z",
+      "hospital": "760043879",
+      "hospitalName": "모래내서울안과의원"
+    },
+    {
+      "id": "b5ca9630-9a0d-c9a4-74cd-c07d0f6b01a1",
+      "nickname": "희원",
+      "date": "2023-12-11T00:00:51.728Z",
+      "hospital": "27503961",
+      "hospitalName": "모래내서울치과의원"
+    },
+    {
+      "id": "d812a26d-66c4-a2a1-bff0-a0e4af578e13",
+      "nickname": "희원",
+      "date": "2023-12-20T22:30:00.000Z",
+      "hospital": "671653521",
+      "hospitalName": "구월의치과의원"
+    },
+    {
+      "id": "7d4edc76-6c58-5583-94f8-e3d559449102",
+      "nickname": "희원",
+      "date": "2023-12-11T00:00:55.188Z",
+      "hospital": "564413943",
+      "hospitalName": "예온치과의원 인천점"
     }
   ]
 }

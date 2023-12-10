@@ -44,13 +44,14 @@ export const StContainer = styled.div`
 export const StHospitalInfo = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid #7a97ff;
+  border: 1.5px solid #7a97ff;
   width: 700px;
-  height: 300px;
+  height: 200px;
   margin: 50px;
   border-radius: 10px;
   padding: 20px;
   background-color: white;
+  justify-content: center;
 `;
 
 export const StCommentsBox = styled.div`
@@ -91,6 +92,11 @@ export const StBtn = styled.button`
   width: 80px;
   height: 30px;
   border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+    transition: all 0.2s;
+  }
 `;
 
 export const StUserIDAndCreatedAt = styled.div`
@@ -185,4 +191,18 @@ export const Stbutton = styled.div`
   &:hover {
     background-color: #c3ebff;
   }
+`;
+
+export const StInfoTitle = styled.h2`
+  font-size: 30px;
+  margin-bottom: 30px;
+  font-weight: 700;
+`;
+
+export const StInfoAddress = styled.div`
+  font-size: 20px;
+  margin-bottom: 20px;
+`;
+export const StInfoPhone = styled.div`
+  font-size: 20px;
 `;
