@@ -13,7 +13,6 @@ export const __addReview = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const res = await axios.post('http://localhost:5000/review', payload);
-      console.log('addReviews -> res', res.data);
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -27,7 +26,6 @@ export const __getReview = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const res = await axios.get('http://localhost:5000/review');
-      console.log('getReviews', res.data);
       return res.data;
     } catch (error) {
       console.log('error', error);
@@ -42,10 +40,8 @@ export const __deleteReview = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const res = await axios.delete(`http://localhost:5000/review/${payload}`);
-      console.log('삭제', payload);
       return res.data;
     } catch (error) {
-      console.log('error', error);
       return thunkAPI.rejectWithValue(error);
     }
   },
@@ -60,7 +56,6 @@ export const __editReview = createAsyncThunk(
         `http://localhost:5000/review/${payload.id}`,
         { comment: payload.newComment },
       );
-      console.log('res', res.data);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -139,5 +134,5 @@ export const reviewSlice = createSlice({
       });
   },
 });
-export const {} = reviewSlice.actions;
+export const { } = reviewSlice.actions;
 export default reviewSlice.reducer;

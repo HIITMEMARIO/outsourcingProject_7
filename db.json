@@ -20,6 +20,34 @@
       "nickname": "희원",
       "createdAt": "2023-12-09 18:29:46",
       "hospitalId": "671653521"
+    },
+    {
+      "id": "4fae87b7-5a12-a2a1-5052-9193a061975c",
+      "comment": " 아핫",
+      "nickname": "에이닷",
+      "createdAt": "2023-12-10 08:37:31",
+      "hospitalId": "8198698"
+    },
+    {
+      "id": "93480ec3-b6a2-22b6-5a02-cc1213a2f48a",
+      "comment": "리뷰가 두개지요",
+      "nickname": "에이닷",
+      "createdAt": "2023-12-10 08:37:41",
+      "hospitalId": "8198698"
+    },
+    {
+      "id": "e5f35a7e-5ea8-728f-53ab-8b14a69d0536",
+      "comment": "치까치꽈",
+      "nickname": "에이닷",
+      "createdAt": "2023-12-10 12:32:50",
+      "hospitalId": "17464878"
+    },
+    {
+      "id": "b1f91cc5-89fa-dc7e-3721-04849c43ae20",
+      "comment": "수정 함 해봄!",
+      "nickname": "에이닷",
+      "createdAt": "2023-12-10 12:34:13",
+      "hospitalId": "17464878"
     }
   ],
   "booking": [
@@ -235,6 +263,13 @@
       "date": "2023년 12월 10일",
       "hospital": "1964798161",
       "hospitalName": "시지튼튼치과보철과치과의원"
+    },
+    {
+      "id": "904051c4-6130-c9fb-a8a3-6545b6c95e8a",
+      "nickname": "에이닷",
+      "date": "2023년 12월 20일",
+      "hospital": "8198698",
+      "hospitalName": "그린치과의원"
     }
   ]
 }

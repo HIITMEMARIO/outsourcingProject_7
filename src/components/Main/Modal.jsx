@@ -6,7 +6,6 @@ import './modal.css';
 import { ko } from 'date-fns/esm/locale';
 import { useDispatch, useSelector } from 'react-redux';
 import { auth } from 'shared/firebase';
-import axios from 'axios';
 import bookingAxios from 'api/booking';
 import uuid from 'react-uuid';
 import { toast } from 'react-toastify';
