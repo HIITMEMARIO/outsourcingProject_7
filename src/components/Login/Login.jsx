@@ -51,13 +51,23 @@ function Login() {
     e.preventDefault();
     //로그인시
     if (isLoginMode) {
-      const a = await dispatch(__loginUser({ email, password }));
-      console.log('이거 있음!', a);
+      const res = await dispatch(__loginUser({ email, password }));
+      if (res.type === 'getLoginUser/rejected') {
+        alert(`이메일이나 비밀번호가 잘못입력됐습니다. 다시 입력해 주세요.`);
+      } else if (res.type === 'getLoginUser/fulfilled') {
+        alert(`${res.payload.displayName}님, 반갑습니다.`);
+      }
+
       //   toast.success('로그인 성공');
-      //a의 에러 메세지에 따라 보여줄 객체를 만들어서 그거 알럿!
     } else {
-      //회원가입시
-      dispatch(__signupUser({ email, password, nickname }));
+      const res = await dispatch(__signupUser({ email, password, nickname }));
+      if (res.type === 'getSignupUser/rejected') {
+        alert('회원가입에 실패하셨습니다. 다시 시도해 주세요.');
+      } else if (res.type === 'getSignupUser/fulfilled') {
+        alert(`${res.payload.displayName}님, My아포에 오신걸 환영합니다.`);
+      }
+
+      console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', res);
       resetForm();
     }
   };

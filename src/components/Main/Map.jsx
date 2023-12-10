@@ -49,14 +49,6 @@ export default function Map() {
     getBookingData();
   }, [nickname]);
   // useEffect내용 적당히 분리하면서 코드 짤것
-  //3
-  useEffect(() => {
-    const myBooking = bookingData.filter((booking) =>
-      hospitalData.some((hospital) => booking.hospital === hospital.id),
-    );
-    console.log(myBooking);
-    setMybooking(myBooking);
-  }, [hospitalData, bookingData]);
 
   // 카카오 맵
   useEffect(() => {
@@ -64,11 +56,9 @@ export default function Map() {
     // ============================== 지도 생성 ====================================
     const options = {
       center: new window.kakao.maps.LatLng(lt, lg),
-      center: new window.kakao.maps.LatLng(lt, lg),
       level: 4,
       category_group_code: 'HP8',
       useMapBounds: true,
-      location: new kakao.maps.LatLng(lt, lg),
       location: new kakao.maps.LatLng(lt, lg),
       useMapCenter: true,
       radius: 2000,
@@ -216,9 +206,6 @@ export default function Map() {
       </StInputBox>
 
       <StMapContainer ref={container}>
-        <div style={{ width: '99%', height: '800px' }}></div>
-
-        {isModalOpen ? <Modal setIsModalOpen={setIsModalOpen} /> : ''}
         <div style={{ width: '99%', height: '800px' }}></div>
 
         {isModalOpen ? <Modal setIsModalOpen={setIsModalOpen} /> : ''}
