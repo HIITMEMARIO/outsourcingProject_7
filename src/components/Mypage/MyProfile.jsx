@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function MyProfile() {
   const [nickname, setNickname] = useState('');
-  // const [bookingData, setBookingData] = useState();
+
   const navigate = useNavigate();
   useEffect(() => {
     auth.onAuthStateChanged((user) => {

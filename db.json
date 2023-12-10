@@ -256,6 +256,41 @@
       "date": "2023년 12월 10일",
       "hospital": "26933114",
       "hospitalName": "사랑을심는치과의원"
+    },
+    {
+      "id": "dc4bb2a8-b3fc-742a-6101-db08f3467556",
+      "nickname": "kim@kim.co",
+      "date": "2023년 12월 10일",
+      "hospital": "27493133",
+      "hospitalName": "건강드림내과"
+    },
+    {
+      "id": "f1170572-749c-7ea3-8f5c-990ebc5459d2",
+      "nickname": "kim@kim.co",
+      "date": "2023년 12월 10일",
+      "hospital": "27536799",
+      "hospitalName": "장보고연합내과의원"
+    },
+    {
+      "id": "92cd57be-d807-e4e2-a771-46f440d0eb7c",
+      "nickname": "kim@kim.co",
+      "date": "2023년 12월 10일",
+      "hospital": "8024064",
+      "hospitalName": "오성치과병원"
+    },
+    {
+      "id": "8fe8e15d-7419-8033-3604-24e6fcbc79c9",
+      "nickname": "kim@kim.co",
+      "date": "2023년 12월 10일",
+      "hospital": "26933114",
+      "hospitalName": "사랑을심는치과의원"
+    },
+    {
+      "id": "bfea68eb-fa1f-f9ec-df27-a6879112cce6",
+      "nickname": "kim@kim.co",
+      "date": "2023년 12월 10일",
+      "hospital": "14820818",
+      "hospitalName": "365열린치과의원"
     }
   ]
 }

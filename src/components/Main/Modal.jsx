@@ -10,8 +10,11 @@ import axios from 'axios';
 import bookingAxios from 'api/booking';
 import uuid from 'react-uuid';
 import { toast } from 'react-toastify';
+import { __getBooking } from '../../redux/modules/bookingSlice';
 
 export default function Modal({ setIsModalOpen }) {
+  const dispatch = useDispatch();
+
   const [nickname, setNickname] = useState('');
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -32,6 +35,7 @@ export default function Modal({ setIsModalOpen }) {
       hospital: data.id,
       hospitalName: data.place_name,
     });
+    dispatch(__getBooking());
     toast.success('예약 되셨습니다!');
     setIsModalOpen(false);
   };
