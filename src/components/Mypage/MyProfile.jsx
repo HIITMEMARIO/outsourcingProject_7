@@ -60,7 +60,7 @@ export default function MyProfile() {
     }
   };
 
-  console.log('이거 찾아보자', booking);
+  // console.log('이거 찾아보자', booking);
 
   useEffect(() => {
     dispatch(__getBooking());
@@ -159,9 +159,9 @@ export default function MyProfile() {
                           onClick={() => editBookingToggle(item.id)}
                         >
                           수정완료
-                          <EditBooking />
                         </StBookingEditBtn>
                         <StBookingCancelBtn>취소하기</StBookingCancelBtn>
+                        <EditBooking schedule={item} />
                       </>
                     ) : (
                       <>

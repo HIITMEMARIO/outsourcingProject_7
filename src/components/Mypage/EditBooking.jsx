@@ -9,8 +9,9 @@ import { auth } from 'shared/firebase';
 import bookingAxios from 'api/booking';
 import uuid from 'react-uuid';
 
-export default function EditBooking() {
+export default function EditBooking({ schedule }) {
   const [nickname, setNickname] = useState('');
+  console.log('선택한 스케줄', schedule);
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) setNickname(user.displayName);
@@ -21,6 +22,7 @@ export default function EditBooking() {
   const data = useSelector((state) => {
     return state.mapSlice.data;
   });
+  console.log(data);
 
   const [startDate, setStartDate] = useState(new Date());
   console.log(startDate);
@@ -28,6 +30,7 @@ export default function EditBooking() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newDate, setNewDate] = useState();
   const booking = async () => {
+    //fatch가돼야함
     const response = await bookingAxios.post('/booking', {
       id: uuid(),
       nickname: nickname,
@@ -49,36 +52,26 @@ export default function EditBooking() {
 
   return (
     <>
-      {!!nickname ? (
-        <StModal>
-          <button
+      <StModal>
+        <button>X</button>
+        <h1>{data.place_name} 예약 수정하기</h1>
+        <DatePicker
+          locale={ko}
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
+          dateFormat="yyyy년 MM월 dd일"
+          minDate={new Date()}
+        />
+        <StButtonBox>
+          <Stbutton
             onClick={() => {
-              setIsModalOpen(false);
+              booking();
             }}
           >
-            X
-          </button>
-          <h1>{data.place_name} 예약 수정하기</h1>
-          <DatePicker
-            locale={ko}
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            dateFormat="yyyy년 MM월 dd일"
-            minDate={new Date()}
-          />
-          <StButtonBox>
-            <Stbutton
-              onClick={() => {
-                booking();
-              }}
-            >
-              예약
-            </Stbutton>
-          </StButtonBox>
-        </StModal>
-      ) : (
-        ''
-      )}
+            예약
+          </Stbutton>
+        </StButtonBox>
+      </StModal>
     </>
   );
 }

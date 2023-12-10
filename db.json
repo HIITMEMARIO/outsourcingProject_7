@@ -15,6 +15,30 @@
       "createdAt": "2023-12-10 12:06:41",
       "hospitalId": "8816782",
       "hospitalName": "김종화치과의원"
+    },
+    {
+      "id": "165515fd-8226-931f-699d-8f61c3c46adb",
+      "comment": "리뷰122",
+      "nickname": "에이닷",
+      "createdAt": "2023-12-10 13:47:06",
+      "hospitalId": "10889257",
+      "hospitalName": "평화치과"
+    },
+    {
+      "id": "a5d0440d-df91-bc49-b4bf-d0e699fe0ee6",
+      "comment": "리뷰2fff",
+      "nickname": "에이닷",
+      "createdAt": "2023-12-10 13:47:10",
+      "hospitalId": "10889257",
+      "hospitalName": "평화치과"
+    },
+    {
+      "id": "ed0752ca-2677-0489-e791-9b0fed4544fc",
+      "comment": "리뷰3",
+      "nickname": "에이닷",
+      "createdAt": "2023-12-10 13:47:15",
+      "hospitalId": "10889257",
+      "hospitalName": "평화치과"
     }
   ],
   "booking": [
@@ -41,6 +65,28 @@
       "date": "2023년 12월 10일",
       "hospital": "9945942",
       "hospitalName": "용치과의원"
+    },
+    {
+      "id": "66655b0e-a111-8058-6f63-3f4a39594952",
+      "nickname": "에이닷",
+      "date": ""
+    },
+    {
+      "id": "844fd3b6-ae66-810c-43b5-9c15977e45cf",
+      "nickname": "에이닷",
+      "date": ""
+    },
+    {
+      "id": "51499463-a256-5024-33d4-1f8126bbaba6",
+      "nickname": "에이닷",
+      "date": "2023년 12월 23일"
+    },
+    {
+      "id": "973ec4a1-6755-3c21-b1fa-69607c3323c4",
+      "nickname": "에이닷",
+      "date": "2023년 12월 11일",
+      "hospital": "9845499",
+      "hospitalName": "바른이치과"
     }
   ]
 }

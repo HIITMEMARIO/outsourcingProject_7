@@ -17,7 +17,6 @@ export default function Map() {
   const [hospitalData, setHospitalData] = useState([]);
   const [lt, setLatitude] = useState(0);
   const [lg, setLongitude] = useState(0);
-  const [myBooking, setMybooking] = useState();
   const container = useRef(null);
 
   const [isModalOpen, setIsModalOpen] = useState(false);

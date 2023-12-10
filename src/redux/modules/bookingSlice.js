@@ -125,7 +125,6 @@ export const bookingSlice = createSlice({
       .addCase(__editBooking.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        console.log('qqq');
         state.booking = state.booking.map((item) => {
           if (item.id === action.payload.id) {
             console.log('dfsfsdfafrfref', action.payload);
@@ -141,5 +140,5 @@ export const bookingSlice = createSlice({
       });
   },
 });
-export const {} = bookingSlice.actions;
+export const { } = bookingSlice.actions;
 export default bookingSlice.reducer;
