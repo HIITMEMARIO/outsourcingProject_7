@@ -48,7 +48,7 @@ export default function Review() {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (!nickname) {
-      alert('로그인해라');
+      alert('로그인 후 작성바랍니다');
       return;
     }
     if (comment === '') {
@@ -72,7 +72,6 @@ export default function Review() {
     setComment(e.target.value);
   };
   if (!dataHospitalId) return;
-
   return (
     <>
       <StContainer>
@@ -84,7 +83,6 @@ export default function Review() {
               <div> {data.phone}</div>
               <div> {data.place_url}</div>
             </>
-            <div>Hospital Information</div>
           </StHospitalInfo>
           <h1
             style={{

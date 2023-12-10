@@ -25,6 +25,23 @@ export default function Map() {
   console.log('내예약##############################', myBooking);
 
   useEffect(() => {
+    const getBookingData = async () => {
+      try {
+        const getBooking = await dispatch(__getBooking());
+        console.log('디스패치 성공', dispatch);
+        const idFiltered = getBooking.payload.filter((item) => {
+          // console.log('item', item, 'nickname', nickname);
+          return item.nickname === nickname;
+        });
+        setBookingData(idFiltered);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getBookingData();
+  }, [nickname]);
+  console.log('bookingData', bookingData);
+  useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) setNickname(user.displayName);
     });
@@ -141,6 +158,7 @@ export default function Map() {
 
     // 지도에 마커를 표시하는 함수입니다
     function displayMarker(place) {
+
       // 마커를 생성하고 지도에 표시합니다
       var marker = new kakao.maps.Marker({
         map: map,
