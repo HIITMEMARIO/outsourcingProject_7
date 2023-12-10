@@ -23,8 +23,6 @@ export default function Modal({ setIsModalOpen }) {
     return state.mapSlice.data;
   });
 
-  // console.log(data.)
-
   const [startDate, setStartDate] = useState(new Date());
   console.log(startDate);
   console.log(data.place_name);
@@ -32,7 +30,7 @@ export default function Modal({ setIsModalOpen }) {
     const response = await bookingAxios.post('/booking', {
       id: uuid(),
       nickname: nickname,
-      date: startDate,
+      date: dateFormatChange,
       hospital: data.id,
       hospitalName: data.place_name,
     });
@@ -40,6 +38,13 @@ export default function Modal({ setIsModalOpen }) {
     console.log('부킹', response.data);
   };
 
+  const dateFormatChange =
+    startDate.getFullYear() +
+    '년 ' +
+    (startDate.getMonth() + 1) +
+    '월 ' +
+    startDate.getDate() +
+    '일';
   return (
     <>
       {!!nickname ? (
