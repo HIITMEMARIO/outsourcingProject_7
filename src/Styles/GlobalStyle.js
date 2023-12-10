@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-
 const GlobalStyles = createGlobalStyle`
 
 
@@ -58,12 +57,7 @@ input, button, textarea{
 * { 
     box-sizing: border-box;
 }
-@font-face {
-    font-family: 'ONE-Mobile-POP';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
+
 `;
 
 export default GlobalStyles;

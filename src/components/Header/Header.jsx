@@ -34,7 +34,7 @@ export default function Header() {
     <StContainer>
       <StLogoBox onClick={() => navigate('/')}>
         <img src={myappologo} alt="logoIMG" />
-        <p>My아포</p>
+        <p style={{ fontFamily: 'ONE-Mobile-POP' }}>My아포</p>
       </StLogoBox>
       {isLogin ? (
         <>
