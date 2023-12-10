@@ -67,9 +67,11 @@
 
 
 .react-datepicker__time-container {
-  width: 300px;
+  width: 300px !important;
   border-left: none !important;
+
   border-top: 1px solid #7a97ff;
+
 
 }
 
@@ -89,4 +91,12 @@
   height: 100px !important;
   /* margin-top: 10px; */
 
+}
+
+.react-datepicker__navigation {
+  right: 0 !important;
+}
+
+.react-datepicker__navigation--next--with-time {
+  right: 0 !important;
 }

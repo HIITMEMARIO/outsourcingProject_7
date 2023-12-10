@@ -16,11 +16,9 @@ export default function Map() {
   let dispatch = useDispatch();
 
   const [inputValue, setInputValue] = useState('');
-  const [hospitalData, setHospitalData] = useState([]);
   const [lt, setLatitude] = useState(0);
   const [lg, setLongitude] = useState(0);
   const container = useRef(null);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [nickname, setNickname] = useState('');
   const [myBooking, setMyBooking] = useState([]);
@@ -113,7 +111,7 @@ export default function Map() {
     // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 
     function placesSearchCB(data, status, pagination) {
-      if (data !== 'ERROR') setHospitalData(data);
+      // if (data !== 'ERROR') setHospitalData(data);
       if (status === 'ZERO_RESULT') return;
       if (status === kakao.maps.services.Status.OK) {
         let bounds = new kakao.maps.LatLngBounds();
@@ -146,8 +144,6 @@ export default function Map() {
         setDateFormResult(changeDateFormresult);
         return booking.hospital === place.id;
       });
-
-      console.log(booking);
 
       if (booking) {
         hospitalname = booking.hospitalName;

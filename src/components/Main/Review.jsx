@@ -28,8 +28,6 @@ import { FaPhone } from 'react-icons/fa6';
 export default function Review() {
   const [nickname, setNickname] = useState('');
   const [comment, setComment] = useState('');
-  const [userId, setUserId] = useState('');
-  const [hospitalName, setHospitalName] = useState('');
   const dispatch = useDispatch();
   const { review } = useSelector((state) => state.reviewSlice);
   useEffect(() => {
