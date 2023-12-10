@@ -6,8 +6,8 @@ import './editBooking.css';
 import { ko } from 'date-fns/esm/locale';
 import { useDispatch, useSelector } from 'react-redux';
 import { auth } from 'shared/firebase';
-import bookingAxios from 'api/booking';
-import uuid from 'react-uuid';
+import { setHours, setMinutes } from 'date-fns';
+
 import { __editBooking } from '../../redux/modules/bookingSlice';
 
 export default function EditBooking({ schedule }) {
@@ -20,7 +20,17 @@ export default function EditBooking({ schedule }) {
     });
   }, []);
 
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(
+    setHours(setMinutes(new Date(), 0), 9),
+  );
+
+  const filterPassedTime = (time) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+
+    return currentDate.getTime() < selectedDate.getTime();
+  };
+
   // console.log(startDate);
   // console.log(data.place_name);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,25 +54,31 @@ export default function EditBooking({ schedule }) {
     (startDate.getMonth() + 1) +
     '월 ' +
     startDate.getDate() +
-    '일';
+    '일' +
+    +startDate.getHours() +
+    '시' +
+    +startDate.getMinutes() +
+    '분';
 
   return (
     <>
       {!!nickname ? (
         <StModal>
-          <button
+          {/* <button
             onClick={() => {
               setIsModalOpen(false);
             }}
           >
             X
-          </button>
+          </button> */}
           <h1>예약 수정하기</h1>
           <DatePicker
             locale={ko}
+            showTimeSelect
             selected={startDate}
             onChange={(date) => setStartDate(date)}
-            dateFormat="yyyy년 MM월 dd일"
+            dateFormat="yyyy년 MM월 dd일 hh시 mm분"
+            filterTime={filterPassedTime}
             minDate={new Date()}
           />
           <StButtonBox>
@@ -70,7 +86,6 @@ export default function EditBooking({ schedule }) {
               onClick={() => {
                 booking();
               }}
-              s
             >
               예약
             </Stbutton>
