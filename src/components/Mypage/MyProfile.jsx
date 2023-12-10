@@ -125,6 +125,7 @@ export default function MyProfile() {
           }}
         >
           <p>{nickname} 님, 반갑습니다 🖐🏻</p>
+          <p>{nickname} 님, 반갑습니다 🖐🏻</p>
         </div>
         <div
           style={{

@@ -56,7 +56,7 @@ export default function Map() {
 
     setMybooking(myBooking);
   }, [hospitalData, bookingData]);
-
+  //이거 쿼리로 수정하기
   useEffect(() => {
     const getBookingData = async () => {
       const getBooking = await dispatch(__getBooking(nickname));
@@ -74,11 +74,14 @@ export default function Map() {
 
   useEffect(() => {
     // ============================== 지도 생성 ====================================
+    // ============================== 지도 생성 ====================================
     const options = {
+      center: new window.kakao.maps.LatLng(lt, lg),
       center: new window.kakao.maps.LatLng(lt, lg),
       level: 4,
       category_group_code: 'HP8',
       useMapBounds: true,
+      location: new kakao.maps.LatLng(lt, lg),
       location: new kakao.maps.LatLng(lt, lg),
       useMapCenter: true,
       radius: 2000,
@@ -158,7 +161,6 @@ export default function Map() {
 
     // 지도에 마커를 표시하는 함수입니다
     function displayMarker(place) {
-
       // 마커를 생성하고 지도에 표시합니다
       var marker = new kakao.maps.Marker({
         map: map,
@@ -222,6 +224,9 @@ export default function Map() {
       </StInputBox>
 
       <StMapContainer ref={container}>
+        <div style={{ width: '99%', height: '800px' }}></div>
+
+        {isModalOpen ? <Modal setIsModalOpen={setIsModalOpen} /> : ''}
         <div style={{ width: '99%', height: '800px' }}></div>
 
         {isModalOpen ? <Modal setIsModalOpen={setIsModalOpen} /> : ''}

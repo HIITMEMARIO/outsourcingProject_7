@@ -2,6 +2,8 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { onAuthStateChanged } from 'firebase/auth';
+import { getFirestore } from "firebase/firestore";
+
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -13,4 +15,15 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-export { auth, onAuthStateChanged };
+const db = getFirestore(app);
+export { auth, onAuthStateChanged, db };
+const fetchSignInMethodsForEmail = async (auth, email) => {
+  try {
+    const signInMethods = await auth.fetchSignInMethodsForEmail(email);
+    return signInMethods;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export { fetchSignInMethodsForEmail };

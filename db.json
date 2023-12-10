@@ -1,27 +1,6 @@
 {
   "review": [
     {
-      "id": "2af2618c-2707-2c4c-7565-1f33c1ac2f22",
-      "comment": "ㅇㅇㅇㅇㅇㅇ",
-      "nickname": "에이닷",
-      "createdAt": "2023-12-08 06:28:51",
-      "hospitalId": "9746155"
-    },
-    {
-      "id": "589d3f32-59b1-a3ab-0085-6d0fa80435f7",
-      "comment": "뉴요커",
-      "nickname": "에이닷",
-      "createdAt": "2023-12-08 06:30:37",
-      "hospitalId": "786616546"
-    },
-    {
-      "id": "43f89aad-ae91-43f8-bcca-918661df1d81",
-      "comment": "연세치과 리뷰입니다",
-      "nickname": "희원쓰",
-      "createdAt": "2023-12-08 07:06:57",
-      "hospitalId": "2027456859"
-    },
-    {
       "id": "0c86f09f-ec20-4e0e-1c36-43b21bcf3a1d",
       "comment": "ㄴㅇㅁㄴ",
       "nickname": "희원",
@@ -44,55 +23,6 @@
     }
   ],
   "booking": [
-    {
-      "id": "33f90733-28c9-d373-6a60-8f0b37570c0b",
-      "nickname": "희원",
-      "date": "2023-12-10T05:18:18.298Z",
-      "hospital": "1380407513",
-      "hospitalName": "모든이치과의원"
-    },
-    {
-      "id": "872c23c9-504d-b134-1b14-37f96157df43",
-      "nickname": "희원",
-      "date": "2023-12-10T05:18:24.691Z",
-      "hospital": "39670162",
-      "hospitalName": "감동플란트치과의원"
-    },
-    {
-      "id": "a02d83c4-39b4-ca15-1fea-68c19d7c492a",
-      "nickname": "희원",
-      "date": "2023-12-10T05:24:45.013Z",
-      "hospital": "773906292",
-      "hospitalName": "행복한쥬니어치과의원"
-    },
-    {
-      "id": "e49d945a-1a46-7ef4-6ce5-54e1ed9da60f",
-      "nickname": "희원",
-      "date": "2023-12-10T05:24:47.573Z",
-      "hospital": "9973876",
-      "hospitalName": "서울치과의원"
-    },
-    {
-      "id": "f8ac3966-9eed-dec7-af60-29aac2132a3e",
-      "nickname": "희원",
-      "date": "2023-12-10T05:24:49.265Z",
-      "hospital": "9746155",
-      "hospitalName": "김선주치과의원"
-    },
-    {
-      "id": "3b6d05bb-6b3a-2ece-cf30-95c9478c4ad2",
-      "nickname": "희원",
-      "date": "2023-12-10T05:25:01.128Z",
-      "hospital": "1380407513",
-      "hospitalName": "모든이치과의원"
-    },
-    {
-      "id": "ee31bd88-2f65-7a7a-175c-3a5bbcd7bfd8",
-      "nickname": "희원",
-      "date": "2023-12-10T05:25:03.964Z",
-      "hospital": "9746155",
-      "hospitalName": "김선주치과의원"
-    },
     {
       "id": "3cb8f542-0162-f7a0-9386-956d0bbb6f01",
       "nickname": "희원",

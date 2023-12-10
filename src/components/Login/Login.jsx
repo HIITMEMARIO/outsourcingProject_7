@@ -4,40 +4,98 @@ import { useDispatch, useSelector } from 'react-redux';
 import { __loginUser, __signupUser } from '../../redux/modules/authSlice';
 import useForm from 'Hooks/userForm';
 import { useNavigate } from 'react-router-dom';
-import { auth } from 'shared/firebase';
+import { auth, db } from 'shared/firebase';
+import { fetchSignInMethodsForEmail } from 'firebase/auth';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isValidEmail, setIsValidEmail] = useState(true);
   const isLogin = useSelector((state) => state.authSlice.isLogin);
-  const [isLoginMode, setIsLoginMode] = useState(true);
+  const [isLoginMode, setIsLoginMode] = useState(false);
+
+  const [canUseEmail, setCanUseEmail] = useState(false);
+  const [canUseNickname, setCanUseNickname] = useState(false);
+
   // const [validEmail, setValidEmail] = useState(true);
   const { formState, onChangeHandler, resetForm } = useForm({
     email: '',
     password: '',
     checkpassword: '',
     nickname: '',
-    validPasswrod: '',
   });
+  // validPasswrod: '',
   const { password, nickname, email, checkpassword } = formState;
-  const eamilRegex =
-    /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+  const [isSamePassword, setIsSamePassword] = useState(true);
+  useEffect(() => {
+    if (!!password && !!checkpassword) {
+      if (password === checkpassword) setIsSamePassword(true);
+      if (password !== checkpassword) setIsSamePassword(false);
+    }
+  }, [checkpassword, password]);
+
+  //커스텀훅의 email을 가져와서 정규표현식을 통해 검사하고 isValidEmail에 결과를 set
+  useEffect(() => {
+    const eamilRegex =
+      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    if (email) setIsValidEmail(eamilRegex.test(email));
+  }, [email]);
 
   useEffect(() => {
     if (isLogin) navigate('/');
-  }, [isLogin]);
+  }, [isLogin, navigate]);
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     //로그인시
     if (isLoginMode) {
-      dispatch(__loginUser({ email, password }));
-
+      const a = await dispatch(__loginUser({ email, password }));
+      console.log('이거 있음!', a);
       //   toast.success('로그인 성공');
+      //a의 에러 메세지에 따라 보여줄 객체를 만들어서 그거 알럿!
     } else {
       //회원가입시
       dispatch(__signupUser({ email, password, nickname }));
       resetForm();
     }
+  };
+  const onHandleCheckEmail = async () => {
+    const emailRef = collection(db, 'userInfo');
+    const q = query(emailRef, where('email', '==', email));
+    const querySnapshot = await getDocs(q);
+    if (!email) {
+      alert('이메일을 입력해 주세요.');
+    } else if (!isValidEmail) {
+      alert('올바른 이메일을 입력해 주세요.');
+    } else if (querySnapshot.docs.length === 0) {
+      setCanUseEmail(true);
+      alert('사용가능한 이메일 입니다.');
+    } else {
+      setCanUseEmail(false);
+
+      alert('이미 사용중인 이메일 입니다.');
+    }
+  };
+  const onHandleCheckNickname = async () => {
+    const emailRef = collection(db, 'userInfo');
+    const q = query(emailRef, where('nickname', '==', nickname));
+    const querySnapshot = await getDocs(q);
+    if (!nickname) {
+      alert('닉네임을 입력해 주세요.');
+    } else if (querySnapshot.docs.length === 0) {
+      setCanUseNickname(true);
+      alert('사용가능한 닉네임 입니다.');
+    } else {
+      setCanUseNickname(false);
+
+      alert('이미 사용중인 닉네임 입니다.');
+    }
+  };
+  const onHandleToggle = () => {
+    resetForm();
+    setIsLoginMode((prev) => !prev);
   };
   return (
     <Container>
@@ -50,6 +108,12 @@ function Login() {
             onChange={onChangeHandler}
             placeholder="이메일을 입력해 주세요."
           />
+          {!isValidEmail && <span>유효한 이메일 형식이 아닙니다.</span>}
+          {!isLoginMode && (
+            <button type="button" onClick={onHandleCheckEmail}>
+              중복 확인
+            </button>
+          )}
           <Input
             name="password"
             value={password}
@@ -62,7 +126,7 @@ function Login() {
           {!isLoginMode && (
             <>
               <Input
-                name="validPasswrod"
+                name="checkpassword"
                 value={checkpassword}
                 onChange={onChangeHandler}
                 placeholder="비밀번호 확인"
@@ -70,6 +134,7 @@ function Login() {
                 maxLength={15}
                 type="password"
               />
+              {isSamePassword ? '' : <span>설정하신 비밀번호와 다릅니다.</span>}
               <Input
                 name="nickname"
                 value={nickname}
@@ -78,20 +143,32 @@ function Login() {
                 minLength={1}
                 maxLength={10}
               />
+              {!isLoginMode && (
+                <button type="button" onClick={onHandleCheckNickname}>
+                  중복 확인
+                </button>
+              )}
             </>
           )}
           <Button
             disabled={
               isLoginMode
-                ? !email || !password
-                : !email || !password || !nickname
+                ? !email || !isValidEmail || !password
+                : !email ||
+                  !isValidEmail ||
+                  !password ||
+                  !nickname ||
+                  !checkpassword ||
+                  !isSamePassword ||
+                  !canUseEmail ||
+                  !canUseNickname
             }
           >
             {isLoginMode ? '로그인' : '회원가입'}
           </Button>
         </InputWrap>
         <ToggleText>
-          <span onClick={() => setIsLoginMode((prev) => !prev)}>
+          <span onClick={onHandleToggle}>
             {isLoginMode ? '회원가입' : '로그인'}
           </span>
         </ToggleText>

@@ -40,7 +40,6 @@ export default function Review() {
 
   const dataHospitalId = data.id;
 
-
   useEffect(() => {
     dispatch(__getReview());
   }, [dispatch]);
