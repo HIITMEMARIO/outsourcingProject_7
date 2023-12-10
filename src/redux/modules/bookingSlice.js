@@ -28,8 +28,12 @@ export const __getBooking = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const res = await bookingAxios.get('/booking');
-
-      return res.data;
+      const resData = res.data.filter((item) => {
+        const changeDateform = new Date(item.date);
+        const nowDate = new Date(Date.now());
+        return changeDateform.getTime() > nowDate.getTime();
+      });
+      return resData;
     } catch (error) {
       console.log('error', error);
       return thunkAPI.rejectWithValue(error);
@@ -42,7 +46,7 @@ export const __deleteBooking = createAsyncThunk(
   'deleteBooking',
   async (payload, thunkAPI) => {
     try {
-      const res = await bookingAxios.delete(`/booking/${payload}`);
+      await bookingAxios.delete(`/booking/${payload}`);
 
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
@@ -126,8 +130,10 @@ export const bookingSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.booking = state.booking.map((item) => {
+          // console.log('item', item.id);
           if (item.id === action.payload.id) {
-            console.log('dfsfsdfafrfref', action.payload);
+            console.log('dfsfsdfafrfdsfref', action.payload.id);
+            console.log('sdfdd', item.id);
             return { ...item, date: action.payload.date };
           }
           return item;

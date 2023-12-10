@@ -43,50 +43,18 @@
   ],
   "booking": [
     {
-      "id": "43a9ce6c-5b4c-49eb-06ba-81c61bbc17db",
-      "nickname": "희원",
-      "date": "2023년 12월 14일",
-      "hospital": "10633882",
-      "hospitalName": "인천예치과의원"
-    },
-    {
-      "id": "34567fbd-5a87-84ca-5f54-81e3993f58c5",
-      "nickname": "희원",
-      "date": ""
-    },
-    {
-      "id": "e34f5869-bc7c-09e2-e782-72fce0128797",
-      "nickname": "희원",
-      "date": ""
-    },
-    {
-      "id": "6afb274e-348f-a3b3-9ef4-f67fa5105745",
-      "nickname": "희원",
-      "date": "2023년 12월 10일",
-      "hospital": "9945942",
-      "hospitalName": "용치과의원"
-    },
-    {
-      "id": "66655b0e-a111-8058-6f63-3f4a39594952",
+      "id": "e7040c87-113a-b707-ed89-4b547dc2307f",
       "nickname": "에이닷",
-      "date": ""
+      "date": "2023년 12월 21일",
+      "hospital": "9673754",
+      "hospitalName": "김상현소아청소년과의원"
     },
     {
-      "id": "844fd3b6-ae66-810c-43b5-9c15977e45cf",
+      "id": "ca817150-388e-d19a-d6b6-b525a2720fcc",
       "nickname": "에이닷",
-      "date": ""
-    },
-    {
-      "id": "51499463-a256-5024-33d4-1f8126bbaba6",
-      "nickname": "에이닷",
-      "date": "2023년 12월 23일"
-    },
-    {
-      "id": "973ec4a1-6755-3c21-b1fa-69607c3323c4",
-      "nickname": "에이닷",
-      "date": "2023년 12월 11일",
-      "hospital": "9845499",
-      "hospitalName": "바른이치과"
+      "date": "2023-12-11T01:00:00.000",
+      "hospital": "17464878",
+      "hospitalName": "스마일치과의원"
     }
   ]
 }
