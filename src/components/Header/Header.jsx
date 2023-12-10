@@ -26,7 +26,6 @@ export default function Header() {
     <StContainer>
       <StLogoBox onClick={() => navigate('/')}>
         <img src={mainlogo} alt="logoIMG" />
-        {/* <p style={{ fontFamily: 'ONE-Mobile-POP' }}>My아포</p> */}
       </StLogoBox>
       {isLogin ? (
         <>

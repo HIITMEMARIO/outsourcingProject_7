@@ -4,14 +4,13 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './editBooking.css';
 import { ko } from 'date-fns/esm/locale';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { auth } from 'shared/firebase';
 import { format, setHours, setMinutes } from 'date-fns';
 
 import { __editBooking } from '../../redux/modules/bookingSlice';
 
 export default function EditBooking({ schedule }) {
-  console.log('선택한 스케줄', schedule);
   const dispatch = useDispatch();
   const [nickname, setNickname] = useState('');
   useEffect(() => {

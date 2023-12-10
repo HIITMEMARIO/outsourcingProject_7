@@ -31,6 +31,14 @@
       "createdAt": "2023-12-10 13:47:15",
       "hospitalId": "10889257",
       "hospitalName": "평화치과"
+    },
+    {
+      "id": "74c81678-74fb-436b-db3d-6cc1f2461d3b",
+      "comment": "ㅇㅇㅇ",
+      "nickname": "씨다씨",
+      "createdAt": "2023-12-10 18:46:18",
+      "hospitalId": "17464878",
+      "hospitalName": "스마일치과의원"
     }
   ],
   "booking": [
