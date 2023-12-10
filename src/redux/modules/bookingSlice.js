@@ -3,7 +3,7 @@ import bookingAxios from 'api/booking';
 import axios from 'axios';
 
 const initialState = {
-  review: [],
+  booking: [],
   isLoading: false,
   isError: false,
   error: null,
@@ -14,7 +14,7 @@ export const __addBooking = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const res = await bookingAxios.post('/booking', payload);
-      console.log('addReviews -> res', res.data);
+
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -28,8 +28,7 @@ export const __getBooking = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const res = await bookingAxios.get('/booking');
-      console.log('getReviews', res.data);
-      // return thunkAPI.fulfillWithValue(res.data);
+
       return res.data;
     } catch (error) {
       console.log('error', error);
@@ -45,8 +44,7 @@ export const __deleteBooking = createAsyncThunk(
     try {
       const res = await bookingAxios.delete(`/booking/${payload}`);
 
-      // console.log('삭제', res.data);
-      return res.data;
+      return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       console.log('error', error);
       return thunkAPI.rejectWithValue(error);
@@ -63,10 +61,8 @@ export const __editBooking = createAsyncThunk(
         comment: payload.newComment,
       });
 
-      console.log('res', res.data);
       return res.data;
     } catch (error) {
-      // console.log('error', error);
       return thunkAPI.rejectWithValue(error);
     }
   },
@@ -85,12 +81,12 @@ export const bookingSlice = createSlice({
       .addCase(__getBooking.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        // state.review = action.payload;
+        state.booking = action.payload;
       })
       .addCase(__getBooking.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        state.review = action.payload;
+        state.booking = action.payload;
       })
       .addCase(__addBooking.pending, (state) => {
         state.isLoading = true;
@@ -105,16 +101,17 @@ export const bookingSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
       })
-      .addCase(__deleteBooking.pending, (state) => {
+      .addCase(__deleteBooking.pending, (state, action) => {
         state.isLoading = true;
         state.isError = false;
       })
       .addCase(__deleteBooking.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        // state.review = state.review.filter(
-        //   (data) => data.id === action.payload,
-        // );
+
+        state.booking = state.booking.filter((data) => {
+          return data.id !== action.payload;
+        });
       })
       .addCase(__deleteBooking.rejected, (state, action) => {
         state.isLoading = false;

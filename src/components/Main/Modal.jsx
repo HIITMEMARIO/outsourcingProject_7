@@ -14,7 +14,7 @@ export default function Modal({ setIsModalOpen }) {
   const [nickname, setNickname] = useState('');
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      setNickname(user.displayName);
+      if (user) setNickname(user.displayName);
     });
   }, []);
   console.log('모달닉네임', nickname);
@@ -37,39 +37,45 @@ export default function Modal({ setIsModalOpen }) {
       hospitalName: data.place_name,
     });
     setIsModalOpen(false);
-    console.log(response);
+    console.log('부킹', response.data);
   };
 
   return (
-    <StModal>
-      <button
-        onClick={() => {
-          setIsModalOpen(false);
-        }}
-      >
-        X
-      </button>
-      <h1>{data.place_name} 예약하기</h1>
-      <DatePicker
-        locale={ko}
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
-        dateFormat="yyyy년 MM월 dd일"
-        minDate={new Date()}
-      />
-      <StButtonBox>
-        <Stbutton
-          onClick={() => {
-            booking();
-          }}
-        >
-          예약
-        </Stbutton>
-      </StButtonBox>
-      {/* <StMemoBox>
+    <>
+      {!!nickname ? (
+        <StModal>
+          <button
+            onClick={() => {
+              setIsModalOpen(false);
+            }}
+          >
+            X
+          </button>
+          <h1>{data.place_name} 예약하기</h1>
+          <DatePicker
+            locale={ko}
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            dateFormat="yyyy년 MM월 dd일"
+            minDate={new Date()}
+          />
+          <StButtonBox>
+            <Stbutton
+              onClick={() => {
+                booking();
+              }}
+            >
+              예약
+            </Stbutton>
+          </StButtonBox>
+          {/* <StMemoBox>
         <h1>메모</h1>
         <StMemoInput maxLength={20} />
       </StMemoBox> */}
-    </StModal>
+        </StModal>
+      ) : (
+        ''
+      )}
+    </>
   );
 }

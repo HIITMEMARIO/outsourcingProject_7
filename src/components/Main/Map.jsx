@@ -6,7 +6,7 @@ import Modal from './Modal';
 import { useDispatch } from 'react-redux';
 import { data } from '../../redux/modules/mapSlice';
 import { auth } from 'shared/firebase';
-import bookingAxios from 'api/booking';
+// import bookingAxios from 'api/booking';
 import { __getBooking } from '../../redux/modules/bookingSlice';
 
 const { kakao } = window;
@@ -27,9 +27,9 @@ export default function Map() {
     const getBookingData = async () => {
       try {
         const getBooking = await dispatch(__getBooking());
-        console.log(getBooking);
+        console.log('디스패치 성공', dispatch);
         const idFiltered = getBooking.payload.filter((item) => {
-          console.log('item', item, 'nickname', nickname);
+          // console.log('item', item, 'nickname', nickname);
           return item.nickname === nickname;
         });
         setBookingData(idFiltered);
@@ -38,11 +38,11 @@ export default function Map() {
       }
     };
     getBookingData();
-  }, []);
+  }, [nickname]);
   console.log('bookingData', bookingData);
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      setNickname(user.displayName);
+      if (user) setNickname(user.displayName);
     });
   }, []);
   console.log('맵 닉네임', nickname);
@@ -133,7 +133,7 @@ export default function Map() {
 
     // 지도에 마커를 표시하는 함수입니다
     function displayMarker(place) {
-      console.log('place', place);
+      // console.log('place', place);
       // 마커를 생성하고 지도에 표시합니다
       var marker = new kakao.maps.Marker({
         map: map,

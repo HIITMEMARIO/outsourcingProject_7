@@ -87,7 +87,6 @@ export default function Review() {
               <div> {data.phone}</div>
               <div> {data.place_url}</div>
             </>
-            <div>Hospital Information</div>
           </StHospitalInfo>
           <h1
             style={{
@@ -137,9 +136,7 @@ export default function Review() {
               value={comment}
               onChange={onReviewChange}
               maxLength={100}
-            >
-              {/* 로그인한 유저만 댓글 작성 가능 */}
-            </StReviewComment>
+            ></StReviewComment>
           </StFormBox>
         </StCommentsBox>
       </StContainer>

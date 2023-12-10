@@ -7,7 +7,6 @@ ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
     <GlobalFonts />
-    //4-2
     <Routes />
     ...
   </React.StrictMode>,
