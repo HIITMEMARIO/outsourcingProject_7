@@ -21,8 +21,7 @@ export default function Map() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [nickname, setNickname] = useState('');
   const [bookingData, setBookingData] = useState([]);
-  const [myBooking, setMybooking] = useState([]);
-  const booking = useSelector((state) => state.bookingSlice);
+
   const [문길, set문길] = useState([]);
   // 1
   useEffect(() => {
@@ -49,42 +48,28 @@ export default function Map() {
     getBookingData();
   }, [nickname]);
   // useEffect내용 적당히 분리하면서 코드 짤것
-  //3
-  useEffect(() => {
-    const myBooking = bookingData.filter((booking) =>
-      hospitalData.some((hospital) => booking.hospital === hospital.id),
-    );
-    console.log(myBooking);
-    setMybooking(myBooking);
-  }, [hospitalData, bookingData]);
 
   // 카카오 맵
   useEffect(() => {
     // ============================== 지도 생성 ====================================
-    // ============================== 지도 생성 ====================================
     const options = {
-      center: new window.kakao.maps.LatLng(lt, lg),
       center: new window.kakao.maps.LatLng(lt, lg),
       level: 4,
       category_group_code: 'HP8',
       useMapBounds: true,
       location: new kakao.maps.LatLng(lt, lg),
-      location: new kakao.maps.LatLng(lt, lg),
       useMapCenter: true,
       radius: 2000,
     };
     const map = new window.kakao.maps.Map(container.current, options);
-
     // ===========================================================================
 
     // ============================== 맵 줌 컨트롤 ==================================
-
     map.setZoomable(false);
     var mapTypeControl = new kakao.maps.MapTypeControl();
     map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPLEFT);
     var zoomControl = new kakao.maps.ZoomControl();
     map.addControl(zoomControl, kakao.maps.ControlPosition.LEFT);
-
     // ===========================================================================
 
     // ============================= 현재 위치 ==================================
@@ -155,10 +140,6 @@ export default function Map() {
 
       let hospitalname = '';
       let date = '';
-      // 민석님과 준혁님이  하신것
-      // const booking = myBooking.find((booking) => {
-      //   return booking.hospital === place.id;
-      // });
       console.log(문길);
       const booking = 문길.find((booking) => {
         return booking.hospital === place.id;
@@ -168,18 +149,18 @@ export default function Map() {
 
       console.log(booking);
       if (booking) {
-        console.log('..............................');
         hospitalname = booking.hospitalName;
         date = booking.date;
       } else if (booking === undefined) {
         hospitalname = place.place_name;
       }
 
-      const content = `<div class ="label"><span class="left">${hospitalname}</span><span class="center">${date}에 예약되어 있어요!</span><span class="right"></span></div>`;
+      const content = `<div class ="label"><span class="hospitalname">${hospitalname}</span><span class="date">${date}에 예약되어 있어요!</span><span class="right"></span></div>`;
+      const noBookingcontent = `<div class ="label"><span class="left">${hospitalname}</span><span class="center"></span><span class="right"></span></div>`;
 
       var customOverlay = new kakao.maps.CustomOverlay({
         position: marker.getPosition(),
-        content: booking ? content : '',
+        content: booking ? content : noBookingcontent,
         yAnchor: 1.4,
       });
       customOverlays.push(customOverlay);
@@ -217,10 +198,6 @@ export default function Map() {
 
       <StMapContainer ref={container}>
         <div style={{ width: '99%', height: '800px' }}></div>
-
-        {isModalOpen ? <Modal setIsModalOpen={setIsModalOpen} /> : ''}
-        <div style={{ width: '99%', height: '800px' }}></div>
-
         {isModalOpen ? <Modal setIsModalOpen={setIsModalOpen} /> : ''}
       </StMapContainer>
     </>

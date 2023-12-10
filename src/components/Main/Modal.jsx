@@ -9,6 +9,7 @@ import { auth } from 'shared/firebase';
 import axios from 'axios';
 import bookingAxios from 'api/booking';
 import uuid from 'react-uuid';
+import { toast } from 'react-toastify';
 
 export default function Modal({ setIsModalOpen }) {
   const [nickname, setNickname] = useState('');
@@ -34,6 +35,7 @@ export default function Modal({ setIsModalOpen }) {
       hospital: data.id,
       hospitalName: data.place_name,
     });
+    toast.success('예약 되셨습니다!');
     setIsModalOpen(false);
     console.log('부킹', response.data);
   };
@@ -73,10 +75,6 @@ export default function Modal({ setIsModalOpen }) {
               예약
             </Stbutton>
           </StButtonBox>
-          {/* <StMemoBox>
-        <h1>메모</h1>
-        <StMemoInput maxLength={20} />
-      </StMemoBox> */}
         </StModal>
       ) : (
         ''
