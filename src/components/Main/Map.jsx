@@ -61,11 +61,14 @@ export default function Map() {
   // 카카오 맵
   useEffect(() => {
     // ============================== 지도 생성 ====================================
+    // ============================== 지도 생성 ====================================
     const options = {
+      center: new window.kakao.maps.LatLng(lt, lg),
       center: new window.kakao.maps.LatLng(lt, lg),
       level: 4,
       category_group_code: 'HP8',
       useMapBounds: true,
+      location: new kakao.maps.LatLng(lt, lg),
       location: new kakao.maps.LatLng(lt, lg),
       useMapCenter: true,
       radius: 2000,
@@ -213,6 +216,9 @@ export default function Map() {
       </StInputBox>
 
       <StMapContainer ref={container}>
+        <div style={{ width: '99%', height: '800px' }}></div>
+
+        {isModalOpen ? <Modal setIsModalOpen={setIsModalOpen} /> : ''}
         <div style={{ width: '99%', height: '800px' }}></div>
 
         {isModalOpen ? <Modal setIsModalOpen={setIsModalOpen} /> : ''}

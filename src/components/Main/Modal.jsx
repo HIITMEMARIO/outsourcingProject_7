@@ -35,7 +35,7 @@ export default function Modal({ setIsModalOpen }) {
       hospitalName: data.place_name,
     });
     setIsModalOpen(false);
-    console.log(response);
+    console.log('부킹', response.data);
   };
 
   const dateFormatChange =
