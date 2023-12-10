@@ -127,7 +127,6 @@ export const bookingSlice = createSlice({
       .addCase(__editBooking.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        console.log('qqq');
         // state.review = state.review.map((item) => {
         //   if (item.id === action.payload.id) {
         //     return { ...item, comment: action.payload.comment };
@@ -142,5 +141,5 @@ export const bookingSlice = createSlice({
       });
   },
 });
-export const {} = bookingSlice.actions;
+export const { } = bookingSlice.actions;
 export default bookingSlice.reducer;

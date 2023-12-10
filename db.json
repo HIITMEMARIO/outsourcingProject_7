@@ -223,25 +223,18 @@
       "hospitalName": "시지퍼스트치과"
     },
     {
-      "id": "5f1e037a-5759-1d96-8b8f-35cb51025b53",
+      "id": "748f3551-7ea0-3f14-916a-bb2937690fe4",
       "nickname": "na@na.com",
       "date": "2023년 12월 10일",
       "hospital": "1964798161",
       "hospitalName": "시지튼튼치과보철과치과의원"
     },
     {
-      "id": "de06126e-ef6b-97cb-04c7-f397510a397d",
+      "id": "1c4c6e31-c256-ba6a-8189-e69c5a617dc1",
       "nickname": "na@na.com",
       "date": "2023년 12월 10일",
-      "hospital": "11119514",
-      "hospitalName": "시지퍼스트치과"
-    },
-    {
-      "id": "aed4a876-bc89-3ae0-17cc-05d6ef2b07a5",
-      "nickname": "na@na.com",
-      "date": "2023년 12월 10일",
-      "hospital": "26933114",
-      "hospitalName": "사랑을심는치과의원"
+      "hospital": "1964798161",
+      "hospitalName": "시지튼튼치과보철과치과의원"
     }
   ]
 }

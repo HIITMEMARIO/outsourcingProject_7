@@ -11,18 +11,8 @@ import TokenRemainingTime from './TokenRemainingTime';
 export default function Header() {
   const dispatch = useDispatch();
 
-  //확인용
-  // const a = auth.currentUser;
-  // console.log('a', a);
-  // useEffect(() => {
-  //   // const a = auth.currentUser;
-
-  //   console.log('dddddddddddddddddddddddddddddd', a);
-  // }, []);
-
   const navigate = useNavigate();
   const isLogin = useSelector((state) => state.authSlice.isLogin);
-  console.log(isLogin);
 
   const onHandleLoginBtn = () => {
     navigate('/login');

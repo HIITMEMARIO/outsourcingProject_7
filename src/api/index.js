@@ -25,7 +25,6 @@ signUpApi.interceptors.request.use(
         try {
             const { data } = await authApi.get("/user")
             if (await data.find(item => item.id === config.data.id)) {
-                console.log('중복 아이디가 있습니다.')
                 return Promise.reject('Duplicate ID found')
             }
             return config

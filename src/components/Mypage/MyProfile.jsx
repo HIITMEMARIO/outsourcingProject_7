@@ -25,7 +25,6 @@ export default function MyProfile() {
   const [isEdit, setIsEdit] = useState(false);
   const { review, isLoading } = useSelector((state) => state.reviewSlice);
   const { booking } = useSelector((state) => state.bookingSlice);
-  console.log('booking', booking);
   const myReview = review.filter((item) => {
     return item.nickname === nickname;
   });
@@ -63,8 +62,6 @@ export default function MyProfile() {
       });
     }
   };
-
-  console.log('이거 찾아보자', booking);
 
   // const deleteBooking = async (id) => {
   //   if (window.confirm('삭제하시겠습니까?')) {
@@ -138,7 +135,6 @@ export default function MyProfile() {
         <StScheduleContainer>
           {booking
             ?.filter((item) => {
-              // console.log('dddd', item);
               return item.nickname === nickname;
             })
             .map((item) => {

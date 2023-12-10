@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { auth, db } from 'shared/firebase';
 import { fetchSignInMethodsForEmail } from 'firebase/auth';
 import { collection, getDocs, query, where } from 'firebase/firestore';
+import { toast } from 'react-toastify';
 
 function Login() {
   const navigate = useNavigate();
@@ -53,21 +54,24 @@ function Login() {
     if (isLoginMode) {
       const res = await dispatch(__loginUser({ email, password }));
       if (res.type === 'getLoginUser/rejected') {
-        alert(`이메일이나 비밀번호가 잘못입력됐습니다. 다시 입력해 주세요.`);
+        toast.success(
+          `이메일이나 비밀번호가 잘못입력됐습니다. 다시 입력해 주세요.`,
+        );
       } else if (res.type === 'getLoginUser/fulfilled') {
-        alert(`${res.payload.displayName}님, 반갑습니다.`);
+        toast.error(`${res.payload.displayName}님, 반갑습니다.`);
       }
 
       //   toast.success('로그인 성공');
     } else {
       const res = await dispatch(__signupUser({ email, password, nickname }));
       if (res.type === 'getSignupUser/rejected') {
-        alert('회원가입에 실패하셨습니다. 다시 시도해 주세요.');
+        toast.success('회원가입에 실패하셨습니다. 다시 시도해 주세요.');
       } else if (res.type === 'getSignupUser/fulfilled') {
-        alert(`${res.payload.displayName}님, My아포에 오신걸 환영합니다.`);
+        toast.error(
+          `${res.payload.displayName}님, My아포에 오신걸 환영합니다.`,
+        );
       }
 
-      console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', res);
       resetForm();
     }
   };
@@ -76,16 +80,16 @@ function Login() {
     const q = query(emailRef, where('email', '==', email));
     const querySnapshot = await getDocs(q);
     if (!email) {
-      alert('이메일을 입력해 주세요.');
+      toast.error('이메일을 입력해 주세요.');
     } else if (!isValidEmail) {
-      alert('올바른 이메일을 입력해 주세요.');
+      toast.error('올바른 이메일을 입력해 주세요.');
     } else if (querySnapshot.docs.length === 0) {
       setCanUseEmail(true);
-      alert('사용가능한 이메일 입니다.');
+      toast.success('사용가능한 이메일 입니다.');
     } else {
       setCanUseEmail(false);
 
-      alert('이미 사용중인 이메일 입니다.');
+      toast.error('이미 사용중인 이메일 입니다.');
     }
   };
   const onHandleCheckNickname = async () => {
@@ -93,14 +97,14 @@ function Login() {
     const q = query(emailRef, where('nickname', '==', nickname));
     const querySnapshot = await getDocs(q);
     if (!nickname) {
-      alert('닉네임을 입력해 주세요.');
+      toast.error('닉네임을 입력해 주세요.');
     } else if (querySnapshot.docs.length === 0) {
       setCanUseNickname(true);
-      alert('사용가능한 닉네임 입니다.');
+      toast.success('사용가능한 닉네임 입니다.');
     } else {
       setCanUseNickname(false);
 
-      alert('이미 사용중인 닉네임 입니다.');
+      toast.error('이미 사용중인 닉네임 입니다.');
     }
   };
   const onHandleToggle = () => {

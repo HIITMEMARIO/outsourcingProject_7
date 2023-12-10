@@ -17,6 +17,7 @@ import {
 } from './style';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from 'shared/firebase';
+import { toast } from 'react-toastify';
 
 export default function Review() {
   const [nickname, setNickname] = useState('');
@@ -47,11 +48,11 @@ export default function Review() {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (!nickname) {
-      alert('로그인 후 작성바랍니다');
+      toast.error('로그인 후 작성바랍니다');
       return;
     }
     if (comment === '') {
-      alert('내용을 입력해주세요');
+      toast.error('내용을 입력해주세요');
       return;
     }
     const newReview = {
