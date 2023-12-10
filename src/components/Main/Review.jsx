@@ -74,6 +74,9 @@ export default function Review() {
   const onReviewChange = (e) => {
     setComment(e.target.value);
   };
+  const hospitalReview = review.filter((item) => {
+    return item.hospitalId === dataHospitalId;
+  });
   if (!dataHospitalId) return;
   return (
     <>
@@ -105,11 +108,8 @@ export default function Review() {
           >
             {data.place_name}의 리뷰보기
           </h1>
-          {review
-            .filter((item) => {
-              return item.hospitalId === dataHospitalId;
-            })
-            .map((item) => {
+          {hospitalReview.length > 0 ? (
+            hospitalReview.map((item) => {
               return (
                 <div key={item.id}>
                   <StReviewBox>
@@ -121,7 +121,10 @@ export default function Review() {
                   </StReviewBox>
                 </div>
               );
-            })}
+            })
+          ) : (
+            <p>{data.place_name}에 작성된 리뷰가 없어요.</p>
+          )}
           <StFormBox>
             <div>
               <form onSubmit={onSubmitHandler}>

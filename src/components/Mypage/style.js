@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const StProfileContainer = styled.div`
   display: flex;
@@ -7,16 +7,21 @@ export const StProfileContainer = styled.div`
   justify-content: center;
 `;
 
-//-----------------------------------------
 // 내 스케쥴 관리
 export const StScheduleContainer = styled.div`
-  display: flex;
+display: flex;
   text-align: center;
   justify-items: center;
-  display: grid;
+ 
+${({ $myBooking }) => {
+    if ($myBooking.length > 0) {
+      return css`
+   display: grid;
   grid-template-columns: repeat(2, 1fr);
-
-  gap: 80px;
+  `
+    }
+  }}
+    gap: 80px;
   margin: 0;
 `;
 
