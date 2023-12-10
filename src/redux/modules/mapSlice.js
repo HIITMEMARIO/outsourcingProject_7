@@ -10,8 +10,6 @@ export const mapSlice = createSlice({
   initialState,
   reducers: {
     data: (state, action) => {
-      console.log(state);
-      console.log('action.payload', action.payload);
       state.data = action.payload;
     },
   },

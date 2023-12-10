@@ -6,7 +6,6 @@ import './modal.css';
 import { ko } from 'date-fns/esm/locale';
 import { useDispatch, useSelector } from 'react-redux';
 import { auth } from 'shared/firebase';
-import axios from 'axios';
 import bookingAxios from 'api/booking';
 import uuid from 'react-uuid';
 import { toast } from 'react-toastify';
@@ -57,7 +56,7 @@ export default function Modal({ setIsModalOpen }) {
             showTimeSelect
             selected={startDate}
             onChange={(date) => setStartDate(date)}
-            dateFormat="yyyy년 MM월 dd일 hh시"
+            dateFormat="yyyy년 MM월 dd일 hh시 mm분"
             minDate={new Date()}
           />
           <StButtonBox>

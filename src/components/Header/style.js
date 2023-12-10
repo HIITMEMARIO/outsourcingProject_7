@@ -6,9 +6,11 @@ export const StContainer = styled.div`
   height: 100px;
   width: 100%;
   border-bottom: 1px solid #7a97ff;
+  justify-content: space-between;
 `;
 
 export const StLogoBox = styled.div`
+  cursor: pointer;
   width: 260px;
   height: 100px;
   /* background-color: rebeccapurple; */

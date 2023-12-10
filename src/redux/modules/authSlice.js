@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
-import { collection, doc, getDocs, query, setDoc, where } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "shared/firebase";
 const initialState = {
     isLogin: !!localStorage.getItem("accessToken"),
@@ -8,8 +8,7 @@ const initialState = {
     isLoading: false,
     isError: false,
     error: null,
-    // canUseEmail: true,
-    // canUseNickname: true
+
 }
 
 export const __loginUser = createAsyncThunk("getLoginUser", async (payload, thunkApi) => {
@@ -17,16 +16,13 @@ export const __loginUser = createAsyncThunk("getLoginUser", async (payload, thun
 
         const auth = getAuth();
         const { email, password } = payload
-        // try {
 
         await signInWithEmailAndPassword(auth, email, password)
         if (!!auth.currentUser) {
             const { accessToken, displayName } = auth.currentUser
             return { accessToken, displayName }
         }
-        // } catch (error) {
-        //     throw error
-        // }
+
 
     } catch (error) {
         const errorCode = error.code;
@@ -40,7 +36,6 @@ export const __loginUser = createAsyncThunk("getLoginUser", async (payload, thun
 export const __signupUser = createAsyncThunk("getSignupUser", async (payload, thunkApi) => {
     try {
         const auth = getAuth();
-        console.log(payload)
         const { email, password, nickname } = payload
         await createUserWithEmailAndPassword(auth, email, password)
         await updateProfile(auth.currentUser, {
@@ -73,19 +68,6 @@ const authSlice = createSlice({
             signOut(auth)
             localStorage.clear()
         },
-        // isDuplicateEmail: async (state, action) => {
-        //     const emailRef = collection(db, 'userInfo')
-        //     const q = query(emailRef, where('email', '==', action.payload))
-        //     const querySnapshot = await getDocs(q);
-        //     querySnapshot.docs.length === 0 ? state.canUseEmail = true : state.canUseEmail = false
-        // },
-        // isDuplicateNickname: async (state, action) => {
-        //     const nicknameRef = collection(db, 'userInfo')
-        //     const q = query(nicknameRef, where('nickname', '==', action.payload))
-        //     const querySnapshot = await getDocs(q);
-        //     querySnapshot.docs.length === 0 ? state.canUseNickname = true : state.canUseNickname = false
-        // },
-
     },
     extraReducers: (builder) => {
         builder.addCase(__loginUser.pending, (state, action) => {

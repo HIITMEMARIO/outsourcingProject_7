@@ -21,15 +21,12 @@ import { toast } from 'react-toastify';
 
 export default function Review() {
   const [nickname, setNickname] = useState('');
-  const [user, setUser] = useState(null);
   const [comment, setComment] = useState('');
-  const [userId, setUserId] = useState('');
   const dispatch = useDispatch();
   const { review } = useSelector((state) => state.reviewSlice);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUser(user);
         setNickname(user.displayName);
       }
     });
@@ -58,13 +55,12 @@ export default function Review() {
     const newReview = {
       id: uuid(),
       comment,
-      nickname: user.displayName,
+      nickname: nickname,
       createdAt: new Date().toISOString().replace('T', ' ').substring(0, 19),
       hospitalId: data.id,
     };
 
     dispatch(__addReview(newReview));
-    setUserId('');
     setComment('');
   };
 

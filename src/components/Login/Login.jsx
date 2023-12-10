@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { __loginUser, __signupUser } from '../../redux/modules/authSlice';
 import useForm from 'Hooks/userForm';
 import { useNavigate } from 'react-router-dom';
-import { auth, db } from 'shared/firebase';
-import { fetchSignInMethodsForEmail } from 'firebase/auth';
+import { db } from 'shared/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 
@@ -26,7 +25,6 @@ function Login() {
     checkpassword: '',
     nickname: '',
   });
-  // validPasswrod: '',
   const { password, nickname, email, checkpassword } = formState;
 
   const [isSamePassword, setIsSamePassword] = useState(true);
@@ -37,7 +35,6 @@ function Login() {
     }
   }, [checkpassword, password]);
 
-  //커스텀훅의 email을 가져와서 정규표현식을 통해 검사하고 isValidEmail에 결과를 set
   useEffect(() => {
     const eamilRegex =
       /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
@@ -50,24 +47,21 @@ function Login() {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    //로그인시
     if (isLoginMode) {
       const res = await dispatch(__loginUser({ email, password }));
       if (res.type === 'getLoginUser/rejected') {
-        toast.success(
+        toast.error(
           `이메일이나 비밀번호가 잘못입력됐습니다. 다시 입력해 주세요.`,
         );
       } else if (res.type === 'getLoginUser/fulfilled') {
-        toast.error(`${res.payload.displayName}님, 반갑습니다.`);
+        toast.success(`${res.payload.displayName}님, 반갑습니다.`);
       }
-
-      //   toast.success('로그인 성공');
     } else {
       const res = await dispatch(__signupUser({ email, password, nickname }));
       if (res.type === 'getSignupUser/rejected') {
-        toast.success('회원가입에 실패하셨습니다. 다시 시도해 주세요.');
+        toast.error('회원가입에 실패하셨습니다. 다시 시도해 주세요.');
       } else if (res.type === 'getSignupUser/fulfilled') {
-        toast.error(
+        toast.success(
           `${res.payload.displayName}님, My아포에 오신걸 환영합니다.`,
         );
       }
@@ -113,61 +107,99 @@ function Login() {
   };
   return (
     <Container>
-      <Form onSubmit={onSubmitHandler}>
+      <Form onSubmit={onSubmitHandler} $isLoginMode={isLoginMode}>
         <Title>{isLoginMode ? '로그인' : '회원가입'}</Title>
         <InputWrap>
-          <Input
-            name="email"
-            value={email}
-            onChange={onChangeHandler}
-            placeholder="이메일을 입력해 주세요."
-          />
-          {!isValidEmail && <span>유효한 이메일 형식이 아닙니다.</span>}
-          {!isLoginMode && (
-            <button type="button" onClick={onHandleCheckEmail}>
-              중복 확인
-            </button>
-          )}
-          <Input
-            name="password"
-            value={password}
-            onChange={onChangeHandler}
-            placeholder="비밀번호를 입력해 주세요. (6~15글자)"
-            minLength={6}
-            maxLength={15}
-            type="password"
-          />
-          {!isLoginMode && (
-            <>
+          <SignupContainer>
+            <SignupWrapper>
               <Input
-                name="checkpassword"
-                value={checkpassword}
+                name="email"
+                value={email}
                 onChange={onChangeHandler}
-                placeholder="비밀번호 확인"
+                placeholder="이메일을 입력해 주세요."
+              />
+              {!isValidEmail && (
+                <GuideText>유효한 이메일 형식이 아닙니다.</GuideText>
+              )}
+            </SignupWrapper>
+            {!isLoginMode && (
+              <CheckBtn
+                type="button"
+                onClick={onHandleCheckEmail}
+                $isLoginMode={isLoginMode}
+              >
+                중복확인
+              </CheckBtn>
+            )}
+          </SignupContainer>
+          <SignupContainer>
+            <SignupWrapper>
+              <Input
+                name="password"
+                value={password}
+                onChange={onChangeHandler}
+                placeholder="비밀번호를 입력해 주세요. (6~15글자)"
                 minLength={6}
                 maxLength={15}
                 type="password"
               />
-              {isSamePassword ? '' : <span>설정하신 비밀번호와 다릅니다.</span>}
-              <Input
-                name="nickname"
-                value={nickname}
-                onChange={onChangeHandler}
-                placeholder="닉네임을 입력해 주세요. (1~10글자)"
-                minLength={1}
-                maxLength={10}
-              />
-              {!isLoginMode && (
-                <button type="button" onClick={onHandleCheckNickname}>
-                  중복 확인
-                </button>
-              )}
+            </SignupWrapper>
+            {!isLoginMode && <CheckBtn type="button" nothing={'nothing'} />}
+          </SignupContainer>
+          {password && password.length < 6 ? (
+            <GuideText>6자리 이상의 비밀번호를 입력해 주세요.</GuideText>
+          ) : (
+            ''
+          )}
+          {!isLoginMode && (
+            <>
+              <SignupContainer>
+                <SignupWrapper>
+                  <Input
+                    name="checkpassword"
+                    value={checkpassword}
+                    onChange={onChangeHandler}
+                    placeholder="비밀번호 확인"
+                    minLength={6}
+                    maxLength={15}
+                    type="password"
+                  />
+                  {isSamePassword ? (
+                    ''
+                  ) : (
+                    <GuideText>설정하신 비밀번호와 다릅니다.</GuideText>
+                  )}
+                </SignupWrapper>
+                {!isLoginMode && <CheckBtn type="button" nothing={'nothing'} />}
+              </SignupContainer>
+
+              <SignupContainer>
+                <SignupWrapper>
+                  <Input
+                    name="nickname"
+                    value={nickname}
+                    onChange={onChangeHandler}
+                    placeholder="닉네임을 입력해 주세요. (1~10글자)"
+                    minLength={1}
+                    maxLength={10}
+                  />
+                </SignupWrapper>
+                {!isLoginMode && (
+                  <CheckBtn
+                    type="button"
+                    onClick={onHandleCheckNickname}
+                    $isLoginMode={isLoginMode}
+                  >
+                    중복확인
+                  </CheckBtn>
+                )}
+              </SignupContainer>
             </>
           )}
           <Button
             disabled={
               isLoginMode
-                ? !email || !isValidEmail || !password
+                ? !email || !isValidEmail || !password || password.length < 6
                 : !email ||
                   !isValidEmail ||
                   !password ||
@@ -192,6 +224,53 @@ function Login() {
 }
 
 export default Login;
+const GuideText = styled.span`
+  font-size: 3px;
+`;
+const SignupWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+const SignupContainer = styled.div`
+  display: flex;
+  width: 100%;
+`;
+const CheckBtn = styled.button`
+  width: 50px;
+  height: 40px;
+  color: white;
+  border-radius: 50%;
+  ${({ nothing }) => {
+    if (nothing === 'nothing') {
+      return css`
+        background-color: inherit;
+      `;
+    } else {
+      return css`
+        background-color: #c3ebff;
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.05);
+          background-color: #7a97ff;
+        }
+      `;
+    }
+  }}
+  font-size: 5px;
+  ${({ $isLoginMode }) => {
+    if ($isLoginMode) {
+      return css`
+        display: none;
+      `;
+    } else if (!$isLoginMode) {
+      return css`
+        display: inline;
+      `;
+    }
+  }}
+`;
 const InputWrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -209,6 +288,7 @@ const Button = styled.button`
     }
     return css`
       background-color: #7a97ff;
+      color: white;
       cursor: pointer;
     `;
   }}
@@ -223,7 +303,17 @@ const Container = styled.div`
 `;
 const Form = styled.form`
   background-color: white;
-  width: 400px;
+  ${({ $isLoginMode }) => {
+    if ($isLoginMode) {
+      return css`
+        width: 400px;
+      `;
+    } else if (!$isLoginMode) {
+      return css`
+        width: 450px;
+      `;
+    }
+  }}
   border-radius: 12px;
   padding: 20px;
   font-size: 16px;
@@ -238,14 +328,11 @@ const Title = styled.p`
 const Input = styled.input`
   border: none;
   border-bottom: 1px solid gray;
-  /**input테두리 없애고 밑줄만 */
   display: flex;
-  /* justify-content: center; */
-  width: 80%;
+  width: 300px;
   display: block;
   margin-bottom: 16px;
   outline: none;
-  /**input 클릭시 테두리쳐지는거 삭제 */
   padding: 12px 0;
 `;
 const ToggleText = styled.div`
@@ -255,7 +342,7 @@ const ToggleText = styled.div`
 
   & span {
     color: lightgray;
-    user-select: none; /**span이지만 사용자가 드래그 못함 */
+    user-select: none;
     cursor: pointer;
     &:hover {
       color: black;
