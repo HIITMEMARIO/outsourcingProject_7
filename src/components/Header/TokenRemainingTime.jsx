@@ -32,7 +32,7 @@ export default function TokenRemainingTime() {
     };
     expireTime();
     return () => clearInterval(timeReload);
-  }, []);
+  }, [dispatch]);
   return (
     <div>
       로그인 만료시까지{remainingMinutes}분{remainingSeconds}초 남았습니다.

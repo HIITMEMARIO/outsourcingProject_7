@@ -170,7 +170,7 @@ export default function Map() {
         dispatch(data(place));
       });
     }
-  }, [inputValue, lt, lg, myBooking]);
+  }, [inputValue, lt, lg, myBooking, dispatch]);
 
   return (
     <>
