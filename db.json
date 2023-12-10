@@ -1,34 +1,6 @@
 {
   "review": [
     {
-      "id": "2af2618c-2707-2c4c-7565-1f33c1ac2f22",
-      "comment": "ㅇㅇㅇㅇㅇㅇ",
-      "nickname": "에이닷",
-      "createdAt": "2023-12-08 06:28:51",
-      "hospitalId": "9746155"
-    },
-    {
-      "id": "589d3f32-59b1-a3ab-0085-6d0fa80435f7",
-      "comment": "뉴요커",
-      "nickname": "에이닷",
-      "createdAt": "2023-12-08 06:30:37",
-      "hospitalId": "786616546"
-    },
-    {
-      "id": "dd1c2888-1f84-3c07-89d5-4f3dc8579112",
-      "comment": "연세치과",
-      "nickname": "에이닷",
-      "createdAt": "2023-12-08 07:03:42",
-      "hospitalId": "2027456859"
-    },
-    {
-      "id": "43f89aad-ae91-43f8-bcca-918661df1d81",
-      "comment": "연세치과 리뷰입니다",
-      "nickname": "희원쓰",
-      "createdAt": "2023-12-08 07:06:57",
-      "hospitalId": "2027456859"
-    },
-    {
       "id": "67cc4d9e-df37-ff26-51e7-ba83cf63ba6b",
       "comment": "뉴요크",
       "nickname": "희원",
@@ -174,3 +146,4 @@
     }
   ]
 }
+

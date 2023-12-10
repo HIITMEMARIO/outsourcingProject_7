@@ -38,7 +38,7 @@ export default function Map() {
     );
     setMybooking(myBooking);
   }, [hospitalData, bookingData]);
-
+  //이거 쿼리로 수정하기
   useEffect(() => {
     const getBookingData = async () => {
       const getBooking = await dispatch(__getBooking());
