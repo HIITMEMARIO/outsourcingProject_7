@@ -48,7 +48,7 @@ export default function Map() {
     };
     getBookingData();
   }, [nickname]);
-
+  // useEffect내용 적당히 분리하면서 코드 짤것
   //3
   useEffect(() => {
     const myBooking = bookingData.filter((booking) =>
@@ -150,8 +150,8 @@ export default function Map() {
         position: new kakao.maps.LatLng(place.y, place.x),
       });
 
-      let text = '';
-      console.log(place);
+      let hospitalname = '';
+      let date = '';
       // 민석님과 준혁님이  하신것
       // const booking = myBooking.find((booking) => {
       //   return booking.hospital === place.id;
@@ -166,17 +166,17 @@ export default function Map() {
       console.log(booking);
       if (booking) {
         console.log('..............................');
-        text = booking.hospitalName;
+        hospitalname = booking.hospitalName;
+        date = booking.date;
       } else if (booking === undefined) {
-        console.log('000000000', place.place_name);
-        text = place.place_name;
+        hospitalname = place.place_name;
       }
 
-      const content = `<div class ="label"><span class="left"></span><span class="center">${text}</span><span class="right"></span></div>`;
+      const content = `<div class ="label"><span class="left">${hospitalname}</span><span class="center">${date}에 예약되어 있어요!</span><span class="right"></span></div>`;
 
       var customOverlay = new kakao.maps.CustomOverlay({
         position: marker.getPosition(),
-        content: content,
+        content: booking ? content : '',
         yAnchor: 1.4,
       });
       customOverlays.push(customOverlay);
