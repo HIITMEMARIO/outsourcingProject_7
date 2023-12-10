@@ -28,8 +28,18 @@ export const __getBooking = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const res = await bookingAxios.get('/booking');
-
-      return res.data;
+      const resData = res.data.filter((item) => {
+        const changeDateform = new Date(item.date);
+        const nowDate = new Date();
+        console.log(changeDateform);
+        console.log(nowDate);
+        // if (changeDateform.getTime() < nowDate.getTime()) {
+        // axios.delete(`/booking/${item}`);
+        //   }
+        return changeDateform.getTime() > nowDate.getTime();
+      });
+      // console.log(resData);
+      return resData;
     } catch (error) {
       console.log('error', error);
       return thunkAPI.rejectWithValue(error);

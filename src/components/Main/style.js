@@ -167,7 +167,7 @@ export const StButtonBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 600px;
+  bottom: 50px;
 `;
 export const Stbutton = styled.div`
   height: 30px;

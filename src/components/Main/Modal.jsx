@@ -9,8 +9,12 @@ import { auth } from 'shared/firebase';
 import bookingAxios from 'api/booking';
 import uuid from 'react-uuid';
 import { toast } from 'react-toastify';
+import { __getBooking } from '../../redux/modules/bookingSlice';
+import { setHours, setMinutes } from 'date-fns';
 
 export default function Modal({ setIsModalOpen }) {
+  const dispatch = useDispatch();
+
   const [nickname, setNickname] = useState('');
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -22,26 +26,28 @@ export default function Modal({ setIsModalOpen }) {
     return state.mapSlice.data;
   });
 
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(
+    setHours(setMinutes(new Date(), 0), 9),
+  );
+  const filterPassedTime = (time) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+
+    return currentDate.getTime() < selectedDate.getTime();
+  };
   const booking = async () => {
     const response = await bookingAxios.post('/booking', {
       id: uuid(),
       nickname: nickname,
-      date: dateFormatChange,
+      date: startDate,
       hospital: data.id,
       hospitalName: data.place_name,
     });
+    dispatch(__getBooking());
     toast.success('예약 되셨습니다!');
     setIsModalOpen(false);
   };
 
-  const dateFormatChange =
-    startDate.getFullYear() +
-    '년 ' +
-    (startDate.getMonth() + 1) +
-    '월 ' +
-    startDate.getDate() +
-    '일';
   return (
     <>
       {!!nickname ? (
@@ -56,9 +62,11 @@ export default function Modal({ setIsModalOpen }) {
           <h1>{data.place_name} 예약하기</h1>
           <DatePicker
             locale={ko}
+            showTimeSelect
             selected={startDate}
             onChange={(date) => setStartDate(date)}
-            dateFormat="yyyy년 MM월 dd일"
+            dateFormat="yyyy년 MM월 dd일 hh시 mm분"
+            filterTime={filterPassedTime}
             minDate={new Date()}
           />
           <StButtonBox>
