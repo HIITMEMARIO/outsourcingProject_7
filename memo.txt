@@ -25,3 +25,11 @@ booking{
 1. booking데이터를 가져온다.
 2.booking데이터 중 nickname이 현재 로그인한 유저의 displayname과 같은 데이터를 필터해서 map을 통해 뿌려준다.
 3.수정 삭제 기능을 추가한다.
+
+
+
+지금 맵에서 할 일
+맵에 hospital과 같은 id를 가진 병원들을 검색 없이도 보여준다//
+
+
+bookingData?.filter

@@ -34,16 +34,12 @@ export default function Review() {
     });
   });
 
-  console.log('review', review);
-
   const data = useSelector((state) => {
     return state.mapSlice.data;
   });
-  console.log('hospital data', data);
 
   const dataHospitalId = data.id;
-  console.log('이거보세요옷', dataHospitalId);
-  console.log(data);
+
 
   useEffect(() => {
     dispatch(__getReview());
