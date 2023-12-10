@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { auth } from 'shared/firebase';
 import bookingAxios from 'api/booking';
 import uuid from 'react-uuid';
+import { toast } from 'react-toastify';
 
 export default function Modal({ setIsModalOpen }) {
   const [nickname, setNickname] = useState('');
@@ -16,15 +17,12 @@ export default function Modal({ setIsModalOpen }) {
       if (user) setNickname(user.displayName);
     });
   }, []);
-  // console.log('모달닉네임', nickname);
 
   const data = useSelector((state) => {
     return state.mapSlice.data;
   });
 
   const [startDate, setStartDate] = useState(new Date());
-  console.log(startDate);
-  console.log(data.place_name);
   const booking = async () => {
     const response = await bookingAxios.post('/booking', {
       id: uuid(),
@@ -33,8 +31,8 @@ export default function Modal({ setIsModalOpen }) {
       hospital: data.id,
       hospitalName: data.place_name,
     });
+    toast.success('예약 되셨습니다!');
     setIsModalOpen(false);
-    console.log('부킹', response.data);
   };
 
   const dateFormatChange =
@@ -72,10 +70,6 @@ export default function Modal({ setIsModalOpen }) {
               예약
             </Stbutton>
           </StButtonBox>
-          {/* <StMemoBox>
-        <h1>메모</h1>
-        <StMemoInput maxLength={20} />
-      </StMemoBox> */}
         </StModal>
       ) : (
         ''

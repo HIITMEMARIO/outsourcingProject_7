@@ -17,10 +17,10 @@ import {
 } from './style';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from 'shared/firebase';
+import { toast } from 'react-toastify';
 
 export default function Review() {
   const [nickname, setNickname] = useState('');
-  const [user, setUser] = useState(null);
   const [comment, setComment] = useState('');
   const [userId, setUserId] = useState('');
   const [hospitalName, setHospitalName] = useState('');
@@ -29,7 +29,6 @@ export default function Review() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUser(user);
         setNickname(user.displayName);
       }
     });
@@ -50,24 +49,23 @@ export default function Review() {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (!nickname) {
-      alert('로그인 후 작성바랍니다');
+      toast.error('로그인 후 작성바랍니다');
       return;
     }
     if (comment === '') {
-      alert('내용을 입력해주세요');
+      toast.error('내용을 입력해주세요');
       return;
     }
     const newReview = {
       id: uuid(),
       comment,
-      nickname: user.displayName,
+      nickname: nickname,
       createdAt: new Date().toISOString().replace('T', ' ').substring(0, 19),
       hospitalId: data.id,
       hospitalName: data.place_name,
     };
 
     dispatch(__addReview(newReview));
-    setUserId('');
     setComment('');
   };
 

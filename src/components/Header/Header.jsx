@@ -1,28 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StContainer, StLogoBox } from './style';
 import myappologo from 'assets/myappologo.png';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { signOut } from '@firebase/auth';
-import { auth } from 'shared/firebase';
 import { logout } from '../../redux/modules/authSlice';
 import TokenRemainingTime from './TokenRemainingTime';
+import styled from 'styled-components';
 
 export default function Header() {
   const dispatch = useDispatch();
 
-  //확인용
-  // const a = auth.currentUser;
-  // console.log('a', a);
-  // useEffect(() => {
-  //   // const a = auth.currentUser;
-
-  //   console.log('dddddddddddddddddddddddddddddd', a);
-  // }, []);
-
   const navigate = useNavigate();
   const isLogin = useSelector((state) => state.authSlice.isLogin);
-  console.log(isLogin);
 
   const onHandleLoginBtn = () => {
     navigate('/login');
@@ -38,15 +27,31 @@ export default function Header() {
       </StLogoBox>
       {isLogin ? (
         <>
-          <TokenRemainingTime />
-          <div>
-            <button onClick={() => navigate('/mypage')}>mypage</button>
-            <button onClick={onHandleLoginBtn}>logout</button>
-          </div>
+          <NavWrapper>
+            <TokenRemainingTime />
+            <div>
+              <NavBtn onClick={() => navigate('/mypage')}>Mypage</NavBtn>
+              <NavBtn onClick={onHandleLoginBtn}>Logout</NavBtn>
+            </div>
+          </NavWrapper>
         </>
       ) : (
-        <button onClick={onHandleLoginBtn}>로그인</button>
+        <NavWrapper>
+          <NavBtn onClick={onHandleLoginBtn}>로그인</NavBtn>
+        </NavWrapper>
       )}
     </StContainer>
   );
 }
+
+const NavWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 5rem;
+  gap: 1rem;
+`;
+const NavBtn = styled.button`
+  font-size: 30px;
+  font-weight: 600;
+  cursor: pointer;
+`;
