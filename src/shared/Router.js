@@ -7,24 +7,31 @@ import MyPage from 'pages/MyPage';
 import { useSelector } from 'react-redux';
 
 export default function Router() {
-  const isLogin = useSelector(state => state.authSlice.isLogin)
+  const isLogin = useSelector((state) => state.authSlice.isLogin);
+  console.log(isLogin);
   return (
     <BrowserRouter>
       <Layout>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          {isLogin ?
+          {/**login과 my페이지는 isLogin 상태에 따라 조건부 라우팅
+           * true = mypage, false = loginpage
+           * 튜터님 강의 활용하여 접근시 ㅇㅋㅇㅋㅇㅋ
+           */}
+          {isLogin ? (
             <>
               <Route path="/mypage" element={<MyPage />} />
             </>
-            : <>
+          ) : (
+            <>
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/mypage/:id" element={<Navigate replace to="/login" />} />
+              <Route
+                path="/mypage/:id"
+                element={<Navigate replace to="/login" />}
+              />
             </>
-
-          }
+          )}
           <Route path="*" element={<Navigate replace to="/" />} />
-
         </Routes>
       </Layout>
     </BrowserRouter>

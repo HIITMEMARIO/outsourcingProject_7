@@ -31,7 +31,7 @@ export default function Modal({ setIsModalOpen }) {
     const response = await bookingAxios.post('/booking', {
       id: uuid(),
       nickname: nickname,
-      date: dateFormatChange,
+      date: startDate,
       hospital: data.id,
       hospitalName: data.place_name,
     });
@@ -40,13 +40,6 @@ export default function Modal({ setIsModalOpen }) {
     setIsModalOpen(false);
   };
 
-  const dateFormatChange =
-    startDate.getFullYear() +
-    '년 ' +
-    (startDate.getMonth() + 1) +
-    '월 ' +
-    startDate.getDate() +
-    '일';
   return (
     <>
       {!!nickname ? (
@@ -61,9 +54,10 @@ export default function Modal({ setIsModalOpen }) {
           <h1>{data.place_name} 예약하기</h1>
           <DatePicker
             locale={ko}
+            showTimeSelect
             selected={startDate}
             onChange={(date) => setStartDate(date)}
-            dateFormat="yyyy년 MM월 dd일"
+            dateFormat="yyyy년 MM월 dd일 hh시"
             minDate={new Date()}
           />
           <StButtonBox>

@@ -13,15 +13,18 @@ let { kakao } = window;
 
 export default function Map() {
   let dispatch = useDispatch();
-  let [inputValue, setInputValue] = useState('');
-  let [hospitalData, setHospitalData] = useState([]);
-  let [lt, setLatitude] = useState(0);
-  let [lg, setLongitude] = useState(0);
-  let container = useRef(null);
 
-  let [isModalOpen, setIsModalOpen] = useState(false);
-  let [nickname, setNickname] = useState('');
-  let [myBooking, setMyBooking] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+  const [hospitalData, setHospitalData] = useState([]);
+  const [lt, setLatitude] = useState(0);
+  const [lg, setLongitude] = useState(0);
+  const container = useRef(null);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [nickname, setNickname] = useState('');
+  const [myBooking, setMyBooking] = useState([]);
+  const [dateFormResult, setDateFormResult] = useState('');
+
   // 1
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -125,24 +128,33 @@ export default function Map() {
 
     var customOverlays = [];
 
-    let imageSrc = myappologo;
-    let imageSize = new kakao.maps.Size(40, 40);
+    const imageSrc = myappologo;
+    const imageSize = new kakao.maps.Size(40, 40);
     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
     // 지도에 마커를 표시하는 함수입니다
     function displayMarker(place) {
       let hospitalname = '';
-      let date = '';
-      let booking = myBooking.find((booking) => {
+      // let date = '';
+      const booking = myBooking.find((booking) => {
+        const changeDateform = new Date(booking.date);
+        const year = changeDateform.getFullYear();
+        const month = changeDateform.getMonth() + 1;
+        const day = changeDateform.getDate();
+
+        const changeDateFormresult = `${year}년 ${month}월 ${day}일`;
+        setDateFormResult(changeDateFormresult);
         return booking.hospital === place.id;
       });
 
+      console.log(booking);
+
       if (booking) {
         hospitalname = booking.hospitalName;
-        date = booking.date;
       } else if (booking === undefined) {
         hospitalname = place.place_name;
       }
+
       // 마커를 생성하고 지도에 표시합니다
       var marker = new kakao.maps.Marker({
         map: map,
@@ -150,7 +162,7 @@ export default function Map() {
         image: booking ? markerImage : '',
       });
 
-      let content = `<div class ="label"><span class="hospitalname">${hospitalname}</span><span class="date">${date}에 예약되어 있어요!</span><span class="right"></span></div>`;
+      let content = `<div class ="label"><span class="hospitalname">${hospitalname}</span><span class="date">${dateFormResult}에 예약되어 있어요!</span><span class="right"></span></div>`;
       let noBookingcontent = `<div class ="label"><span class="left">${hospitalname}</span><span class="center"></span><span class="right"></span></div>`;
 
       var customOverlay = new kakao.maps.CustomOverlay({
