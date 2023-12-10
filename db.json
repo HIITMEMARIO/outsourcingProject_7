@@ -1,62 +1,46 @@
 {
   "review": [
     {
-      "id": "07a16e6e-84cb-45a0-9ec4-2d2fbbc8ca7a",
-      "comment": "vsdfs",
+      "id": "63d63c31-bb9f-3909-7f40-bbe413166208",
+      "comment": "",
       "nickname": "희원",
-      "createdAt": "2023-12-09 18:29:46",
-      "hospitalId": "671653521"
+      "createdAt": "2023-12-10 12:06:39",
+      "hospitalId": "8816782",
+      "hospitalName": "김종화치과의원"
+    },
+    {
+      "id": "e66eecbf-bdb7-8964-29aa-bc52a9e3922d",
+      "comment": "ㄴㅇㄹㄴㅇㄹ",
+      "nickname": "희원",
+      "createdAt": "2023-12-10 12:06:41",
+      "hospitalId": "8816782",
+      "hospitalName": "김종화치과의원"
     }
   ],
   "booking": [
     {
-      "id": "33f90733-28c9-d373-6a60-8f0b37570c0b",
+      "id": "43a9ce6c-5b4c-49eb-06ba-81c61bbc17db",
       "nickname": "희원",
-      "date": "2023-12-10T05:18:18.298Z",
-      "hospital": "1380407513",
-      "hospitalName": "모든이치과의원"
+      "date": "2023년 12월 14일",
+      "hospital": "10633882",
+      "hospitalName": "인천예치과의원"
     },
     {
-      "id": "a02d83c4-39b4-ca15-1fea-68c19d7c492a",
+      "id": "34567fbd-5a87-84ca-5f54-81e3993f58c5",
       "nickname": "희원",
-      "date": "2023-12-10T05:24:45.013Z",
-      "hospital": "773906292",
-      "hospitalName": "행복한쥬니어치과의원"
+      "date": ""
     },
     {
-      "id": "e49d945a-1a46-7ef4-6ce5-54e1ed9da60f",
+      "id": "e34f5869-bc7c-09e2-e782-72fce0128797",
       "nickname": "희원",
-      "date": "2023-12-10T05:24:47.573Z",
-      "hospital": "9973876",
-      "hospitalName": "서울치과의원"
+      "date": ""
     },
     {
-      "id": "f8ac3966-9eed-dec7-af60-29aac2132a3e",
+      "id": "6afb274e-348f-a3b3-9ef4-f67fa5105745",
       "nickname": "희원",
-      "date": "2023-12-10T05:24:49.265Z",
-      "hospital": "9746155",
-      "hospitalName": "김선주치과의원"
-    },
-    {
-      "id": "495ebd48-edfe-00eb-e29a-7638cafd8a02",
-      "nickname": "희원",
-      "date": "2023-12-10T07:40:47.475Z",
-      "hospital": "2027456859",
-      "hospitalName": "연세바로치과 인천점"
-    },
-    {
-      "id": "27f73fae-95fa-82e9-74fc-f444139d388e",
-      "nickname": "희원",
-      "date": "2023-12-10T07:40:50.165Z",
-      "hospital": "16682748",
-      "hospitalName": "주사랑치과의원"
-    },
-    {
-      "id": "996614de-251c-7ca9-679e-7f686072e2a0",
-      "nickname": "희원",
-      "date": "2023-12-10T07:40:51.371Z",
-      "hospital": "27503961",
-      "hospitalName": "모래내서울치과의원"
+      "date": "2023년 12월 10일",
+      "hospital": "9945942",
+      "hospitalName": "용치과의원"
     }
   ]
 }

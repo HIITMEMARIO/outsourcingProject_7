@@ -6,15 +6,24 @@ import {
   __editReview,
   __getReview,
 } from '../../redux/modules/reviewSlice';
-import { __deleteBooking } from '../../redux/modules/bookingSlice';
+import {
+  __deleteBooking,
+  __editBooking,
+} from '../../redux/modules/bookingSlice';
 import { auth } from 'shared/firebase';
 import { __getBooking } from '../../redux/modules/bookingSlice';
 import { useNavigate } from 'react-router-dom';
+import Modal from 'components/Main/Modal';
+import '../Main/modal.css';
+import EditBooking from './EditBooking';
 
 export default function MyProfile() {
   const [nickname, setNickname] = useState('');
-  // const [bookingData, setBookingData] = useState();
-  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedBookingId, setSelectedBookingId] = useState(null);
+  const [selectedReviewId, setSelectedReviewId] = useState(null);
+  const [newDate, setNewDate] = useState();
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setNickname(user.displayName);
@@ -25,7 +34,7 @@ export default function MyProfile() {
   const [isEdit, setIsEdit] = useState(false);
   const { review, isLoading } = useSelector((state) => state.reviewSlice);
   const { booking } = useSelector((state) => state.bookingSlice);
-  console.log('booking', booking);
+
   const myReview = review.filter((item) => {
     return item.nickname === nickname;
   });
@@ -51,17 +60,6 @@ export default function MyProfile() {
     }
   };
 
-  const editDate = (id) => {
-    if (
-      window.confirm('날짜를 수정하시겠습니까? 확인 누르면 예약페이지로 이동함')
-    ) {
-      dispatch(__deleteBooking(id)).then(() => {
-        dispatch(__getBooking());
-        // navigate('/', { state: { value: bookingData } });
-      });
-    }
-  };
-
   console.log('이거 찾아보자', booking);
 
   useEffect(() => {
@@ -84,11 +82,29 @@ export default function MyProfile() {
     return <p>로딩 중 ..</p>;
   }
 
+  const editBookingToggle = (id) => {
+    setIsModalOpen(!isModalOpen);
+    // setSelectedBookingId(id);
+
+    if (!isModalOpen) {
+      setNewDate('');
+      return;
+    }
+    dispatch(__editBooking({ id, newDate }));
+    // if (isModalOpen === true) {
+    //   if (window.confirm('이대로 수정을 진행하시겠습니까?')) {
+    //   } else {
+    //     return;
+    //   }
+    // }
+  };
+
   const editToggle = (id) => {
     setIsEdit(!isEdit);
 
     if (!isEdit) {
       setNewComment('');
+      setSelectedReviewId(id);
       return;
     }
     dispatch(__editReview({ id, newComment }));
@@ -137,20 +153,31 @@ export default function MyProfile() {
                     <div>{item.nickname}</div>
                   </StScheduleBox>
                   <StBookingBtns>
-                    <StBookingEditBtn
-                      onClick={() => {
-                        editDate(item.id);
-                      }}
-                    >
-                      수정
-                    </StBookingEditBtn>
-                    <StBookingDeleteBtn
-                      onClick={() => {
-                        deleteBooking(item.id);
-                      }}
-                    >
-                      삭제
-                    </StBookingDeleteBtn>
+                    {isModalOpen ? (
+                      <>
+                        <StBookingEditBtn
+                          onClick={() => editBookingToggle(item.id)}
+                        >
+                          수정완료
+                          <EditBooking />
+                        </StBookingEditBtn>
+                        <StBookingCancelBtn>취소하기</StBookingCancelBtn>
+                      </>
+                    ) : (
+                      <>
+                        <StBookingEditBtn
+                          onClick={() => editBookingToggle(item.id)}
+                        >
+                          수정하기
+                        </StBookingEditBtn>
+
+                        <StBookingDeleteBtn
+                          onClick={() => deleteBooking(item.id)}
+                        >
+                          삭제하기
+                        </StBookingDeleteBtn>
+                      </>
+                    )}
                   </StBookingBtns>
                 </div>
               );
@@ -169,11 +196,18 @@ export default function MyProfile() {
         {myReview?.map((item) => {
           return (
             <StReviewContainer key={item.id}>
-              <div style={{ marginLeft: '550px', marginBottom: '10px' }}>
+              <div
+                style={{
+                  marginBottom: '10px',
+                  gap: '50px',
+                }}
+              >
+                {item.hospitalName}
                 {item.createdAt}
               </div>
+
               <StReviewBox>
-                {isEdit ? (
+                {isEdit && selectedReviewId === item.id ? (
                   <>
                     <Textarea
                       autoFocus
@@ -187,7 +221,7 @@ export default function MyProfile() {
               </StReviewBox>
 
               <StBtns>
-                {isEdit ? (
+                {isEdit && selectedReviewId === item.id ? (
                   <>
                     <StEditBtn onClick={() => editToggle(item.id)}>
                       수정완료
@@ -196,7 +230,9 @@ export default function MyProfile() {
                   </>
                 ) : (
                   <>
-                    <StEditBtn onClick={editToggle}>수정하기</StEditBtn>
+                    <StEditBtn onClick={() => editToggle(item.id)}>
+                      수정하기
+                    </StEditBtn>
                     <StRemoveBtn
                       onClick={() => {
                         deleteReview(item.id);
@@ -328,4 +364,16 @@ const StBookingBtns = styled.div`
   display: flex;
   margin-left: 80px;
   gap: 10px;
+`;
+
+const StBookingCancelBtn = styled.div`
+  border-radius: 30px;
+  background-color: lightgray;
+  width: 60px;
+  height: 30px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+    transition: all 0.2s;
+  }
 `;

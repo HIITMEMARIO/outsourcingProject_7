@@ -23,6 +23,7 @@ export default function Review() {
   const [user, setUser] = useState(null);
   const [comment, setComment] = useState('');
   const [userId, setUserId] = useState('');
+  const [hospitalName, setHospitalName] = useState('');
   const dispatch = useDispatch();
   const { review } = useSelector((state) => state.reviewSlice);
   useEffect(() => {
@@ -37,6 +38,8 @@ export default function Review() {
   const data = useSelector((state) => {
     return state.mapSlice.data;
   });
+
+  console.log('data', data);
 
   const dataHospitalId = data.id;
 
@@ -60,6 +63,7 @@ export default function Review() {
       nickname: user.displayName,
       createdAt: new Date().toISOString().replace('T', ' ').substring(0, 19),
       hospitalId: data.id,
+      hospitalName: data.place_name,
     };
 
     dispatch(__addReview(newReview));
