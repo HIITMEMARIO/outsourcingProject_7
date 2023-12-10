@@ -6,6 +6,7 @@ import Modal from './Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { data } from '../../redux/modules/mapSlice';
 import { auth } from 'shared/firebase';
+
 import { __getBooking } from '../../redux/modules/bookingSlice';
 import myappologo from '../../assets/myappologo.png';
 
@@ -135,7 +136,6 @@ export default function Map() {
     // 지도에 마커를 표시하는 함수입니다
     function displayMarker(place) {
       let hospitalname = '';
-      // let date = '';
       const booking = myBooking.find((booking) => {
         const changeDateform = new Date(booking.date);
         const year = changeDateform.getFullYear();

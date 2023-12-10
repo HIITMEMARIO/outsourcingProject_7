@@ -1,52 +1,51 @@
 import React, { useEffect, useState } from 'react';
-import { StButtonBox, StModal, Stbutton } from './style';
+import { StButtonBox, StModal, Stbutton } from '../Main/style';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import './modal.css';
+import './editBooking.css';
 import { ko } from 'date-fns/esm/locale';
 import { useDispatch, useSelector } from 'react-redux';
 import { auth } from 'shared/firebase';
 import bookingAxios from 'api/booking';
 import uuid from 'react-uuid';
-import { toast } from 'react-toastify';
-import { __getBooking } from '../../redux/modules/bookingSlice';
-import { setHours, setMinutes } from 'date-fns';
 
-export default function Modal({ setIsModalOpen }) {
-  const dispatch = useDispatch();
-
+export default function EditBooking() {
   const [nickname, setNickname] = useState('');
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) setNickname(user.displayName);
     });
   }, []);
+  // console.log('모달닉네임', nickname);
 
   const data = useSelector((state) => {
     return state.mapSlice.data;
   });
 
-  const [startDate, setStartDate] = useState(
-    setHours(setMinutes(new Date(), 0), 9),
-  );
-  const filterPassedTime = (time) => {
-    const currentDate = new Date();
-    const selectedDate = new Date(time);
-
-    return currentDate.getTime() < selectedDate.getTime();
-  };
+  const [startDate, setStartDate] = useState(new Date());
+  console.log(startDate);
+  console.log(data.place_name);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newDate, setNewDate] = useState();
   const booking = async () => {
     const response = await bookingAxios.post('/booking', {
       id: uuid(),
       nickname: nickname,
-      date: startDate,
+      date: dateFormatChange,
       hospital: data.id,
       hospitalName: data.place_name,
     });
-    dispatch(__getBooking());
-    toast.success('예약 되셨습니다!');
     setIsModalOpen(false);
+    console.log('부킹', response.data);
   };
+
+  const dateFormatChange =
+    startDate.getFullYear() +
+    '년 ' +
+    (startDate.getMonth() + 1) +
+    '월 ' +
+    startDate.getDate() +
+    '일';
 
   return (
     <>
@@ -59,14 +58,12 @@ export default function Modal({ setIsModalOpen }) {
           >
             X
           </button>
-          <h1>{data.place_name} 예약하기</h1>
+          <h1>{data.place_name} 예약 수정하기</h1>
           <DatePicker
             locale={ko}
-            showTimeSelect
             selected={startDate}
             onChange={(date) => setStartDate(date)}
-            dateFormat="yyyy년 MM월 dd일 hh시 mm분"
-            filterTime={filterPassedTime}
+            dateFormat="yyyy년 MM월 dd일"
             minDate={new Date()}
           />
           <StButtonBox>

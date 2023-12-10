@@ -31,6 +31,8 @@ export const __getBooking = createAsyncThunk(
       const resData = res.data.filter((item) => {
         const changeDateform = new Date(item.date);
         const nowDate = new Date();
+        console.log(changeDateform);
+        console.log(nowDate);
         // if (changeDateform.getTime() < nowDate.getTime()) {
         // axios.delete(`/booking/${item}`);
         //   }
@@ -65,8 +67,10 @@ export const __editBooking = createAsyncThunk(
   'editBooking',
   async (payload, thunkAPI) => {
     try {
-      const res = await bookingAxios.patch(`/booking/${payload.id}`, {});
-
+      const res = await bookingAxios.patch(`/booking/${payload.id}`, {
+        date: payload.newDate,
+      });
+      console.log('이거 좀 ', res.data);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -132,6 +136,13 @@ export const bookingSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         console.log('qqq');
+        state.booking = state.booking.map((item) => {
+          if (item.id === action.payload.id) {
+            console.log('dfsfsdfafrfref', action.payload);
+            return { ...item, date: action.payload.date };
+          }
+          return item;
+        });
       })
       .addCase(__editBooking.rejected, (state, action) => {
         state.isLoading = false;
