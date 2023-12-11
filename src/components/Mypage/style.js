@@ -9,19 +9,19 @@ export const StProfileContainer = styled.div`
 
 // 내 스케쥴 관리
 export const StScheduleContainer = styled.div`
-display: flex;
+  display: flex;
   text-align: center;
   justify-items: center;
- 
-${({ $myBooking }) => {
+
+  ${({ $myBooking }) => {
     if ($myBooking.length > 0) {
       return css`
-   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  `
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      `;
     }
   }}
-    gap: 80px;
+  gap: 80px;
   margin: 0;
 `;
 
@@ -175,6 +175,7 @@ export const StReviewBox = styled.div`
   font-size: 18px;
   padding: 20px;
   z-index: 0;
+  word-break: break-word;
 `;
 
 export const Textarea = styled.textarea`
