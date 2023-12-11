@@ -1,20 +1,14 @@
-import GlobalStyles from 'GlobalStyle';
-import React, { useEffect } from 'react';
-import { userStateChange } from 'config/firebase';
-import { useLoggedIn } from 'hooks/useAuth';
-import Router from 'Router';
-
+import GlobalStyles from 'Styles/GlobalStyle';
+import React from 'react';
+import Router from '../src/shared/Router';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export function App() {
-  const { setLoginState } = useLoggedIn();
-
-  useEffect(() => {
-    userStateChange((user) => setLoginState(user));
-  }, [setLoginState]);
-
   return (
     <div>
       <>
         <GlobalStyles />
+        <ToastContainer />
         <Router />
       </>
     </div>

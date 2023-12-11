@@ -1,5 +1,5 @@
 import React from 'react';
-
-export default function MyPage() {
-  return <div>MyPage</div>;
+import MyPage from '../components/Mypage/MyProfile';
+export default function myPage() {
+  return <MyPage />;
 }

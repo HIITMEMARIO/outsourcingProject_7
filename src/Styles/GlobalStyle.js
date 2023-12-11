@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
-
 const GlobalStyles = createGlobalStyle`
-
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -28,9 +27,14 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	font-family: 'NanumSquare','NanumSquareBold','Sans-serif';
 	line-height: 1;
     height: 100vh;
 }
+p{
+	font-family: 'NanumSquare','NanumSquareBold','Sans-serif';
+}
+
 ol, ul, li {
 	list-style: none;
 }
@@ -51,13 +55,21 @@ a {
     color: inherit;
 }  
 input, button, textarea{
+  font-family: 'NanumSquare','NanumSquareBold','Sans-serif';
     border: none;
     background: inherit;
 	  outline: none;
 } 
+
+h1,h2,form {
+  font-family: 'NanumSquare','NanumSquareBold','Sans-serif';
+}
+
+
 * { 
     box-sizing: border-box;
 }
+
 `;
 
 export default GlobalStyles;
