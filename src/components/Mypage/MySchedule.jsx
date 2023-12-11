@@ -20,6 +20,10 @@ export default function MySchedule({
   editBookingToggle,
   deleteBooking,
 }) {
+  const myBooking = booking?.filter((item) => {
+    return item.nickname === nickname;
+  });
+
   return (
     <>
       <div
@@ -30,12 +34,9 @@ export default function MySchedule({
       >
         나의 스케줄
       </div>
-      <StScheduleContainer>
-        {booking
-          ?.filter((item) => {
-            return item.nickname === nickname;
-          })
-          .map((item) => {
+      <StScheduleContainer $myBooking={myBooking}>
+        {myBooking.length > 0 ? (
+          myBooking.map((item) => {
             const dateObject = new Date(item.date);
 
             const formattedDate = `${(dateObject.getFullYear() % 100)
@@ -67,9 +68,17 @@ export default function MySchedule({
                         <StBookingEditBtn onClick={() => editBookingToggle()}>
                           수정완료
                         </StBookingEditBtn>
-                        <StBookingCancelBtn>취소하기</StBookingCancelBtn>
+                        <StBookingCancelBtn
+                          onClick={() => setIsModalOpen(false)}
+                        >
+                          취소하기
+                        </StBookingCancelBtn>
                         <div>
-                          <EditBooking schedule={item} />
+                          <EditBooking
+                            schedule={item}
+                            isModalOpen={isModalOpen}
+                            setIsModalOpen={setIsModalOpen}
+                          />
                         </div>
                       </>
                     ) : (
@@ -91,7 +100,10 @@ export default function MySchedule({
                 </StScheduleBox>
               </div>
             );
-          })}
+          })
+        ) : (
+          <p>예약내역이 없습니다.</p>
+        )}
       </StScheduleContainer>
     </>
   );

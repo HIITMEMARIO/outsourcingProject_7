@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   __deleteReview,
   __editReview,
   __getReview,
 } from '../../redux/modules/reviewSlice';
-import {
-  __deleteBooking,
-  __editBooking,
-} from '../../redux/modules/bookingSlice';
+import { __deleteBooking } from '../../redux/modules/bookingSlice';
 import { auth } from 'shared/firebase';
 import { __getBooking } from '../../redux/modules/bookingSlice';
-// import '../Main/modal.css';
 import MyReview from './MyReview';
 import MySchedule from './MySchedule';
+import { StProfileContainer } from './style';
 
 export default function MyProfile() {
   const [nickname, setNickname] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const [selectedReviewId, setSelectedReviewId] = useState(null);
-  const [newDate, setNewDate] = useState();
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -61,10 +56,6 @@ export default function MyProfile() {
 
   useEffect(() => {
     dispatch(__getBooking());
-  }, [nickname]);
-
-  useEffect(() => {
-    dispatch(__getReview());
   }, [nickname]);
 
   const deleteReview = (id) => {
@@ -118,6 +109,7 @@ export default function MyProfile() {
           booking={booking}
           nickname={nickname}
           isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
           selectedBookingId={selectedBookingId}
           editBookingToggle={editBookingToggle}
           deleteBooking={deleteBooking}
@@ -130,15 +122,11 @@ export default function MyProfile() {
           setNewComment={setNewComment}
           deleteReview={deleteReview}
           editToggle={editToggle}
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          setIsEdit={setIsEdit}
         />
       </StProfileContainer>
     </div>
   );
 }
-
-export const StProfileContainer = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-`;

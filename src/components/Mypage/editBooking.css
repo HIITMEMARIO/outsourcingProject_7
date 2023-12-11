@@ -1,3 +1,12 @@
+.react-datepicker {
+  position: relative !important;
+  display: flex;
+  flex-direction: column;
+  left: -19px !important;
+  top: 30px !important;
+}
+
+
 .react-datepicker-popper {
   display: flex;
   border-radius: 0;
@@ -23,7 +32,7 @@
   justify-content: center;
 }
 
-.react-datepicker__input-container > input {
+.react-datepicker__input-container>input {
   text-align: center;
   font-size: 20px;
   font-weight: 600;
@@ -34,7 +43,7 @@
   border-radius: 10px;
 }
 
-.react-datepicker__input-container > input:hover {
+.react-datepicker__input-container>input:hover {
   background-color: #fff;
 }
 

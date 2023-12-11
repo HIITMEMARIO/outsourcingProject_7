@@ -33,10 +33,14 @@ export default function Header() {
             <TokenRemainingTime />
             <div>
               <NavBtn onClick={() => navigate('/mypage')}>
-                <CgProfile size={50} style={{ marginRight: '20px' }} />
+                <CgProfile
+                  size={40}
+                  color="Grey"
+                  style={{ marginRight: '20px' }}
+                />
               </NavBtn>
               <NavBtn onClick={onHandleLoginBtn}>
-                <IoIosLogOut size={50} />
+                <IoIosLogOut size={40} color="Grey" />
               </NavBtn>
             </div>
           </NavWrapper>
@@ -44,7 +48,7 @@ export default function Header() {
       ) : (
         <NavWrapper>
           <NavBtn onClick={onHandleLoginBtn}>
-            <CiLogin size={50} />
+            <CiLogin size={50} color="Grey" />
           </NavBtn>
         </NavWrapper>
       )}

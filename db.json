@@ -10,11 +10,12 @@
     },
     {
       "id": "ed0752ca-2677-0489-e791-9b0fed4544fc",
-      "comment": "리뷰3좋아",
+      "comment": "ㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻ",
       "nickname": "에이닷",
       "createdAt": "2023-12-10 13:47:15",
       "hospitalId": "10889257",
       "hospitalName": "평화치과"
+<<<<<<< HEAD
     },
     {
       "id": "74c81678-74fb-436b-db3d-6cc1f2461d3b",
@@ -23,6 +24,24 @@
       "createdAt": "2023-12-10 18:46:18",
       "hospitalId": "17464878",
       "hospitalName": "스마일치과의원"
+    },
+    {
+      "id": "d6cadeca-8724-0fb7-e894-2fccb1eab28b",
+      "comment": "fasdfasdfa",
+      "nickname": "에이닷",
+      "createdAt": "2023-12-10 23:22:39",
+      "hospitalId": "14820818",
+      "hospitalName": "365열린치과의원"
+    },
+    {
+      "id": "f3b0835b-f6ed-5a16-d366-d0d01bd03417",
+      "comment": "",
+      "nickname": "에이닷",
+      "createdAt": "2023-12-10 23:22:41",
+      "hospitalId": "14820818",
+      "hospitalName": "365열린치과의원"
+=======
+>>>>>>> d79bcc6a54d72d2dc3f4010a9af9ac8ec965c632
     }
   ],
   "booking": [
