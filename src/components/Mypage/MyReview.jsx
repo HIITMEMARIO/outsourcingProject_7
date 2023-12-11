@@ -26,8 +26,8 @@ export default function MyReview({
           <StReviewContainer key={item.id}>
             <div
               style={{
+                display: 'flex',
                 marginBottom: '10px',
-                gap: '50px',
               }}
             >
               {item.hospitalName}
@@ -36,13 +36,11 @@ export default function MyReview({
 
             <StReviewBox>
               {isEdit && selectedReviewId === item.id ? (
-                <>
-                  <Textarea
-                    autoFocus
-                    defaultValue={item.comment}
-                    onChange={(e) => setNewComment(e.target.value)}
-                  />
-                </>
+                <Textarea
+                  autoFocus
+                  defaultValue={item.comment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                />
               ) : (
                 <>{item.comment}</>
               )}

@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import EditBooking from './EditBooking';
 import {
   StScheduleInfo,
@@ -17,7 +16,6 @@ export default function MySchedule({
   booking,
   nickname,
   isModalOpen,
-  setIsModalOpen,
   selectedBookingId,
   editBookingToggle,
   deleteBooking,

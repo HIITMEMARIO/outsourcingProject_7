@@ -1,22 +1,6 @@
 {
   "review": [
     {
-      "id": "63d63c31-bb9f-3909-7f40-bbe413166208",
-      "comment": "ㅇㄴㅀㄴ",
-      "nickname": "희원",
-      "createdAt": "2023-12-10 12:06:39",
-      "hospitalId": "8816782",
-      "hospitalName": "김종화치과의원"
-    },
-    {
-      "id": "e66eecbf-bdb7-8964-29aa-bc52a9e3922d",
-      "comment": "ㄴㅇㄹㄴㅇㄹ",
-      "nickname": "희원",
-      "createdAt": "2023-12-10 12:06:41",
-      "hospitalId": "8816782",
-      "hospitalName": "김종화치과의원"
-    },
-    {
       "id": "165515fd-8226-931f-699d-8f61c3c46adb",
       "comment": "리뷰122ㄹㄹㄹㄹ",
       "nickname": "에이닷",
@@ -195,6 +179,20 @@
       "date": "2023-12-27T01:00:00.000",
       "hospital": "1874275411",
       "hospitalName": "바른플란트치과의원"
+    },
+    {
+      "id": "f2292164-3216-250c-d675-151ff1e96539",
+      "nickname": "희원",
+      "date": "2023-12-27T00:30:00.000",
+      "hospital": "2027456859",
+      "hospitalName": "연세바로치과 인천점"
+    },
+    {
+      "id": "bd2541b1-01bf-3149-3f82-f8a42d3afc7b",
+      "nickname": "희원",
+      "date": "2023-12-13T13:30:00.000",
+      "hospital": "20281548",
+      "hospitalName": "서울이턱사랑니치과의원"
     }
   ]
 }
