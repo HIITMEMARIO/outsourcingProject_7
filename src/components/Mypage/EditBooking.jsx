@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { StButtonBox, StModal, Stbutton } from '../Main/style';
+import { StButtonBox, StModal, Stbutton } from '../Mypage/style';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+// import 'react-datepicker/dist/react-datepicker.css';
 import './editBooking.css';
 import { ko } from 'date-fns/esm/locale';
 import { useDispatch } from 'react-redux';
@@ -10,7 +10,7 @@ import { format, setHours, setMinutes } from 'date-fns';
 
 import { __editBooking } from '../../redux/modules/bookingSlice';
 
-export default function EditBooking({ schedule }) {
+export default function EditBooking({ schedule, isModalOpen, setIsModalOpen }) {
   const dispatch = useDispatch();
   const [nickname, setNickname] = useState('');
   useEffect(() => {
@@ -31,6 +31,7 @@ export default function EditBooking({ schedule }) {
   };
 
   const booking = async () => {
+    setIsModalOpen(!isModalOpen);
     dispatch(__editBooking({ newDate: dateFormatChange, id: schedule.id }));
   };
 
@@ -43,7 +44,7 @@ export default function EditBooking({ schedule }) {
     <>
       {!!nickname ? (
         <StModal>
-          <h1>예약 수정하기</h1>
+          <StButtonBox></StButtonBox>
           <DatePicker
             locale={ko}
             showTimeSelect
@@ -51,17 +52,16 @@ export default function EditBooking({ schedule }) {
             onChange={(date) => setStartDate(date)}
             dateFormat="yyyy년 MM월 dd일 hh시 mm분"
             filterTime={filterPassedTime}
+            inline
             minDate={new Date()}
           />
-          <StButtonBox>
-            <Stbutton
-              onClick={() => {
-                booking();
-              }}
-            >
-              예약
-            </Stbutton>
-          </StButtonBox>
+          <Stbutton
+            onClick={() => {
+              booking();
+            }}
+          >
+            예약
+          </Stbutton>
         </StModal>
       ) : (
         ''

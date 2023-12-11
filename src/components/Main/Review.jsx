@@ -14,11 +14,17 @@ import {
   StReviewComment,
   StUserIDAndCreatedAt,
   StUserId,
+  StInfoTitle,
+  StInfoAddress,
+  StInfoPhone,
+  StInfoPlaceURL,
 } from './style';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from 'shared/firebase';
 import { toast } from 'react-toastify';
-
+import { RiMapPin2Line } from 'react-icons/ri';
+import { FaRegHospital } from 'react-icons/fa6';
+import { FaPhone } from 'react-icons/fa6';
 export default function Review() {
   const [nickname, setNickname] = useState('');
   const [comment, setComment] = useState('');
@@ -75,10 +81,19 @@ export default function Review() {
         <StCommentsBox>
           <StHospitalInfo>
             <>
-              <h2>{data.place_name}</h2>
-              <div>{data.road_address_name}</div>
-              <div> {data.phone}</div>
-              <div> {data.place_url}</div>
+              <StInfoTitle>
+                <FaRegHospital />
+                &nbsp;
+                {data.place_name}
+              </StInfoTitle>
+              <StInfoAddress>
+                <RiMapPin2Line />
+                &nbsp;
+                {data.road_address_name}
+              </StInfoAddress>
+              <StInfoPhone>
+                <FaPhone /> {data.phone}
+              </StInfoPhone>
             </>
           </StHospitalInfo>
           <h1
@@ -125,7 +140,7 @@ export default function Review() {
             </div>
             <StReviewComment
               type="text"
-              placeholder="로그인 후 이용해주세요 (100자 이내)"
+              placeholder="100자 이내로 입력바랍니다."
               value={comment}
               onChange={onReviewChange}
               maxLength={100}

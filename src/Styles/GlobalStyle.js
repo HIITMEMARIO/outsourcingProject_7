@@ -55,10 +55,17 @@ a {
     color: inherit;
 }  
 input, button, textarea{
+  font-family: 'NanumSquare','NanumSquareBold','Sans-serif';
     border: none;
     background: inherit;
 	  outline: none;
 } 
+
+h1,h2,form {
+  font-family: 'NanumSquare','NanumSquareBold','Sans-serif';
+}
+
+
 * { 
     box-sizing: border-box;
 }
