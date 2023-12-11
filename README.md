@@ -1,70 +1,90 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 프로젝트 개요
 
-## Available Scripts
+내 주변 병원을 한번에 모아보고 예약과 리뷰가 가능하다면 매우 편할거 같은 생각에 사이트를 만들게 되었다.
 
-In the project directory, you can run:
+# 구현 사항
 
-### `yarn start`
+- 홈페이지
+- [v]  병원 검색
+- [v]  병원 리뷰 확인
+- [v]  병원 리뷰 작성
+- [v]  예약 메모
+- [v]  로그인시, 예약한 병원 보여주기
+- [v]  우리 동네 병원 찾기
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 로그인 페이지
+- [v]  회원가입 기능
+- [v]  로그인 기능
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 마이 페이지
+- [v]  병원 예약 내역 확인하기
+- [v]  나의 리뷰 확인 및 수정, 삭제
 
-### `yarn test`
+# 프로젝트 폴더 구조
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+📦src
+ ┣ 📂api
+ ┃ ┗ 📜booking.js
+ ┣ 📂assets
+ ┃ ┣ 📜mainlogo.png
+ ┃ ┗ 📜myappologo.png
+ ┣ 📂components
+ ┃ ┣ 📂Footer
+ ┃ ┃ ┣ 📜Footer.jsx
+ ┃ ┃ ┗ 📜style.js
+ ┃ ┣ 📂Header
+ ┃ ┃ ┣ 📜Header.jsx
+ ┃ ┃ ┣ 📜style.js
+ ┃ ┃ ┗ 📜TokenRemainingTime.jsx
+ ┃ ┣ 📂Login
+ ┃ ┃ ┗ 📜Login.jsx
+ ┃ ┣ 📂Main
+ ┃ ┃ ┣ 📜Main.jsx
+ ┃ ┃ ┣ 📜map.css
+ ┃ ┃ ┣ 📜Map.jsx
+ ┃ ┃ ┣ 📜modal.css
+ ┃ ┃ ┣ 📜Modal.jsx
+ ┃ ┃ ┣ 📜Review.jsx
+ ┃ ┃ ┗ 📜style.js
+ ┃ ┗ 📂Mypage
+ ┃ ┃ ┣ 📜editBooking.css
+ ┃ ┃ ┣ 📜EditBooking.jsx
+ ┃ ┃ ┣ 📜MyProfile.jsx
+ ┃ ┃ ┣ 📜MyReview.jsx
+ ┃ ┃ ┣ 📜MySchedule.jsx
+ ┃ ┃ ┗ 📜style.js
+ ┣ 📂Hooks
+ ┃ ┗ 📜userForm.js
+ ┣ 📂Layout
+ ┃ ┣ 📜Layout.jsx
+ ┃ ┗ 📜styles.js
+ ┣ 📂pages
+ ┃ ┣ 📜LoginPage.jsx
+ ┃ ┣ 📜MainPage.jsx
+ ┃ ┗ 📜MyPage.jsx
+ ┣ 📂redux
+ ┃ ┣ 📂config
+ ┃ ┃ ┗ 📜configStore.js
+ ┃ ┗ 📂modules
+ ┃ ┃ ┣ 📜authSlice.js
+ ┃ ┃ ┣ 📜bookingSlice.js
+ ┃ ┃ ┣ 📜mapSlice.js
+ ┃ ┃ ┗ 📜reviewSlice.js
+ ┣ 📂shared
+ ┃ ┣ 📜firebase.js
+ ┃ ┗ 📜Router.js
+ ┣ 📂Styles
+ ┃ ┗ 📜GlobalStyle.js
+ ┣ 📜App.css
+ ┣ 📜App.jsx
+ ┗ 📜index.js
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ # 와이어 프레임 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+기존의 병원하면 떠오르는 초록색을 사용했을시 자칫 부담스럽거나 거부감이 들수있다고 판단해 좀 더 가볍고 산뜻한 느낌의 파란계열 색상을 key color로 지정
+메인페이지에서 바로 지도가 한눈에 들어오게끔 최상단에 배치
+예약한 병원의 마커는 눈에 띌수있도록 다른 이미지의 마커로 대체
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ ![image](https://github.com/HIITMEMARIO/outsourcingProject_7/assets/135943045/b537e013-be99-40d7-bd26-ee48c24c035b)
