@@ -1,6 +1,6 @@
 import React from 'react';
 import '../Main/modal.css';
-import styled from 'styled-components';
+
 import {
   StBtns,
   StEditBtn,
@@ -31,7 +31,6 @@ export default function MyReview({
       >
         내가 쓴 리뷰
       </div>
-
       {myReview?.map((item) => {
         return (
           <StReviewContainer key={item.id}>

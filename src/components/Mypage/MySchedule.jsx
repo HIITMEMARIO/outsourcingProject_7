@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import EditBooking from './EditBooking';
 import {
   StScheduleInfo,
@@ -22,6 +21,10 @@ export default function MySchedule({
   editBookingToggle,
   deleteBooking,
 }) {
+  const myBooking = booking?.filter((item) => {
+    return item.nickname === nickname;
+  });
+
   return (
     <>
       <div
@@ -32,12 +35,9 @@ export default function MySchedule({
       >
         나의 스케줄
       </div>
-      <StScheduleContainer>
-        {booking
-          ?.filter((item) => {
-            return item.nickname === nickname;
-          })
-          .map((item) => {
+      <StScheduleContainer $myBooking={myBooking}>
+        {myBooking.length > 0 ? (
+          myBooking.map((item) => {
             const dateObject = new Date(item.date);
 
             const formattedDate = `${(dateObject.getFullYear() % 100)
@@ -101,7 +101,10 @@ export default function MySchedule({
                 </StScheduleBox>
               </div>
             );
-          })}
+          })
+        ) : (
+          <p>예약내역이 없습니다.</p>
+        )}
       </StScheduleContainer>
     </>
   );

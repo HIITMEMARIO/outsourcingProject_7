@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   __deleteReview,
   __editReview,
   __getReview,
 } from '../../redux/modules/reviewSlice';
-import {
-  __deleteBooking,
-  __editBooking,
-} from '../../redux/modules/bookingSlice';
+import { __deleteBooking } from '../../redux/modules/bookingSlice';
 import { auth } from 'shared/firebase';
 import { __getBooking } from '../../redux/modules/bookingSlice';
-// import '../Main/modal.css';
 import MyReview from './MyReview';
 import MySchedule from './MySchedule';
 import { StProfileContainer } from './style';
@@ -22,7 +17,6 @@ export default function MyProfile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const [selectedReviewId, setSelectedReviewId] = useState(null);
-  const [newDate, setNewDate] = useState();
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {

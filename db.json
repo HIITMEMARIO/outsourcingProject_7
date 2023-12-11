@@ -23,6 +23,7 @@
       "createdAt": "2023-12-10 13:47:15",
       "hospitalId": "10889257",
       "hospitalName": "평화치과"
+<<<<<<< HEAD
     },
     {
       "id": "74c81678-74fb-436b-db3d-6cc1f2461d3b",
@@ -47,6 +48,8 @@
       "createdAt": "2023-12-10 23:22:41",
       "hospitalId": "14820818",
       "hospitalName": "365열린치과의원"
+=======
+>>>>>>> d79bcc6a54d72d2dc3f4010a9af9ac8ec965c632
     }
   ],
   "booking": [
