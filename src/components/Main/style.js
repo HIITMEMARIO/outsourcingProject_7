@@ -65,13 +65,15 @@ export const StCommentsBox = styled.div`
 
 export const StComment = styled.div`
   width: 700px;
-  height: 40px;
+  height: 75px;
   background-color: white;
   border-radius: 10px;
   padding-top: 10px;
   margin-left: 50px;
   margin-right: 50px;
   border: 1px solid #7a97ff;
+  word-break: break-word;
+  line-height: 20px;
 `;
 
 export const StReviewComment = styled.input`
