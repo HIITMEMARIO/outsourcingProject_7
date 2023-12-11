@@ -6,9 +6,14 @@ export const StProfileContainer = styled.div`
   flex-direction: column;
   justify-content: center;
 `;
-
+export const StP = styled.p`
+display:flex;
+align-items:center;
+min-height:40vh;
+`
 // 내 스케쥴 관리
 export const StScheduleContainer = styled.div`
+min-height:40vh;
   display: flex;
   text-align: center;
   justify-items: center;

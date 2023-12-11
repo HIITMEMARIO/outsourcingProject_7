@@ -10,6 +10,7 @@ import {
   StScheduleContainer,
   StBookingDate,
   StBookingHospital,
+  StP,
 } from './style';
 
 export default function MySchedule({
@@ -103,7 +104,7 @@ export default function MySchedule({
             );
           })
         ) : (
-          <p>예약내역이 없습니다.</p>
+          <StP>예약내역이 없습니다.</StP>
         )}
       </StScheduleContainer>
     </>

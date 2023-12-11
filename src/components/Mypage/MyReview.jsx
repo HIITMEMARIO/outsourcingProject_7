@@ -4,6 +4,7 @@ import '../Main/modal.css';
 import {
   StBtns,
   StEditBtn,
+  StP,
   StRemoveBtn,
   StReviewBox,
   StReviewContainer,
@@ -93,7 +94,7 @@ export default function MyReview({
           );
         })
       ) : (
-        <p>작성한 리뷰가 없습니다.</p>
+        <StP>작성한 리뷰가 없습니다.</StP>
       )}
     </>
   );
