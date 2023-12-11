@@ -12,7 +12,10 @@ export const __addReview = createAsyncThunk(
   'addReviews',
   async (payload, thunkAPI) => {
     try {
-      const res = await axios.post('http://localhost:5000/review', payload);
+      const res = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/review`,
+        payload,
+      );
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -25,7 +28,7 @@ export const __getReview = createAsyncThunk(
   'getReviews',
   async (payload, thunkAPI) => {
     try {
-      const res = await axios.get('http://localhost:5000/review');
+      const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/review`);
       return res.data;
     } catch (error) {
       console.log('error', error);
@@ -39,7 +42,9 @@ export const __deleteReview = createAsyncThunk(
   'deleteReviews',
   async (payload, thunkAPI) => {
     try {
-      const res = await axios.delete(`http://localhost:5000/review/${payload}`);
+      const res = await axios.delete(
+        `${process.env.REACT_APP_SERVER_URL}/review/${payload}`,
+      );
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -53,7 +58,7 @@ export const __editReview = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const res = await axios.patch(
-        `http://localhost:5000/review/${payload.id}`,
+        `${process.env.REACT_APP_SERVER_URL}/review/${payload.id}`,
         { comment: payload.newComment },
       );
       return res.data;
@@ -134,5 +139,5 @@ export const reviewSlice = createSlice({
       });
   },
 });
-export const { } = reviewSlice.actions;
+export const {} = reviewSlice.actions;
 export default reviewSlice.reducer;
