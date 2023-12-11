@@ -69,9 +69,17 @@ export default function MySchedule({
                         <StBookingEditBtn onClick={() => editBookingToggle()}>
                           수정완료
                         </StBookingEditBtn>
-                        <StBookingCancelBtn>취소하기</StBookingCancelBtn>
+                        <StBookingCancelBtn
+                          onClick={() => setIsModalOpen(false)}
+                        >
+                          취소하기
+                        </StBookingCancelBtn>
                         <div>
-                          <EditBooking schedule={item} />
+                          <EditBooking
+                            schedule={item}
+                            isModalOpen={isModalOpen}
+                            setIsModalOpen={setIsModalOpen}
+                          />
                         </div>
                       </>
                     ) : (

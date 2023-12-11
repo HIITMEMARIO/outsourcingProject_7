@@ -17,20 +17,39 @@
       "hospitalName": "김종화치과의원"
     },
     {
-      "id": "165515fd-8226-931f-699d-8f61c3c46adb",
-      "comment": "리뷰122ㄹㄹㄹㄹ",
-      "nickname": "에이닷",
-      "createdAt": "2023-12-10 13:47:06",
-      "hospitalId": "10889257",
-      "hospitalName": "평화치과"
-    },
-    {
       "id": "ed0752ca-2677-0489-e791-9b0fed4544fc",
-      "comment": "리뷰3좋아",
+      "comment": "ㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻ",
       "nickname": "에이닷",
       "createdAt": "2023-12-10 13:47:15",
       "hospitalId": "10889257",
       "hospitalName": "평화치과"
+<<<<<<< HEAD
+    },
+    {
+      "id": "74c81678-74fb-436b-db3d-6cc1f2461d3b",
+      "comment": "ㅇㅇㅇ",
+      "nickname": "씨다씨",
+      "createdAt": "2023-12-10 18:46:18",
+      "hospitalId": "17464878",
+      "hospitalName": "스마일치과의원"
+    },
+    {
+      "id": "d6cadeca-8724-0fb7-e894-2fccb1eab28b",
+      "comment": "fasdfasdfa",
+      "nickname": "에이닷",
+      "createdAt": "2023-12-10 23:22:39",
+      "hospitalId": "14820818",
+      "hospitalName": "365열린치과의원"
+    },
+    {
+      "id": "f3b0835b-f6ed-5a16-d366-d0d01bd03417",
+      "comment": "",
+      "nickname": "에이닷",
+      "createdAt": "2023-12-10 23:22:41",
+      "hospitalId": "14820818",
+      "hospitalName": "365열린치과의원"
+=======
+>>>>>>> d79bcc6a54d72d2dc3f4010a9af9ac8ec965c632
     }
   ],
   "booking": [
@@ -187,6 +206,69 @@
       "date": "2023-12-27T01:00:00.000",
       "hospital": "1874275411",
       "hospitalName": "바른플란트치과의원"
+    },
+    {
+      "id": "1cf65859-c801-2a31-5a11-e9ccd592d103",
+      "nickname": "에이닷",
+      "date": "2023-12-11T00:00:24.286",
+      "hospital": "14820818",
+      "hospitalName": "365열린치과의원"
+    },
+    {
+      "id": "d5d22869-245c-1f9a-8bed-5a283ebbaf6c",
+      "nickname": "에이닷",
+      "date": "2023-12-11T00:00:09.099",
+      "hospital": "14820818",
+      "hospitalName": "365열린치과의원"
+    },
+    {
+      "id": "37e785e9-97b8-c155-1da1-b86de8f775f6",
+      "nickname": "에이닷",
+      "date": "2023-12-11T00:00:30.974",
+      "hospital": "14820818",
+      "hospitalName": "365열린치과의원"
+    },
+    {
+      "id": "3e1db338-f66e-6e19-0eeb-967d6a2f86cc",
+      "nickname": "에이닷",
+      "date": "2023-12-11T00:00:46.165",
+      "hospital": "1716449764",
+      "hospitalName": "도레미키즈치과의원"
+    },
+    {
+      "id": "cdfa6ba0-be0a-bbd4-c5e3-c46480034592",
+      "nickname": "에이닷",
+      "date": "2023-12-11T00:00:54.476",
+      "hospital": "1716449764",
+      "hospitalName": "도레미키즈치과의원"
+    },
+    {
+      "id": "ad368002-d646-51d9-8e4e-9f868356279c",
+      "nickname": "에이닷",
+      "date": "2023-12-11T00:00:05.890",
+      "hospital": "14820818",
+      "hospitalName": "365열린치과의원"
+    },
+    {
+      "id": "1d569a11-80b0-f035-975f-39ca1cfb501e",
+      "nickname": "에이닷",
+      "date": "2023-12-11T00:00:57.109",
+      "hospital": "14820818",
+      "hospitalName": "365열린치과의원"
+    },
+    {
+      "id": "0b51f20f-57e0-7947-eb5b-0aef3555942d",
+      "nickname": "에이닷",
+      "date": "2023-12-11T23:30:00.000",
+      "hospital": "1094350657",
+      "hospitalName": "웰치과교정과치과의원"
+    },
+    {
+      "id": "30b0781a-30ec-eaac-1613-3b69dcf1969b",
+      "nickname": "에이닷",
+      "date": "2023-12-20T01:00:00.000",
+      "hospital": "1563645474",
+      "hospitalName": "호치과의원"
     }
   ]
 }

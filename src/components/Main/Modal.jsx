@@ -13,18 +13,15 @@ import { __getBooking } from '../../redux/modules/bookingSlice';
 import { format, setHours, setMinutes } from 'date-fns';
 
 export default function Modal({ setIsModalOpen, render, setRender }) {
-  const dispatch = useDispatch();
-
-  const [nickname, setNickname] = useState('');
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) setNickname(user.displayName);
     });
   }, []);
 
-  const data = useSelector((state) => {
-    return state.mapSlice.data;
-  });
+  const dispatch = useDispatch();
+
+  const [nickname, setNickname] = useState('');
 
   const [startDate, setStartDate] = useState(
     setHours(setMinutes(new Date(), 0), 0),
@@ -33,9 +30,13 @@ export default function Modal({ setIsModalOpen, render, setRender }) {
   const filterPassedTime = (time) => {
     const currentDate = new Date();
     const selectedDate = new Date(time);
-
     return currentDate.getTime() < selectedDate.getTime();
   };
+
+  const data = useSelector((state) => {
+    return state.mapSlice.data;
+  });
+
   const booking = async () => {
     await bookingAxios.post('/booking', {
       id: uuid(),
@@ -45,8 +46,8 @@ export default function Modal({ setIsModalOpen, render, setRender }) {
       hospitalName: data.place_name,
     });
     dispatch(__getBooking());
-    toast.success('예약 되셨습니다!');
     setRender(!render);
+    toast.success('예약 되셨습니다!');
     setIsModalOpen(false);
   };
 

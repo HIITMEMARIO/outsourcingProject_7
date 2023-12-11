@@ -96,39 +96,112 @@ export const StBookingDeleteBtn = styled.button`
 
 //--------------------------------------------
 
-export const StReviewContainer = styled.div`
-  height: 200px;
+export const StReviewComment = styled.div``;
+
+export const StModal = styled.div`
+  position: relative;
+  width: 380px;
+  height: 600px;
+  display: flex;
+  z-index: 300;
+  background-color: #fff;
+  border: 1px solid #7a97ff;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+
+  .react-datepicker {
+    left: 0px !important;
+    position: absolute;
+    border: 1px solid #7a97ff !important;
+  }
+
+  button {
+    align-self: flex-start;
+    padding: 20px;
+    font-weight: 800;
+    font-size: 20px;
+    transition: all.1s;
+    cursor: pointer;
+
+    &:hover {
+      color: #7a97ff;
+    }
+  }
+  h1 {
+    font-weight: 1000;
+    font-size: 18px;
+    text-align: center;
+  }
+`;
+
+export const StButtonBox = styled.div`
+  width: 300px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 50px;
+`;
+export const Stbutton = styled.div`
+  height: 30px;
+  border: 1px solid #7a97ff;
+  border-radius: 10px;
+  background-color: #fff;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all.1s;
+  position: relative;
+  bottom: -70px;
+  &:hover {
+    background-color: #c3ebff;
+  }
 `;
 
 export const StReviewBox = styled.div`
-  display: block;
+  position: relative;
+  display: flex;
   width: 700px;
   height: 100px;
   margin-bottom: 20px;
-  border-radius: 40px;
+  border-radius: 20px;
   border: 1px solid lightgrey;
+  background-color: #fff;
+  align-items: center;
+  font-size: 18px;
   padding: 20px;
+  z-index: 0;
 `;
 
-export const StRemoveBtn = styled.button`
-  width: 100px;
-  height: 50px;
-  border-radius: 10px;
-  margin-left: 10px;
-  background-color: lightgrey;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.1);
-    transition: all 0.2s;
-  }
+export const Textarea = styled.textarea`
+  position: absolute;
+  left: 0;
+  width: 790px;
+  height: 90px;
+  border-radius: 20px;
+  border: none;
+  padding: 20px;
+  resize: none;
+  display: block;
+  line-height: 50px;
+  font-size: 18px;
+  max-width: 100%;
+`;
+export const StBtns = styled.div`
+  margin-left: 480px;
 `;
 
 export const StEditBtn = styled.button`
   width: 100px;
   height: 50px;
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: lightgrey;
   margin-left: 10px;
+  border: 1px solid #7a97ff;
   cursor: pointer;
   &:hover {
     transform: scale(1.1);
@@ -136,18 +209,21 @@ export const StEditBtn = styled.button`
   }
 `;
 
-export const StBtns = styled.div`
-  /* margin-left: 480px; */
+export const StReviewContainer = styled.div`
+  height: 200px;
+  margin-bottom: 100px;
 `;
 
-export const Textarea = styled.textarea`
-  display: block;
-  width: 700px;
-  height: 100px;
-  margin-bottom: 20px;
-  border-radius: 40px;
-  border: 1px solid lightgrey;
-  padding: 20px;
+export const StRemoveBtn = styled.button`
+  width: 100px;
+  height: 50px;
+  border-radius: 20px;
+  margin-left: 10px;
+  background-color: lightgrey;
+  border: 1px solid #7a97ff;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+    transition: all 0.2s;
+  }
 `;
-
-export const StReviewComment = styled.div``;

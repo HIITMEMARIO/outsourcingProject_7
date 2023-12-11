@@ -31,7 +31,7 @@ export const StInput = styled.input`
   height: 50px;
   border: 1px solid #7a97ff;
   border-radius: 10px;
-  font-weight: 800;
+  font-weight: 400;
   text-align: center;
   background-color: #ffffff;
 `;
@@ -131,6 +131,7 @@ export const StModal = styled.div`
   border-left: 1px solid #7a97ff;
   opacity: 0.9;
   flex-direction: column;
+  align-items: center;
 
   button {
     align-self: flex-start;
