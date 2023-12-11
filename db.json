@@ -15,7 +15,6 @@
       "createdAt": "2023-12-10 13:47:15",
       "hospitalId": "10889257",
       "hospitalName": "평화치과"
-<<<<<<< HEAD
     },
     {
       "id": "74c81678-74fb-436b-db3d-6cc1f2461d3b",
@@ -40,8 +39,14 @@
       "createdAt": "2023-12-10 23:22:41",
       "hospitalId": "14820818",
       "hospitalName": "365열린치과의원"
-=======
->>>>>>> d79bcc6a54d72d2dc3f4010a9af9ac8ec965c632
+    },
+    {
+      "id": "8d5bf4b0-78a4-7268-b9b0-18ccaa33741d",
+      "comment": "친절합니다!!!!!!!!!!!!",
+      "nickname": "박희원",
+      "createdAt": "2023-12-11 02:01:02",
+      "hospitalId": "1874275411",
+      "hospitalName": "바른플란트치과의원"
     }
   ],
   "booking": [
@@ -212,6 +217,20 @@
       "date": "2023-12-13T13:30:00.000",
       "hospital": "20281548",
       "hospitalName": "서울이턱사랑니치과의원"
+    },
+    {
+      "id": "38582b83-f9eb-cfc8-b9fd-b34f9f5a46ed",
+      "nickname": "박희원",
+      "date": "2023-12-11T00:00:14.067",
+      "hospital": "2027456859",
+      "hospitalName": "연세바로치과 인천점"
+    },
+    {
+      "id": "da4560ed-bd0d-3a76-8a71-cbdc8c52eea7",
+      "nickname": "박희원",
+      "date": "2023-12-13T15:30:00.000",
+      "hospital": "1874275411",
+      "hospitalName": "바른플란트치과의원"
     }
   ]
 }

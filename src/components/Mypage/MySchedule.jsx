@@ -19,6 +19,7 @@ export default function MySchedule({
   selectedBookingId,
   editBookingToggle,
   deleteBooking,
+  setIsModalOpen,
 }) {
   const myBooking = booking?.filter((item) => {
     return item.nickname === nickname;
